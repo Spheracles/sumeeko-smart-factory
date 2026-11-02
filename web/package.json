@@ -1,0 +1,26 @@
+{
+  "name": "sumeeko-smart-factory-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SUMEEKO 智慧工廠：Stage 4 PWA + Android WebView React/TypeScript project",
+  "scripts": {
+    "build:app": "bun build_app.ts ./dist-app",
+    "build:android": "bun build_app.ts ../android/app/src/main/assets/www",
+    "build:web": "bun build.ts",
+    "typecheck": "tsc -p .",
+    "test:sim": "bun test/sim.test.ts && bun test/career.test.ts",
+    "test:app": "python3 test/app.py",
+    "test:stage1": "node test/stage1_logic_test.cjs",
+    "test:stage2": "node test/stage2_logic_test.cjs",
+    "test:stage2-ui": "python3 test/stage2_scene_ui.py",
+    "test:stage2-tasks": "python3 test/stage2_e2e.py",
+    "build:pwa": "bun build_pwa.ts"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0"
+  }
+}

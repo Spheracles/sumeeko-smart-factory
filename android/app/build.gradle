@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.application'
+}
+
+// 正式簽署：讀取未納入版控的 keystore.properties（不存在時只能建置 Debug 版）
+def keystorePropsFile = rootProject.file('keystore.properties')
+def keystoreProps = new Properties()
+if (keystorePropsFile.exists()) {
+    keystorePropsFile.withInputStream { keystoreProps.load(it) }
+}
+
+android {
+    namespace 'tw.sumeeko.learning.factory'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'tw.sumeeko.learning.factory'
+        minSdk 26          // Android 8.0
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    signingConfigs {
+        if (keystorePropsFile.exists()) {
+            release {
+                storeFile file(keystoreProps['storeFile'])
+                storePassword keystoreProps['storePassword']
+                keyAlias keystoreProps['keyAlias']
+                keyPassword keystoreProps['keyPassword']
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (keystorePropsFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+}
+
+
+// Stage 2: always rebuild web assets before building APK.
+// Prevent an Android Studio build from silently embedding the old Stage 1 HTML.
+tasks.register('syncWebAssets', Exec) {
+    group = 'build'
+    description = 'Bundle the current React/TypeScript sources for the offline Android WebView'
+    workingDir file("${rootProject.projectDir}/../web")
+    def onWindows = System.getProperty('os.name').toLowerCase().contains('windows')
+    def bun = System.getenv('BUN_BIN') ?: 'bun'
+    if (onWindows) {
+        commandLine 'cmd', '/c', bun, 'build_app.ts', '../android/app/src/main/assets/www'
+    } else {
+        commandLine bun, 'build_app.ts', '../android/app/src/main/assets/www'
+    }
+}
+tasks.named('preBuild') {
+    dependsOn 'syncWebAssets'
+}

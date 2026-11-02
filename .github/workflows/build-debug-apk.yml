@@ -1,0 +1,79 @@
+name: Build and test Android Debug APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  debug-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Android SDK packages
+        run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+      - name: Install web dependencies
+        working-directory: web
+        run: bun install
+      - name: TypeScript typecheck
+        working-directory: web
+        run: bun run typecheck
+      - name: State / back navigation unit checks
+        working-directory: web
+        run: bun run test:stage1
+      - name: Stage 2 task and responsive geometry checks
+        working-directory: web
+        run: node test/stage2_logic_test.cjs
+      - name: Install Playwright Chromium for browser acceptance
+        run: |
+          python3 -m pip install playwright
+          python3 -m playwright install --with-deps chromium
+      - name: Rebuild Stage 2 web acceptance bundle
+        working-directory: web
+        run: bun build_app.ts ./dist-app
+      - name: Run responsive scene and Android back UI tests (Chromium)
+        working-directory: web
+        run: python3 test/stage2_scene_ui.py
+      - name: Run complete T1 through T5 browser flows
+        working-directory: web
+        run: |
+          for task in T1 T2 T3 T4 T5; do
+            python3 test/stage2_e2e.py --task "$task"
+          done
+      - name: Build offline web resources into Android assets
+        working-directory: web
+        run: bun build_app.ts ../android/app/src/main/assets/www
+      - name: Check offline bundle
+        run: python3 web/test/stage1_bundle_audit.py
+      - name: Build Debug APK with Gradle
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --stacktrace assembleDebug
+      - name: Verify APK exists and record checksum
+        run: |
+          test -s android/app/build/outputs/apk/debug/app-debug.apk
+          cd android/app/build/outputs/apk/debug
+          sha256sum app-debug.apk > app-debug.apk.sha256
+          ls -lh app-debug.apk
+      - name: Upload Debug APK and checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: sumeeko-smart-factory-debug-apk
+          path: |
+            android/app/build/outputs/apk/debug/app-debug.apk
+            android/app/build/outputs/apk/debug/app-debug.apk.sha256
+          if-no-files-found: error
+          retention-days: 14

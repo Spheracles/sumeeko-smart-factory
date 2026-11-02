@@ -1,0 +1,4 @@
+declare module 'react' { const React: any; export default React; export const useState: <T = any>(v?: T | (() => T)) => [T, (v: T | ((p: T) => T)) => void]; export const useMemo: <T = any>(f: () => T, d: any[]) => T; export const useEffect: (f: () => any, d?: any[]) => void; export const useRef: <T = any>(v?: any) => { current: T }; export const useContext: <T = any>(c: any) => T; export const createContext: <T = any>(v: T) => any; export type FC<P = any> = (p: P) => any; export const Fragment: any; export const Component: any; }
+declare module 'react-dom/client' { export const createRoot: any; }
+declare namespace React { type FC<P = any> = (p: P) => any; type PointerEvent = any; type ReactNode = any; }
+declare namespace JSX { interface ElementChildrenAttribute { children: {} } interface IntrinsicElements { [k: string]: any } interface Element {} interface ElementAttributesProperty { props: {} } interface IntrinsicAttributes { key?: any } }

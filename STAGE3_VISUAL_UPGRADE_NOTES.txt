@@ -1,0 +1,35 @@
+SUMEEKO 智慧工廠｜Stage 3 視覺升級說明
+=====================================
+
+本次優化重點
+1. 角色立繪（web/src/app/people.tsx）
+   - 由簡化人形升級為 2.5D 工業角色立繪。
+   - 新增安全帽、透明面罩、制服細節、口袋、識別證、手套、工作道具。
+   - 依角色 pose 顯示平板、量具、掃描器、模具塊等。
+   - 強化 point / done / alert / check 等動作辨識度。
+
+2. 機台視覺（web/src/app/machines.tsx）
+   - 提升金屬漸層、控制面板、地坪與空間光感。
+   - 新增狀態氛圍（RUN / WARN / FAULT / ESTOP / LOTO）。
+   - 補強操作動畫：機械手臂、輸送帶、AMR 位移。
+   - 加強熱點標示與機台標題條。
+
+3. 工件材質（web/src/app/gl.ts）
+   - 微調程序化 3D 工件材質參數。
+   - 改善 shader，使鋅鍍層、熱處理件、黑色皮膜、冷鍛表面更有金屬光澤與層次。
+
+4. 場景與首頁視覺（web/src/app/Shell.tsx, web/src/app/app.css）
+   - 重製首頁 MiniScene 小工廠示意圖。
+   - 升級場景氛圍、玻璃面板與卡片光影。
+   - 調整角色展示區、3D 檢視區與機台模組的整體質感。
+
+驗證
+- 已通過 TypeScript 型別檢查：
+  在 web 目錄執行 `tsc -p .` 可通過。
+
+重建建議
+- 此專案原本使用 Bun 進行前端打包。
+- 若要重新輸出可部署版本，請在具備 Bun 的環境執行：
+  `bun build_app.ts ./dist-app`
+  或依 package.json 的 scripts 進行重建。
+

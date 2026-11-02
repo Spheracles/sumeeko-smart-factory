@@ -1,0 +1,16 @@
+#pwa-prompt{position:fixed;z-index:125;left:12px;right:12px;bottom:calc(87px + env(safe-area-inset-bottom, 0px));max-width:420px;margin:auto;display:none;gap:12px;align-items:center;padding:12px;background:linear-gradient(120deg,#1b3150,#11233a);border:1px solid #36c5e8;border-radius:16px;box-shadow:0 10px 28px #0009;color:#f0f4f8;font:14px/1.45 system-ui,'Noto Sans TC',sans-serif}
+#pwa-prompt[data-show="true"]{display:flex}
+#pwa-prompt .pwa-word{flex:1;min-width:0}
+#pwa-prompt .pwa-word strong{display:block;font-size:15px}
+#pwa-prompt .pwa-word small{color:#bdcfe2;font-size:12px}
+#pwa-prompt button{border:1px solid #36c5e8;border-radius:8px;color:#081524;background:#36c5e8;font-size:13px;font-weight:700;padding:9px 12px;cursor:pointer;min-height:38px}
+#pwa-prompt button.pwa-dismiss{border-color:#71869b;background:transparent;color:#d9e5ee;padding:9px;min-width:37px}
+#pwa-update{position:fixed;z-index:130;left:12px;right:12px;top:calc(12px + env(safe-area-inset-top,0px));margin:auto;max-width:420px;display:none;align-items:center;gap:12px;background:#162b46;color:#f5f9fc;padding:12px;border-radius:14px;border:1px solid #f59e38;box-shadow:0 8px 22px #000a;font:14px system-ui,sans-serif}
+#pwa-update[data-show="true"]{display:flex}
+#pwa-update span{flex:1}
+#pwa-update button{background:#f59e38;border:0;border-radius:8px;color:#0c1928;font-weight:bold;padding:9px 12px;cursor:pointer}
+#pwa-note{position:fixed;z-index:140;left:10%;right:10%;bottom:calc(92px + env(safe-area-inset-bottom,0px));max-width:420px;margin:auto;color:#fff;background:#102436;border:1px solid #8babc6;box-shadow:0 8px 30px #000c;border-radius:10px;padding:14px;display:none;text-align:center;font:14px/1.6 system-ui,sans-serif}
+#pwa-note[data-show="true"]{display:block}
+#pwa-note button{margin-top:10px;padding:6px 24px;color:white;background:#245579;border:1px solid #82b6da;border-radius:9px;cursor:pointer}
+@media(max-height:500px){#pwa-prompt{bottom:10px}#pwa-note{bottom:12px}}
+@media(display-mode:standalone){#pwa-prompt{display:none!important}}

@@ -1,0 +1,26 @@
+{
+  "version": "stage2-source-fixed",
+  "date": "2026-11-03",
+  "source": "sumeeko-smart-factory-stage1-fixed(1).zip",
+  "verified": {
+    "typescript_errors": 0,
+    "stage1_logic_tests": "10/10",
+    "stage1_bundle_static": "15/15",
+    "stage2_source_logic": "41/41",
+    "task_ui_baseline_prebuilt": {
+      "T1": "PASS",
+      "T2": "PASS",
+      "T3": "PASS",
+      "T4": "PASS (CSS animations disabled)",
+      "T5": "PASS"
+    }
+  },
+  "not_verified": [
+    "Freshly rebuilt Stage 2 visual scene (Bun unavailable)",
+    "Stage 2 in-app gesture back UI (requires fresh build)",
+    "Android Gradle build (SDK / network unavailable)",
+    "Android emulator/device cold boot / gesture / offline storage"
+  ],
+  "stale_asset_warning": "The bundled android/app/src/main/assets/www/index.html is from Stage1. Gradle syncWebAssets now forces rebuild from Stage2 sources before APK build.",
+  "artifact_is_apk": false
+}

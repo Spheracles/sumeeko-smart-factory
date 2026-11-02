@@ -1,0 +1,43 @@
+name: Deploy SUMEEKO Stage 4 PWA to GitHub Pages
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        working-directory: web
+        run: bun install
+      - name: TypeScript verification
+        working-directory: web
+        run: bun run typecheck
+      - name: Responsive scene and task logic checks
+        working-directory: web
+        run: |
+          node test/stage1_logic_test.cjs
+          node test/stage2_logic_test.cjs
+      - name: Build current Stage 4 PWA from React source
+        working-directory: web
+        run: bun run build:pwa
+      - name: Verify PWA assets and offline routing
+        run: python3 pwa/verify_stage4.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./pwa/site
+      - id: deployment
+        uses: actions/deploy-pages@v4

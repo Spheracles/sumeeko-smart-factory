@@ -1,0 +1,25 @@
+{
+  "version": "stage1-2026-11-03",
+  "android_apk_created": false,
+  "android_gradle_status": "BLOCKED: Gradle distribution download failed due DNS / no Android SDK",
+  "android_real_device_tests": "NOT TESTED",
+  "typescript": {
+    "status": "PASS",
+    "errors": 0
+  },
+  "unit_localstorage_back": {
+    "status": "PASS",
+    "passed": 10,
+    "total": 10,
+    "scope": "Node mocked localStorage / React hook"
+  },
+  "offline_assets": {
+    "status": "PASS",
+    "passed": 15,
+    "total": 15,
+    "scope": "Static HTML/Manifest/Java checks"
+  },
+  "browser_ui_tests_this_session": "BLOCKED: ERR_BLOCKED_BY_ADMINISTRATOR",
+  "debug_apk_workflow_file": ".github/workflows/build-debug-apk.yml",
+  "gradle_failure_log": "docs/GRADLE-BUILD-ATTEMPT.log"
+}
