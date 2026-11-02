@@ -28,7 +28,7 @@ jobs:
       - name: Responsive scene and task logic checks
         working-directory: web
         run: |
-        export PATH="$PWD/node_modules/.bin:$PATH"
+          export PATH="$PWD/node_modules/.bin:$PATH"
           node test/stage1_logic_test.cjs
           node test/stage2_logic_test.cjs
       - name: Build current Stage 4 PWA from React source
