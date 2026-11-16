@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一顆螺絲的大生意：認識世德工業（2066）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#f6f4ef; --surface:#fcfcfb; --surface-2:#efece5; --line:#dcd8cf;
+  --ink:#141414; --ink-2:#52514e; --ink-3:#85837d;
+  --accent:#b8441b; --accent-soft:#f6e2d6;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s7:#6250d6;
+  --good:#1a8a4a; --warn:#c98500; --bad:#c63b3a;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --bg:#121211; --surface:#1a1a19; --surface-2:#242422; --line:#34332f;
+    --ink:#f0efec; --ink-2:#c3c2b7; --ink-3:#8f8d86;
+    --accent:#ee7a4d; --accent-soft:#3a2418;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s7:#9085e9;
+    --good:#3fb06d; --warn:#d9a020; --bad:#e66767;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:16px}
+h1,h2,h3{font-family:"Noto Serif TC",serif;line-height:1.3;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--accent)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* header & nav */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;padding:12px 0 6px}
+.brand .logo{width:30px;height:30px;border-radius:8px;background:var(--ink);display:grid;place-items:center}
+.brand b{font-size:15px}
+.brand small{color:var(--ink-3);font-size:12px}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;padding:4px 0 10px;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{flex:none;text-decoration:none;color:var(--ink-2);font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+nav.tabs a:hover{background:var(--surface-2)}
+nav.tabs a.on{background:var(--ink);color:var(--bg);font-weight:500}
+
+section.view{display:none;padding:36px 0 64px;animation:fade .35s ease}
+section.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.eyebrow{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.08em}
+.lead{font-size:18px;color:var(--ink-2);max-width:720px;margin:12px 0 28px}
+h2{font-size:30px}
+h3{font-size:19px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.muted{color:var(--ink-3)}
+.note{font-size:13px;color:var(--ink-3);margin-top:14px}
+.pill{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2)}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:4px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:7px 16px;border-radius:999px;font-size:14px;color:var(--ink-2)}
+.seg button.on{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.term{border-bottom:1px dashed var(--ink-3);cursor:help}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:900;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.stat{padding:18px}
+.stat .num{font-family:"Noto Serif TC",serif;font-size:34px;font-weight:900;line-height:1.1}
+.stat .lbl{font-size:13px;color:var(--ink-2);margin-top:6px}
+.quiz{margin-top:28px}
+.quiz .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.quiz .opts button{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:10px}
+.quiz .opts button.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface))}
+.quiz .opts button.wrong{border-color:var(--bad);opacity:.6}
+.quiz .ans{margin-top:10px;min-height:1.5em;color:var(--ink-2)}
+
+/* journey */
+.steps{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+.steps button{flex:1 0 110px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 8px;text-align:center;font-size:13px;position:relative}
+.steps button .n{display:block;font-family:"Noto Serif TC",serif;font-weight:900;font-size:22px;color:var(--ink-3)}
+.steps button.on{border-color:var(--accent);background:var(--accent-soft)}
+.steps button.on .n{color:var(--accent)}
+.stepbody{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;margin-top:16px}
+@media(max-width:640px){.stepbody{grid-template-columns:1fr}}
+.stepbody svg{width:100%;max-width:200px}
+.progress{height:6px;background:var(--surface-2);border-radius:99px;margin-top:14px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);transition:width .4s}
+.navbtns{display:flex;gap:8px;margin-top:16px}
+.btn{border:1px solid var(--line);background:var(--surface);padding:8px 16px;border-radius:10px;font-size:14px}
+.btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* moat */
+.flip{perspective:1000px;min-height:230px}
+.flip .inner{position:relative;height:100%;min-height:230px;transition:transform .6s;transform-style:preserve-3d}
+.flip.open .inner{transform:rotateY(180deg)}
+.flip .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);padding:22px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column}
+.flip .back{transform:rotateY(180deg);background:var(--ink);color:var(--bg)}
+.flip .back p{color:color-mix(in srgb,var(--bg) 82%,transparent);font-size:14.5px}
+.flip .big{font-size:40px;margin-bottom:6px}
+.flip .hint{margin-top:auto;font-size:12px;color:var(--ink-3)}
+.flip .back .hint{color:color-mix(in srgb,var(--bg) 55%,transparent)}
+.race{margin-top:22px}
+.lane{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center;margin:10px 0}
+.track{height:34px;background:var(--surface-2);border-radius:10px;position:relative;overflow:hidden}
+.track .runner{position:absolute;top:0;left:0;height:100%;border-radius:10px;display:flex;align-items:center;padding:0 10px;font-size:12.5px;color:#fff;white-space:nowrap;transition:width 2.2s cubic-bezier(.3,.7,.3,1)}
+
+/* ev */
+.carpick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.carpick button{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:14px 10px;text-align:center}
+.carpick button.on{border-color:var(--accent);background:var(--accent-soft)}
+.carpick .ic{font-size:30px;display:block}
+.carpick b{display:block;font-size:15px}
+.carpick small{color:var(--ink-3);font-size:12px}
+.meter{margin:14px 0}
+.meter .row{display:flex;justify-content:space-between;font-size:14px}
+.meter .bar{height:12px;background:var(--surface-2);border-radius:99px;margin-top:6px;position:relative}
+.meter .bar i{position:absolute;top:0;height:100%;border-radius:99px;background:var(--s1);transition:all .5s}
+.meter .bar i.b{background:var(--s2)}
+
+/* map */
+.mapbox{position:relative}
+.mapbox svg{width:100%;height:auto;display:block}
+.site{cursor:pointer}
+.site circle.ring{fill:none;stroke:var(--accent);stroke-width:2;opacity:0}
+.site.on circle.ring{opacity:1}
+.site:hover circle.dot{r:11}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font-weight:500;color:var(--ink-3);font-size:13px}
+
+/* lean */
+.waste{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.waste button{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:14px;text-align:left}
+.waste button .e{font-size:24px}
+.waste button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.smed{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+@media(max-width:640px){.smed{grid-template-columns:1fr}}
+.clock{font-family:"Noto Serif TC",serif;font-size:44px;font-weight:900}
+
+/* charts */
+.chart{position:relative}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart .axis text{fill:var(--ink-3);font-size:11px}
+.chart .grid line{stroke:var(--line)}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;padding:7px 10px;border-radius:8px;opacity:0;transition:opacity .12s;white-space:nowrap;z-index:5}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2);margin-bottom:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.formula{font-size:15px;background:var(--surface-2);border-radius:10px;padding:12px 14px;margin:10px 0}
+.formula b{color:var(--accent)}
+
+/* scenario */
+.scn .val{font-family:"Noto Serif TC",serif;font-size:26px;font-weight:900}
+.scn .k{font-size:13px;color:var(--ink-3)}
+.risk{border-left:4px solid var(--line)}
+.risk.h{border-left-color:var(--bad)} .risk.mh{border-left-color:var(--s2)} .risk.m{border-left-color:var(--warn)}
+details{border-top:1px solid var(--line);padding:10px 0}
+details summary{cursor:pointer;font-weight:500}
+.gauge-status{display:inline-flex;gap:6px;align-items:center;font-weight:700;padding:4px 10px;border-radius:999px;font-size:14px}
+
+/* tech tree */
+.stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.stations button{position:relative;text-align:left;border:1px solid var(--line);border-top:4px solid var(--c);background:var(--surface);border-radius:12px;padding:10px 12px;transition:opacity .25s,transform .15s}
+.stations button:hover{transform:translateY(-2px)}
+.stations button .no{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--c);font-size:13px}
+.stations button b{display:block;font-size:16px}
+.stations button small{display:block;color:var(--ink-3);font-size:12px;line-height:1.4;margin-top:2px}
+.stations button .pt{display:block;font-size:12px;margin-top:6px;color:var(--ink-2)}
+.stations button.on{background:color-mix(in srgb,var(--c) 12%,var(--surface));border-color:var(--c)}
+.stations button.dim{opacity:.3}
+.q4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.q4>div{background:var(--surface-2);border-radius:10px;padding:12px 14px;font-size:14.5px}
+.q4 .h{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.04em;margin-bottom:4px}
+.trace{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px;min-height:44px}
+.trace span.t{padding:8px 12px;border-radius:10px;background:var(--surface-2);font-size:14px;opacity:0;transform:translateY(6px);transition:all .35s}
+.trace span.t.show{opacity:1;transform:none}
+.trace span.a{color:var(--ink-3);opacity:0;transition:opacity .35s}.trace span.a.show{opacity:1}
+.layer{cursor:pointer;text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:16px}
+.layer.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 9%,var(--surface))}
+.layer h3{color:var(--c)}
+.ttree{display:flex;flex-direction:column;align-items:center;gap:12px}
+.tnode{border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:8px 14px;font-size:14px;font-weight:500;text-align:center;line-height:1.3}
+.tnode small{display:block;font-weight:400;font-size:11.5px;color:var(--ink-3)}
+.tnode.root{background:var(--ink);color:var(--bg);font-size:16px}
+.tnode.on{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+.tnode.hl{border-color:var(--accent)}
+.tbranches{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%}
+@media(max-width:600px){.tbranches{grid-template-columns:1fr}}
+.tbranch{display:flex;flex-direction:column;align-items:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px}
+.tleaves{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.tmerge{font-size:12px;color:var(--ink-3)}
+.tchain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.tchain span{color:var(--ink-3)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color:var(--ink-3)}
+.glossary dt{font-weight:700;margin-top:10px}
+.glossary dd{margin:2px 0 0;color:var(--ink-2);font-size:14.5px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 3h10l2 4H5z" fill="var(--bg)"/><rect x="10" y="7" width="4" height="14" rx="1" fill="var(--bg)"/></svg>
+      </div>
+      <div><b>認識世德工業</b> <small>2066.TW · 給一般讀者的互動導覽</small></div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <a href="#home">① 一顆螺絲的大生意</a>
+      <a href="#journey">② 螺絲怎麼做出來</a>
+      <a href="#tree">③ 11 道製程技術樹</a>
+      <a href="#patents">④ 專利版圖</a>
+      <a href="#moat">⑤ 為什麼賺得比同業多</a>
+      <a href="#ev">⑥ 電動車改變了什麼</a>
+      <a href="#global">⑦ 台・德・美三地布局</a>
+      <a href="#lean">⑧ 工廠如何變聰明</a>
+      <a href="#finance">⑨ 財務健康檢查</a>
+      <a href="#future">⑩ 未來三種劇本</a>
+      <a href="#glossary">名詞小辭典</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ① HOME -->
+<section class="view" id="v-home">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">STORY 01 · 公司是誰</div>
+      <h1>一顆螺絲，<br>也能做成<em>大生意</em></h1>
+      <p class="lead">世德工業是高雄起家的螺絲（扣件）公司，但它不賣五金行那種便宜螺絲。它專做汽車上「鬆了會出大事」的關鍵螺栓，客戶包括 Tesla、GM、Ford、賓士、BMW。</p>
+      <p class="muted">點上方分頁或下方按鈕，一步步了解它怎麼做、怎麼賺、未來會怎樣。</p>
+      <div class="navbtns"><a class="btn pri" href="#journey" style="text-decoration:none">開始導覽 →</a><a class="btn" href="#future" style="text-decoration:none">直接看未來劇本</a></div>
+    </div>
+    <div class="grid g2" style="grid-template-columns:1fr 1fr">
+      <div class="card stat"><div class="num">30–35%</div><div class="lbl">長期毛利率<br><span class="muted">傳統螺絲同業約 15–20%</span></div></div>
+      <div class="card stat"><div class="num">97.8%</div><div class="lbl">營收來自外銷<br><span class="muted">主要賺美元、歐元</span></div></div>
+      <div class="card stat"><div class="num">72–75%</div><div class="lbl">營收來自汽車<br><span class="muted">其餘是基建、風電、農機</span></div></div>
+      <div class="card stat"><div class="num">3 地</div><div class="lbl">台灣・德國・美國<br><span class="muted">在客戶旁邊就近供貨</span></div></div>
+    </div>
+  </div>
+
+  <div class="card quiz">
+    <span class="pill">暖身小測驗</span>
+    <h3 style="margin-top:8px">一台車的螺絲，大約占整台車成本的多少？</h3>
+    <div class="opts" data-quiz>
+      <button data-a="0">約 10%</button>
+      <button data-a="1">約 1%</button>
+      <button data-a="0">約 25%</button>
+    </div>
+    <div class="ans"></div>
+  </div>
+
+  <h3 style="margin:34px 0 12px">三次轉型，從五金螺絲到國際車廠夥伴</h3>
+  <div class="grid g3" id="timeline"></div>
+</section>
+
+<!-- ② JOURNEY -->
+<section class="view" id="v-journey">
+  <div class="eyebrow">STORY 02 · 製程</div>
+  <h2>跟著一根鋼線，走完 7 道工序</h2>
+  <p class="lead">一顆車用螺栓從一捲鋼線開始，經過壓、切、烤、塗、檢查，最後送到車廠旁的倉庫。點選每一站看看發生了什麼。</p>
+  <div class="steps" id="steps"></div>
+  <div class="progress"><i id="stepbar"></i></div>
+  <div class="card" style="margin-top:14px">
+    <div class="stepbody">
+      <div id="stepart"></div>
+      <div>
+        <span class="pill" id="steptag"></span>
+        <h3 id="steptitle" style="margin:8px 0 6px"></h3>
+        <p id="stepplain" style="margin:0 0 10px;font-size:17px"></p>
+        <details><summary>看專業說明</summary><p id="steppro" class="muted" style="margin:8px 0 0"></p></details>
+      </div>
+    </div>
+    <div class="navbtns"><button class="btn" id="prevStep">← 上一站</button><button class="btn pri" id="nextStep">下一站 →</button></div>
+  </div>
+</section>
+
+<!-- ③ TECH TREE -->
+<section class="view" id="v-tree">
+  <div class="eyebrow">STORY 03 · 製程技術樹</div>
+  <h2>深入一點：11 道製程，哪裡有專利、哪裡靠訣竅？</h2>
+  <p class="lead">從鋼廠的小鋼胚到包裝出貨，扣件典型要走 11 站。每一站都有「會做的人才知道」的訣竅（Know-how），其中幾站還有世德可查到的公開專利。點選任一站看看。</p>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
+    <div class="legend" style="margin:0">
+      <span><i style="background:var(--s4)"></i>上游鋼材</span><span><i style="background:var(--s1)"></i>成形與螺紋</span><span><i style="background:var(--s7)"></i>性能與組裝</span><span><i style="background:var(--s3)"></i>檢驗與出貨</span>
+    </div>
+    <label style="font-size:14px;cursor:pointer;display:flex;gap:6px;align-items:center"><input type="checkbox" id="patOnly" style="accent-color:var(--accent)">只看有專利／研發關聯的站</label>
+  </div>
+  <div class="stations" id="stations"></div>
+  <div class="card" id="stationCard" style="margin-top:14px"></div>
+  <p class="note">※「—」代表未查得該站專屬、可核對的世德專利，不代表沒有製程 know-how。11 站為示意主線，實際還有酸洗、皮膜、攻牙、二次 CNC、清洗、塗膠、功能測試等支線，不同產品不會全部走過。</p>
+
+  <div class="card" style="margin-top:20px">
+    <h3>為什麼「表面處理」不只是防鏽？拉拉看摩擦係數</h3>
+    <p class="muted" style="margin:4px 0 14px">車廠用固定扭力鎖螺絲。但塗層會改變摩擦，同樣的扭力，產生的「夾緊力」就不同。這就是「扭矩—軸力關係」。</p>
+    <div class="smed">
+      <div>
+        <label for="kfac" class="muted" style="font-size:14px">塗層造成的扭力係數 K：<b id="kVal">0.15</b></label>
+        <input type="range" id="kfac" min="8" max="26" value="15">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3)"><span>很滑</span><span>剛好</span><span>很澀</span></div>
+        <p id="kMsg" style="margin:10px 0 0;font-size:14.5px"></p>
+      </div>
+      <div>
+        <div class="muted" style="font-size:13px">用 50 N·m 鎖一顆 M10 螺栓，夾緊力約</div>
+        <div class="clock" id="kForce">33 kN</div>
+        <div style="height:14px;background:var(--surface-2);border-radius:99px;position:relative;margin-top:6px">
+          <span style="position:absolute;left:44%;width:24%;top:0;bottom:0;background:color-mix(in srgb,var(--good) 22%,transparent);border-radius:4px"></span>
+          <i id="kBar" style="position:absolute;left:0;top:3px;height:8px;border-radius:99px;transition:width .3s"></i>
+        </div>
+        <div style="font-size:12px;color:var(--ink-3);margin-top:4px">綠色區＝設計需要的夾緊力範圍</div>
+      </div>
+    </div>
+    <p class="note">公式 夾緊力 ≈ 扭力 ÷（K × 螺栓直徑）。數字為教學示意，非世德實際規格。</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div><h3>追溯能力：一箱螺絲出問題，能追到哪裡？</h3><p class="muted" style="margin:4px 0 0">世德 2009 年建立 RFID-WIP 螺絲生產及庫存管理系統（WIP＝在製品）。</p></div>
+      <button class="btn pri" id="traceBtn">📦 追溯這一箱 ▶</button>
+    </div>
+    <div class="trace" id="trace"></div>
+    <div class="grid g2" id="traceCmp" style="margin-top:14px;opacity:.25;transition:opacity .4s">
+      <div style="padding:14px;border-radius:12px;background:color-mix(in srgb,var(--bad) 10%,transparent)"><b>沒有追溯</b><p style="margin:4px 0 0;font-size:14px">不知道哪批有問題，只能把同時期產品全部召回。</p></div>
+      <div style="padding:14px;border-radius:12px;background:color-mix(in srgb,var(--good) 12%,transparent)"><b>有追溯</b><p style="margin:4px 0 0;font-size:14px">精準找到有問題的那一批（lot），只處理那一批，損失與風險小很多。</p></div>
+    </div>
+  </div>
+
+  <h3 style="margin:30px 0 12px">AI 可以幫上忙的 4 個切入點</h3>
+  <div class="grid g4">
+    <div class="card"><b>🔍 AI 螺紋 AOI</b><p class="muted" style="margin:6px 0 0;font-size:14px">用影像辨識缺牙、錯牙、刮傷，減少漏檢與誤殺。</p></div>
+    <div class="card"><b>🔧 TorqueMind</b><p class="muted" style="margin:6px 0 0;font-size:14px">從熱處理硬度 × 沖壓參數，預測預置扭力是否合格。</p></div>
+    <div class="card"><b>🧩 Assembly AI</b><p class="muted" style="margin:6px 0 0;font-size:14px">套管組件缺件、錯裝自動檢查，監看壓合曲線。</p></div>
+    <div class="card"><b>🧭 製程追溯 AI</b><p class="muted" style="margin:6px 0 0;font-size:14px">串起批號 × 設備 × 不良紀錄，自動找出根本原因。</p></div>
+  </div>
+</section>
+
+<!-- ④ PATENTS -->
+<section class="view" id="v-patents">
+  <div class="eyebrow">STORY 04 · 專利版圖</div>
+  <h2>世德的技術，有哪些是「寫成專利」的？</h2>
+  <p class="lead">世德從買機器做標準螺絲起家，1994 年投入組合螺絲研發，2004 年進入汽車扣件，逐漸累積出自己的專利。先分清楚兩個詞：</p>
+  <div class="grid g2">
+    <div class="card" style="border-top:4px solid var(--s1)"><span class="pill">Patent 專利</span><h3 style="margin:8px 0 4px">公開、查得到、受法律保護</h3><p class="muted" style="margin:0;font-size:14.5px">把發明寫清楚公開，換取一段時間的獨家權利。例如 TWI753649B 預置扭力螺帽製成方法。</p></div>
+    <div class="card" style="border-top:4px solid var(--s2)"><span class="pill">Know-how 技術訣竅</span><h3 style="margin:8px 0 4px">不公開，會做的人才知道</h3><p class="muted" style="margin:0;font-size:14.5px">模具設計、熱處理溫度、材料搭配、良率控制、量產方法……這些往往才是最難被抄走的。</p></div>
+  </div>
+  <div class="card quiz" style="margin-top:14px">
+    <span class="pill">小遊戲</span>
+    <h3 style="margin-top:8px">這是「專利」還是「Know-how」？</h3>
+    <p id="pkItem" style="font-size:18px;font-weight:700;margin:10px 0 4px"></p>
+    <div class="opts"><button data-g="P">📜 專利</button><button data-g="K">🧠 Know-how</button></div>
+    <div class="ans" id="pkAns"></div>
+    <div class="muted" style="font-size:13px" id="pkScore"></div>
+  </div>
+
+  <h3 style="margin:30px 0 6px">專利時間軸（2006–2022）</h3>
+  <p class="muted" style="margin:0 0 12px">點下方「三層技術護城河」可以篩選，點圓點看細節。2019 年一口氣取得 9 件，產品、製程、設備三層一起布局。</p>
+  <div class="grid g3" id="layers"></div>
+  <div class="card" style="margin-top:12px">
+    <div class="chart" id="patChart"></div>
+    <div id="patDetail" class="formula" style="margin-top:10px">把滑鼠移到（或點選）圓點，查看專利內容。</div>
+  </div>
+
+  <h3 style="margin:30px 0 12px">代表性專利：用白話文看懂</h3>
+  <div class="seg" id="kpSeg" style="margin-bottom:12px"></div>
+  <div class="card">
+    <div class="stepbody">
+      <div id="kpArt"></div>
+      <div>
+        <span class="pill" id="kpNo"></span>
+        <h3 id="kpTitle" style="margin:8px 0 6px"></h3>
+        <p id="kpPlain" style="margin:0 0 10px;font-size:17px"></p>
+        <div class="formula" id="kpWhy" style="font-size:14.5px"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin:30px 0 12px">世德技術樹：設計與製造如何匯流</h3>
+  <div class="card">
+    <div class="ttree">
+      <button class="tnode root" data-t="root">SUMEEKO 世德</button>
+      <div class="tbranches">
+        <div class="tbranch">
+          <button class="tnode" data-t="design">扣件設計<small>Fastener Design</small></button>
+          <div class="tleaves"><button class="tnode leaf" data-t="loose">防鬆</button><button class="tnode leaf" data-t="vib">防震</button><button class="tnode leaf" data-t="tol">公差補償<small>Sleeve / Captive</small></button></div>
+        </div>
+        <div class="tbranch">
+          <button class="tnode" data-t="mfg">製造<small>Manufacturing</small></button>
+          <div class="tleaves"><button class="tnode leaf" data-t="forge">冷鍛<small>模具</small></button><button class="tnode leaf" data-t="roll">搓牙<small>螺紋</small></button><button class="tnode leaf" data-t="cnc">CNC</button></div>
+        </div>
+      </div>
+      <div class="tmerge">▼ 兩條線在這裡匯流 ▼</div>
+      <div class="tchain">
+        <button class="tnode" data-t="torque">扭力／熱處理</button><span>→</span>
+        <button class="tnode" data-t="surf">表面處理</button><span>→</span>
+        <button class="tnode" data-t="auto">自動化</button><span>→</span>
+        <button class="tnode" data-t="ccd">CCD 智慧檢測</button><span>→</span>
+        <button class="tnode" data-t="trace">製程追溯</button>
+      </div>
+    </div>
+    <div class="formula" id="tInfo" style="margin-top:14px"></div>
+  </div>
+</section>
+
+<!-- ⑤ MOAT -->
+<section class="view" id="v-moat">
+  <div class="eyebrow">STORY 05 · 護城河</div>
+  <h2>同樣做螺絲，為什麼它賺得比較多？</h2>
+  <p class="lead">一般螺絲工廠常陷入「誰便宜誰接單」的價格戰。世德的毛利率約是同業的兩倍，背後有三個原因。點卡片翻面看看。</p>
+  <div class="grid g3">
+    <div class="flip" tabindex="0"><div class="inner">
+      <div class="face"><div class="big">🛡️</div><h3>做「安全關鍵」螺栓</h3><p class="muted">不是普通螺絲</p><div class="hint">點一下翻面 ↻</div></div>
+      <div class="face back"><h3>貴，是因為不能壞</h3><p>它專做底盤懸吊、電池包、安全氣囊用的螺栓。這類零件一旦斷裂可能釀成車禍，所以技術門檻高、單價高。安全關鍵件占產品比重超過七成。</p><div class="hint">點一下翻回</div></div>
+    </div></div>
+    <div class="flip" tabindex="0"><div class="inner">
+      <div class="face"><div class="big">🔒</div><h3>車廠很難換掉它</h3><p class="muted">認證要 3–5 年</p><div class="hint">點一下翻面 ↻</div></div>
+      <div class="face back"><h3>換供應商，不划算</h3><p>新供應商要通過 IATF 16949 與 PPAP 認證，從樣品、疲勞測試到實車撞擊要 3–5 年、花費數百萬美元。螺絲只占整車成本約 1%，換廠省下的錢很少，卻要冒召回風險。</p><div class="hint">點一下翻回</div></div>
+    </div></div>
+    <div class="flip" tabindex="0"><div class="inner">
+      <div class="face"><div class="big">🚚</div><h3>不只賣零件，也賣服務</h3><p class="muted">在車廠旁邊開倉庫</p><div class="hint">點一下翻面 ↻</div></div>
+      <div class="face back"><h3>24–48 小時送到</h3><p>它在德國和美國設倉庫，替車廠管理庫存（VMI），需要時 1–2 天內送達（JIT）。還在新車設計初期就參與共同設計，直接鎖定新車的專屬零件編號。</p><div class="hint">點一下翻回</div></div>
+    </div></div>
+  </div>
+
+  <div class="card race">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div><h3>模擬：一家新螺絲廠想搶世德的訂單</h3><p class="muted" style="margin:4px 0 0">按下按鈕，看看雙方各需要多久才能出貨給車廠。</p></div>
+      <button class="btn pri" id="raceBtn">開始比賽 ▶</button>
+    </div>
+    <div class="lane"><b>世德（現有）</b><div class="track"><div class="runner" id="r1" style="width:0;background:var(--s3)"></div></div></div>
+    <div class="lane"><b>新競爭者</b><div class="track"><div class="runner" id="r2" style="width:0;background:var(--s2)"></div></div></div>
+    <p id="raceMsg" class="muted" style="margin:6px 0 0;min-height:1.6em"></p>
+  </div>
+</section>
+
+<!-- ④ EV -->
+<section class="view" id="v-ev">
+  <div class="eyebrow">STORY 06 · 電動車</div>
+  <h2>電動車用的螺絲比較少，為什麼反而更好賺？</h2>
+  <p class="lead">電動車沒有引擎，螺絲數量變少；但電池包要防水、防爆、抗撞擊，每顆螺絲更精密、更貴。選一種車看看差別。</p>
+  <div class="carpick" id="carpick">
+    <button data-c="ice"><span class="ic">⛽</span><b>燃油車</b><small>ICE</small></button>
+    <button data-c="hev"><span class="ic">🔋⛽</span><b>油電混合車</b><small>HEV / PHEV</small></button>
+    <button data-c="bev"><span class="ic">⚡</span><b>純電動車</b><small>BEV</small></button>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <div class="meter"><div class="row"><span>每台車用幾顆螺絲</span><b id="evCount"></b></div><div class="bar"><i id="evCountBar"></i></div></div>
+      <div class="meter"><div class="row"><span>每台車螺絲總價值</span><b id="evVal"></b></div><div class="bar"><i id="evValBar"></i></div></div>
+      <div class="meter"><div class="row"><span>毛利率：產業平均</span><b id="evInd"></b></div><div class="bar"><i class="b" id="evIndBar"></i></div></div>
+      <div class="meter"><div class="row"><span>毛利率：世德</span><b id="evShide"></b></div><div class="bar"><i id="evShideBar" style="background:var(--s3)"></i></div></div>
+      <p class="note">長條顯示區間（最低～最高）。</p>
+    </div>
+    <div class="card">
+      <span class="pill" id="evTag"></span>
+      <h3 id="evTitle" style="margin:8px 0"></h3>
+      <p id="evText" style="margin:0"></p>
+    </div>
+  </div>
+  <h3 style="margin:30px 0 12px">世德的電動車技術，用生活例子來說</h3>
+  <div class="grid g4">
+    <div class="card"><b>🔋 電池包密封螺栓</b><p class="muted" style="margin:6px 0 0;font-size:14px">像潛水錶一樣防水（IP67/68），還要扛住數百公斤電池與路面碎石撞擊。</p></div>
+    <div class="card"><b>🧂 防鏽塗層</b><p class="muted" style="margin:6px 0 0;font-size:14px">鋼螺絲碰到鋁車架容易生鏽。特殊塗層可撐過 1,500 小時以上鹽霧測試。</p></div>
+    <div class="card"><b>💪 超高強度</b><p class="muted" style="margin:6px 0 0;font-size:14px">12.9–14.9 級螺栓，體積更小卻更強，幫車子減重，同時避免「氫脆」斷裂。</p></div>
+    <div class="card"><b>🖥️ 提早參與設計</b><p class="muted" style="margin:6px 0 0;font-size:14px">新車量產前約 3 年就用電腦模擬受力，幫車廠設計螺栓，綁定專屬料號。</p></div>
+  </div>
+</section>
+
+<!-- ⑤ GLOBAL -->
+<section class="view" id="v-global">
+  <div class="eyebrow">STORY 07 · 全球布局</div>
+  <h2>台灣做大量，德國美國做最後一哩</h2>
+  <p class="lead">世德不是把所有東西都搬到國外，而是「台灣負責便宜又大量地製造，德國、美國負責最後加工、檢查和送貨」。點地圖上的據點。</p>
+  <div class="grid g2" style="align-items:start">
+    <div class="card mapbox">
+      <svg viewBox="0 0 600 320" role="img" aria-label="世德三地據點示意圖">
+        <rect x="0" y="0" width="600" height="320" rx="12" fill="var(--surface-2)"/>
+        <!-- simplified continents -->
+        <path d="M40 80 Q90 50 160 60 Q200 70 210 110 Q200 160 170 180 Q140 200 120 240 Q100 200 80 170 Q50 140 40 80Z" fill="var(--line)"/>
+        <path d="M270 70 Q320 50 360 70 Q350 100 330 110 Q300 120 280 110 Q265 95 270 70Z" fill="var(--line)"/>
+        <path d="M290 125 Q330 120 345 150 Q340 210 315 240 Q295 210 285 170Z" fill="var(--line)"/>
+        <path d="M365 60 Q450 40 540 70 Q560 110 520 140 Q480 150 460 135 Q420 130 390 110 Q365 90 365 60Z" fill="var(--line)"/>
+        <!-- flows -->
+        <path d="M498 140 Q400 40 310 85" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 5"><animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite"/></path>
+        <path d="M498 140 Q340 260 150 100" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 5"><animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite"/></path>
+        <g class="site" data-s="tw" transform="translate(498,140)"><circle class="ring" r="18"/><circle class="dot" r="9" fill="var(--accent)"/><text x="0" y="32" text-anchor="middle" font-size="13" fill="var(--ink)" font-weight="700">台灣屏東</text></g>
+        <g class="site" data-s="de" transform="translate(310,85)"><circle class="ring" r="18"/><circle class="dot" r="9" fill="var(--s1)"/><text x="0" y="-18" text-anchor="middle" font-size="13" fill="var(--ink)" font-weight="700">德國 MMG</text></g>
+        <g class="site" data-s="us" transform="translate(150,100)"><circle class="ring" r="18"/><circle class="dot" r="9" fill="var(--s3)"/><text x="0" y="-18" text-anchor="middle" font-size="13" fill="var(--ink)" font-weight="700">美國密西根</text></g>
+        <text x="20" y="300" font-size="11" fill="var(--ink-3)">示意圖，非比例地圖</text>
+      </svg>
+    </div>
+    <div class="card" id="siteCard"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>密西根廠要開多滿才會賺錢？拉拉看</h3>
+    <p class="muted" style="margin:4px 0 12px">新工廠有固定開銷（設備折舊、租金、薪水）。工廠利用率越高，固定成本被攤得越薄。</p>
+    <input type="range" id="util" min="20" max="95" value="35" aria-label="密西根廠產能利用率">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:10px">
+      <div><span class="clock" id="utilVal">35%</span> <span class="muted">產能利用率</span></div>
+      <span class="gauge-status" id="utilStatus"></span>
+    </div>
+    <p id="utilText" style="margin:8px 0 0"></p>
+    <p class="note">依報告估計：損益兩平約 55–60%；70–75% 以上「營運槓桿」明顯發揮。試產期約 35–40%，目標一年內拉到 65% 以上。</p>
+  </div>
+
+  <h3 style="margin:30px 0 12px">關稅來了，誰比較不怕？</h3>
+  <div class="card" style="overflow-x:auto">
+    <table class="tbl">
+      <tr><th></th><th>一般出口型螺絲廠（台灣/東南亞/中國）</th><th>世德（密西根在地廠＋台灣母廠）</th></tr>
+      <tr><td><b>關稅</b></td><td>躲不掉，成本自己吸收或轉給客戶</td><td>美國在地加工，符合 USMCA 在地規定，可避開高額關稅</td></tr>
+      <tr><td><b>能不能漲價</b></td><td>產品容易被取代，難以漲價</td><td>「免關稅＋快速送貨」雙重價值，有議價空間</td></tr>
+      <tr><td><b>車廠態度</b></td><td>逐漸被北美車廠降級或剔除</td><td>成為車廠推動在地採購時的優先轉單對象</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ⑥ LEAN -->
+<section class="view" id="v-lean">
+  <div class="eyebrow">STORY 08 · 精實生產</div>
+  <h2>工廠如何減少浪費？</h2>
+  <p class="lead">世德的訂單越來越「少量多樣」，又橫跨三個國家，工廠必須更聰明。工業工程（IE）的做法是：找出不創造價值的時間，然後消滅它。點選一種浪費看看世德怎麼處理。</p>
+  <div class="waste" id="waste"></div>
+  <div class="card" id="wasteCard" style="margin-top:12px"></div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>互動：快速換模（SMED）</h3>
+    <p class="muted" style="margin:4px 0 14px">換一套數百公斤的模具，以前要停機 2–3 小時。把能「先準備好」的工作挪到機器還在跑的時候做，就能大幅縮短停機。拉動滑桿試試。</p>
+    <div class="smed">
+      <div>
+        <label for="smed" class="muted" style="font-size:14px">挪到開機時準備的工作比例：<b id="smedPct">0%</b></label>
+        <input type="range" id="smed" min="0" max="100" value="0">
+        <p id="smedTip" style="margin:10px 0 0;font-size:14.5px"></p>
+      </div>
+      <div style="text-align:center">
+        <div class="muted" style="font-size:13px">每次換模停機時間</div>
+        <div class="clock" id="smedTime">180 分鐘</div>
+        <div class="muted" style="font-size:13px" id="smedGain"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin:30px 0 12px">其他工具一覽</h3>
+  <div class="grid g3">
+    <div class="card"><b>🚫 防錯設計（Poka-Yoke）</b><p class="muted" style="margin:6px 0 0;font-size:14px">感測器發現鋼線長度不對或衝頭異常，機器立刻停下，「想犯錯也犯不了」，保護昂貴模具。</p></div>
+    <div class="card"><b>📋 看板管理（Kanban）</b><p class="muted" style="margin:6px 0 0;font-size:14px">以德國、美國倉庫實際被領走的數量，回頭通知台灣工廠生產，不多做也不少做。</p></div>
+    <div class="card"><b>📐 標準作業</b><p class="muted" style="margin:6px 0 0;font-size:14px">台、德、美三廠用同一套作業標準與工時，訂單可以靈活在三地之間調度。</p></div>
+    <div class="card"><b>🧹 5S 職場管理</b><p class="muted" style="margin:6px 0 0;font-size:14px">讓光學篩選鏡頭保持零污染，把不良率壓在百萬分之一（1 PPM）以下。</p></div>
+  </div>
+</section>
+
+<!-- ⑦ FINANCE -->
+<section class="view" id="v-finance">
+  <div class="eyebrow">STORY 09 · 財務</div>
+  <h2>財務健康檢查：為什麼最近獲利變差？</h2>
+  <p class="lead">簡單說：世德正在蓋新廠、開新據點，錢先花出去了，但新工廠的營收還沒完全跟上。這是「擴產過渡期」。用下面的圖拆開來看。</p>
+
+  <div class="card">
+    <h3>股東報酬率（ROE）可以拆成三塊</h3>
+    <div class="formula">ROE ＝ <b>淨利率</b>（每賣 100 元賺多少）× <b>資產週轉率</b>（資產有多忙）× <b>權益乘數</b>（借了多少錢）</div>
+    <div class="seg" id="dupontSeg" style="margin:8px 0 14px">
+      <button data-k="roe" class="on">ROE</button><button data-k="nm">淨利率</button><button data-k="at">資產週轉率</button><button data-k="em">權益乘數</button>
+    </div>
+    <div class="chart" id="dupontChart"></div>
+    <p id="dupontText" style="margin:10px 0 0"></p>
+    <p class="note">2025 為估計值（E）。權益乘數由 ROE ÷（淨利率 × 週轉率）推算。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card">
+      <h3>投入的錢，有沒有賺回「資金成本」？</h3>
+      <p class="muted" style="margin:4px 0 10px;font-size:14px">ROIC 是投入資本的報酬率；WACC 是借錢與股東期待的平均成本。ROIC 高於 WACC 才算真正創造價值。</p>
+      <div class="legend"><span><i style="background:var(--s1)"></i>ROIC（區間）</span><span><i style="background:var(--ink-3);height:2px;width:14px;border-radius:0"></i>WACC</span></div>
+      <div class="chart" id="roicChart"></div>
+    </div>
+    <div class="card">
+      <h3>錢卡在路上多久？（現金轉換週期）</h3>
+      <p class="muted" style="margin:4px 0 10px;font-size:14px">貨從台灣運到國外倉庫，等車廠領用才算賣出，所以資金被壓住很久。點選改善措施看效果。</p>
+      <div class="chart" id="cccChart"></div>
+      <div id="cccOpts" style="display:flex;flex-direction:column;gap:6px;margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><b>💱 匯率怎麼辦？</b><p class="muted" style="margin:6px 0 0;font-size:14px">外銷占 97.8%。德國、美國據點的薪水和倉儲用歐元、美元支付，形成「自然避險」，再搭配遠期外匯。</p></div>
+    <div class="card"><b>🔩 鋼價漲了怎麼辦？</b><p class="muted" style="margin:6px 0 0;font-size:14px">合約有「原料連動條款」：鋼價漲超過約 5%，下一季依國際鋼價指數自動調整售價。</p></div>
+    <div class="card"><b>🏦 有沒有借太多錢？</b><p class="muted" style="margin:6px 0 0;font-size:14px">負債比約 45–50%，權益乘數穩定在 1.88–1.98 倍，沒有靠過度借錢衝高報酬。</p></div>
+  </div>
+</section>
+
+<!-- ⑧ FUTURE -->
+<section class="view" id="v-future">
+  <div class="eyebrow">STORY 10 · 未來</div>
+  <h2>未來 3–5 年的三種劇本</h2>
+  <p class="lead">世德接下來表現如何，主要看三件事：密西根廠多快開滿、電動/油電車螺絲能賣多高價、海外費用控制得好不好。切換劇本看看。</p>
+  <div class="seg" id="scnSeg">
+    <button data-s="bull">😀 樂觀（25%）</button><button data-s="base" class="on">🙂 基準（55%）</button><button data-s="bear">😟 悲觀（20%）</button>
+  </div>
+  <div class="card scn" style="margin-top:14px">
+    <p id="scnStory" style="font-size:17px;margin:0 0 16px"></p>
+    <div class="grid g4" id="scnGrid"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>機率加權：三種劇本合起來看</h3>
+    <p class="muted" style="margin:4px 0 10px;font-size:14px">每股盈餘（EPS）預估區間，條的粗細代表發生機率。</p>
+    <div class="chart" id="epsChart"></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>非車用業務：目標從約 25% 拉到 30%</h3>
+    <p class="muted" style="margin:4px 0 10px;font-size:14px">為了不要太依賴汽車景氣，世德想讓基建、風電、農機的比重變大。</p>
+    <div class="seg" id="mixSeg" style="margin-bottom:10px"><button data-y="2024" class="on">2024 現況</button><button data-y="2027">2027 目標</button></div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>汽車</span><span><i style="background:var(--s2)"></i>北美基建</span><span><i style="background:var(--s3)"></i>風電與農機</span></div>
+    <div class="chart" id="mixChart"></div>
+  </div>
+
+  <h3 style="margin:30px 0 12px">三大風險與應對</h3>
+  <div class="grid g3">
+    <div class="card risk h"><span class="pill">衝擊：高</span><h3 style="margin:8px 0 6px">海外費用失控</h3><p class="muted" style="font-size:14px;margin:0">德國、美國人力貴、法規嚴，若產量不夠大，費用會吃掉利潤。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">基礎鍛造集中回台灣屏東廠，海外只做最後加工、檢查與倉儲；海外主管薪酬與「費用占營收比下降」掛鉤。</p></details></div>
+    <div class="card risk mh"><span class="pill">衝擊：中高</span><h3 style="margin:8px 0 6px">車市衰退、電動車放緩</h3><p class="muted" style="font-size:14px;margin:0">汽車占營收七成以上，車廠減產或延後新車，新廠會閒置。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">轉攻油電混合車（每台螺絲價值最高 $200–280 美元）；把海外業務資源移向美國基建與歐洲風電。</p></details></div>
+    <div class="card risk m"><span class="pill">衝擊：中</span><h3 style="margin:8px 0 6px">鋼價暴漲、貿易關稅</h3><p class="muted" style="font-size:14px;margin:0">特殊鋼材漲價或美國關稅升級，可能壓縮毛利或讓客戶觀望。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">嚴格執行鋼價連動條款，每季自動調價；提高密西根廠加工附加價值，爭取 100% USMCA 免關稅資格。</p></details></div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>未來 12 個月要盯的成績單</h3>
+    <table class="tbl" style="margin-top:8px">
+      <tr><th>重點任務</th><th>指標</th><th>從</th><th>到</th></tr>
+      <tr><td rowspan="2"><b>P1</b> 密西根廠衝產量</td><td>產能利用率</td><td>35%</td><td>&gt; 65%</td></tr>
+      <tr><td>北美營收占比</td><td>約 38%</td><td>&gt; 43%</td></tr>
+      <tr><td rowspan="2"><b>P2</b> 屏東廠升級電動車件</td><td>電池包/底盤件營收占比</td><td>—</td><td>&gt; 18%</td></tr>
+      <tr><td>整體毛利率</td><td>—</td><td>&gt; 31.5%</td></tr>
+      <tr><td rowspan="2"><b>P3</b> 德國省費用、拓非車用</td><td>非車用營收占比</td><td>14%</td><td>&gt; 22%</td></tr>
+      <tr><td>現金轉換週期</td><td>&gt; 150 天</td><td>&lt; 130 天</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- GLOSSARY -->
+<section class="view" id="v-glossary">
+  <div class="eyebrow">名詞小辭典</div>
+  <h2>看不懂的詞，這裡查</h2>
+  <p class="lead">輸入關鍵字快速篩選。</p>
+  <input id="gq" type="search" placeholder="例如：毛利、VMI、ROE…" style="width:100%;max-width:420px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit">
+  <dl class="glossary card" id="glist" style="margin-top:14px"></dl>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    本頁內容整理自世德工業（2066）策略、財務與製程分析報告，部分數字為分析估計值（標示 E 或區間），專利資料整理自公開專利文獻與官方公開資料，屬工程教學整理、非企業內部 SOP。僅供認識產業與公司之用，不構成任何投資建議。
+  </div>
+</footer>
+
+<div class="tip" id="tip"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip=$('#tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.opacity=1;const x=e.clientX+window.scrollX,y=e.clientY+window.scrollY;tip.style.left=Math.min(x+12,window.scrollX+innerWidth-tip.offsetWidth-10)+'px';tip.style.top=(y-tip.offsetHeight-12)+'px';}
+function hideTip(){tip.style.opacity=0}
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent){const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
+
+/* ---------- routing ---------- */
+const views=['home','journey','tree','patents','moat','ev','global','lean','finance','future','glossary'];
+const rendered={};
+function route(){
+  let h=location.hash.slice(1); if(!views.includes(h)) h='home';
+  $$('section.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+h));
+  $$('#tabs a').forEach(a=>{const on=a.getAttribute('href')==='#'+h;a.classList.toggle('on',on);if(on)a.scrollIntoView({block:'nearest',inline:'center'});});
+  window.scrollTo({top:0});
+  if(renderers[h]&&!rendered[h]){renderers[h]();rendered[h]=true;}
+}
+addEventListener('hashchange',route);
+
+/* ---------- home ---------- */
+$$('[data-quiz] button').forEach(b=>b.onclick=()=>{
+  const box=b.parentElement;box.querySelectorAll('button').forEach(x=>x.classList.toggle(x.dataset.a==='1'?'right':'wrong',true));
+  box.nextElementSibling.innerHTML=(b.dataset.a==='1'?'✅ 答對了！':'差一點！答案是約 1%。')+' 螺絲很便宜，但一顆斷掉可能造成車禍——所以車廠寧願付多一點錢，找信得過的供應商。';
+});
+const tl=[
+  ['第一次轉型','從標準螺絲到車用客製件','跳脫五金行規格品的價格戰，取得國際車廠 IATF 16949 與一級供應商認證。'],
+  ['第二次轉型','2018 收購德國 MMG','買下德國百年螺絲廠 Max Mothes，2023 年 7 月 100% 持股，直接打進賓士、BMW、福斯供應鏈。'],
+  ['第三次轉型','台德美三地短鏈','擴建屏東智慧新廠，2025 年美國密西根廠量產，首波訂單約 1,000 萬美元。']
+];
+$('#timeline').innerHTML=tl.map((t,i)=>`<div class="card"><span class="pill">${t[0]}</span><h3 style="margin:8px 0 6px">${t[1]}</h3><p class="muted" style="margin:0;font-size:14.5px">${t[2]}</p></div>`).join('');
+
+/* ---------- journey ---------- */
+const steps=[
+  {t:'鋼線前處理',tag:'打底',plain:'把一捲捲的合金鋼線洗乾淨、加熱變軟，再拉成精準的粗細，表面抹上潤滑劑——就像揉麵團前先讓麵團醒好。',pro:'高階合金鋼盤元進廠後，酸洗去除氧化皮膜、高溫退火改善金相組織，再進行伸線與塗潤滑劑，確保冷鍛成型品質。',art:'coil'},
+  {t:'冷鍛成型',tag:'最核心',plain:'在常溫下，用巨大壓力連續「捏」5–6 次，把鋼線壓成螺栓的頭和身體。這一步決定螺栓夠不夠強壯。',pro:'5 或 6 工位高速冷鍛機以極高衝擊壓力連續壓塑螺栓頭部與桿身，決定金屬纖維流線（Grain Flow）與機械強度。',art:'forge'},
+  {t:'搓牙與切削',tag:'客製化',plain:'把螺紋「滾」出來；電池包或底盤用的特殊螺栓，還要再用電腦控制機器鑽孔、切槽。',pro:'搓牙機滾壓螺紋；車用電池包或底盤特種扣件以 CNC 複合機進行二次精密切削、鑽孔、倒角或沖槽。',art:'thread'},
+  {t:'熱處理',tag:'變強壯',plain:'送進長長的爐子淬火再回火，讓螺栓又硬又有韌性，並把裡面的氫趕出來，避免日後突然斷裂。',pro:'連續式滲碳淬火爐與回火爐將強度拉升至 10.9 或 12.9 級，同時進行退氫處理以防氫脆。',art:'heat'},
+  {t:'表面塗層',tag:'防鏽',plain:'穿上一層防鏽外衣，讓螺栓在海邊、雪地的鹽分中也不會生鏽，碰到鋁車架也不會腐蝕。',pro:'防腐蝕鋅片塗層（Zinc-Flake）、電著塗裝（E-Coating）或有機絕緣層，防止電位差腐蝕。',art:'coat'},
+  {t:'100% 光學檢查',tag:'零缺陷',plain:'每一顆都用高解析度相機 360 度拍照檢查尺寸和裂痕。目標：一百萬顆裡壞不到一顆。',pro:'全自動光學篩選機（AOI）對外徑、牙距、頭部幾何及裂痕全檢，不良率低於 1 PPM。',art:'eye'},
+  {t:'包裝與全球配送',tag:'送到客戶',plain:'自動裝箱、貼上車廠專屬條碼，送到德國或美國倉庫，車廠要用時 1–2 天內送達。',pro:'自動裝箱並貼車廠專屬 Barcode/RFID，發往德國 MMG、美國密西根倉儲，實施 JIT 即時發貨。',art:'box'}
+];
+const arts={
+  coil:'<circle cx="100" cy="100" r="60" fill="none" stroke="var(--ink-3)" stroke-width="10"/><circle cx="100" cy="100" r="44" fill="none" stroke="var(--ink-3)" stroke-width="10"/><circle cx="100" cy="100" r="28" fill="none" stroke="var(--accent)" stroke-width="10"/>',
+  forge:'<rect x="60" y="20" width="80" height="50" rx="6" fill="var(--ink-3)"><animate attributeName="y" values="20;55;20" dur="1.2s" repeatCount="indefinite"/></rect><rect x="40" y="150" width="120" height="20" rx="4" fill="var(--ink-3)"/><rect x="85" y="110" width="30" height="40" fill="var(--accent)"/><rect x="70" y="100" width="60" height="14" rx="3" fill="var(--accent)"/>',
+  thread:'<rect x="70" y="30" width="60" height="22" rx="4" fill="var(--accent)"/>'+Array.from({length:9},(_,i)=>`<path d="M82 ${60+i*13} L118 ${66+i*13}" stroke="var(--accent)" stroke-width="6" stroke-linecap="round"/>`).join(''),
+  heat:'<rect x="30" y="60" width="140" height="80" rx="12" fill="var(--surface-2)" stroke="var(--ink-3)" stroke-width="3"/>'+[60,100,140].map(x=>`<path d="M${x} 130 q-10 -20 0 -40 q10 -20 0 -30" fill="none" stroke="var(--s2)" stroke-width="5" stroke-linecap="round"><animate attributeName="opacity" values="1;.3;1" dur="1s" begin="${x/100}s" repeatCount="indefinite"/></path>`).join(''),
+  coat:'<rect x="85" y="50" width="30" height="110" rx="6" fill="var(--ink-3)"/><rect x="65" y="36" width="70" height="20" rx="4" fill="var(--ink-3)"/><rect x="80" y="45" width="40" height="120" rx="10" fill="none" stroke="var(--s1)" stroke-width="5" stroke-dasharray="6 4"/>',
+  eye:'<path d="M20 100 Q100 30 180 100 Q100 170 20 100Z" fill="none" stroke="var(--ink-3)" stroke-width="5"/><circle cx="100" cy="100" r="26" fill="var(--accent)"/><circle cx="100" cy="100" r="10" fill="var(--surface)"/>',
+  box:'<path d="M40 70 L100 40 L160 70 L160 140 L100 170 L40 140Z" fill="var(--surface-2)" stroke="var(--ink-3)" stroke-width="4"/><path d="M40 70 L100 100 L160 70 M100 100 L100 170" stroke="var(--ink-3)" stroke-width="4" fill="none"/><rect x="112" y="112" width="34" height="18" fill="var(--accent)" transform="skewY(-26) translate(0,60)"/>'
+};
+let si=0;
+$('#steps').innerHTML=steps.map((s,i)=>`<button data-i="${i}"><span class="n">${i+1}</span>${s.t}</button>`).join('');
+function setStep(i){si=Math.max(0,Math.min(steps.length-1,i));const s=steps[si];
+  $$('#steps button').forEach((b,j)=>b.classList.toggle('on',j===si));
+  $('#stepart').innerHTML=`<svg viewBox="0 0 200 200" aria-hidden="true">${arts[s.art]}</svg>`;
+  $('#steptag').textContent=`第 ${si+1} 站 · ${s.tag}`;$('#steptitle').textContent=s.t;$('#stepplain').textContent=s.plain;$('#steppro').textContent=s.pro;
+  $('#stepbar').style.width=((si+1)/steps.length*100)+'%';
+  $('#prevStep').disabled=si===0;$('#nextStep').textContent=si===steps.length-1?'深入：11 道製程與專利 →':'下一站 →';}
+$$('#steps button').forEach(b=>b.onclick=()=>setStep(+b.dataset.i));
+$('#prevStep').onclick=()=>setStep(si-1);
+$('#nextStep').onclick=()=>{if(si===steps.length-1)location.hash='tree';else setStep(si+1)};
+setStep(0);
+
+/* ---------- moat ---------- */
+$$('.flip').forEach(f=>{f.onclick=()=>f.classList.toggle('open');f.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f.classList.toggle('open')}}});
+$('#raceBtn').onclick=()=>{
+  const r1=$('#r1'),r2=$('#r2');r1.style.transition=r2.style.transition='none';r1.style.width=r2.style.width='0';r1.textContent=r2.textContent='';$('#raceMsg').textContent='';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    r1.style.transition='width .8s ease';r2.style.transition='width 3s cubic-bezier(.4,.2,.3,1)';
+    r1.style.width='14%';r1.textContent='1–2 天出貨 ✓';
+    r2.style.width='100%';r2.textContent='樣品 → 疲勞測試 → 撞擊測試 → 試產… 3–5 年';
+    setTimeout(()=>$('#raceMsg').textContent='結果：車廠多半選擇「放棄替換」。省下的螺絲錢很少，重新驗證卻要花數百萬美元。',3100);
+  }));
+};
+
+/* ---------- ev ---------- */
+const cars={
+  ice:{n:[1500,2500],v:[80,120],ind:[15,20],sh:[28,32],tag:'傳統燃油車',title:'數量多，但單價低',text:'螺絲多用在引擎、變速箱等耐高溫部位。世德在賓士、BMW 高階車款的懸吊、防傾桿、安全氣囊螺栓占比很高，毛利率仍有 28–32%。'},
+  hev:{n:[2000,3000],v:[200,280],ind:[25,30],sh:[32,35],tag:'油電混合車',title:'螺絲最多、價值最高',text:'同時有引擎和電池馬達，兩套系統都要螺栓，每台車螺絲價值最高可達 280 美元。即使純電動車成長放緩，消費者改買油電車，世德反而受惠。'},
+  bev:{n:[1200,1800],v:[150,250],ind:[30,40],sh:[35,45],tag:'純電動車',title:'數量最少，但最好賺',text:'沒有引擎，螺絲變少；但電池包需要防水、防爆、抗撞的特殊螺栓，加上輕量化的鋼鋁接合技術，世德的高階客製件毛利率可達 35–45%。'}
+};
+function setCar(k){const c=cars[k];$$('#carpick button').forEach(b=>b.classList.toggle('on',b.dataset.c===k));
+  const rng=(id,a,max,fmt)=>{$('#'+id).textContent=fmt(a);const b=$('#'+id+'Bar');b.style.left=(a[0]/max*100)+'%';b.style.width=((a[1]-a[0])/max*100)+'%';};
+  rng('evCount',c.n,3000,a=>`${a[0].toLocaleString()}–${a[1].toLocaleString()} 顆`);
+  rng('evVal',c.v,300,a=>`$${a[0]}–$${a[1]}${k==='bev'?'+':''} 美元`);
+  rng('evInd',c.ind,50,a=>`${a[0]}–${a[1]}%`);
+  rng('evShide',c.sh,50,a=>`${a[0]}–${a[1]}%`);
+  $('#evTag').textContent=c.tag;$('#evTitle').textContent=c.title;$('#evText').textContent=c.text;}
+$$('#carpick button').forEach(b=>b.onclick=()=>setCar(b.dataset.c));
+setCar('hev');
+
+/* ---------- global ---------- */
+const sites={
+  tw:{name:'台灣屏東（母廠）',role:'研發中心＋大量製造',pts:['負責 70–80% 的基礎工序，發揮台灣規模化、低成本優勢','新廠投資約 3–6 億元，台灣總產能提升 20–30%','導入光學檢驗與快速換模，主攻高階電動車零件']},
+  de:{name:'德國 Max Mothes（MMG）',role:'歐洲大門＋豪華車廠通路',pts:['2018 年收購、2023 年 100% 持股，繼承賓士、BMW、福斯、Audi 的直供資格','在 Neuss 設自動化物流倉儲與測試中心，負責最後加工、檢查與快速送貨','挑戰：德國人力與能源成本高，正把基礎加工移回台灣、提高自動化']},
+  us:{name:'美國密西根廠',role:'北美關稅防線＋短鏈樞紐',pts:['2025 年 3 月設備進駐、4 月量產，首波訂單約 1,000 萬美元','緊鄰底特律汽車產業帶，24–48 小時送達 GM、Ford、Stellantis、Tesla','在地加工賦予「北美製造」價值，符合 USMCA 規定以規避高額關稅']}
+};
+function setSite(k){const s=sites[k];$$('.site').forEach(g=>g.classList.toggle('on',g.dataset.s===k));
+  $('#siteCard').innerHTML=`<span class="pill">${s.role}</span><h3 style="margin:8px 0">${s.name}</h3><ul style="margin:0;padding-left:20px">${s.pts.map(p=>`<li style="margin:6px 0">${p}</li>`).join('')}</ul>`;}
+$$('.site').forEach(g=>g.onclick=()=>setSite(g.dataset.s));
+setSite('tw');
+function setUtil(){const v=+$('#util').value;$('#utilVal').textContent=v+'%';const st=$('#utilStatus');let c,t,m;
+  if(v<55){c='var(--bad)';t='⚠ 虧損中';m='營收還不夠攤提固定成本，折舊會拖累整體獲利。這就是 2025 年獲利下滑的原因之一。';}
+  else if(v<60){c='var(--warn)';t='≈ 損益兩平';m='剛好打平。再往上，每多生產一批貨，大部分都會變成利潤。';}
+  else if(v<70){c='var(--good)';t='✓ 開始獲利';m='越過損益兩平點，折舊壓力解除，利潤開始回升。';}
+  else{c='var(--good)';t='🚀 槓桿全開';m='固定成本被大量產品稀釋，利潤率快速拉升。這是樂觀劇本的情況。';}
+  st.textContent=t;st.style.background=`color-mix(in srgb, ${c} 16%, transparent)`;st.style.color=c;$('#utilText').textContent=m;}
+$('#util').oninput=setUtil;setUtil();
+
+/* ---------- lean ---------- */
+const wastes=[
+  {e:'⏳',t:'等待',d:'冷鍛機和切削機速度不一樣，半成品常在中間排隊。',f:'用「生產線平衡」重新分配各站工作量，減少二次加工前的等待。'},
+  {e:'📦',t:'庫存過多',d:'高階鋼材很貴，堆太多半成品等於把錢鎖在倉庫。',f:'建立「拉式生產」：下游用多少才生產多少，控制盤元和半成品的數量。'},
+  {e:'🚛',t:'多餘搬運',d:'重型金屬料桶在工廠裡搬來搬去，耗時又危險。',f:'屏東與密西根新廠設計 U 型生產線與無人搬運車（AGV）路線。'},
+  {e:'🙇',t:'多餘動作',d:'作業員反覆彎腰拿取零件，又累又慢。',f:'重新配置工作站高度與位置，減少彎腰與走動。'},
+  {e:'❌',t:'不良品',d:'模具一磨損，螺栓尺寸就會跑掉，可能整批報廢。',f:'用統計製程管制（SPC）監看數據趨勢，在出問題前就換模。'}
+];
+$('#waste').innerHTML=wastes.map((w,i)=>`<button data-i="${i}"><div class="e">${w.e}</div><b>${w.t}</b></button>`).join('');
+function setWaste(i){$$('#waste button').forEach((b,j)=>b.classList.toggle('on',j===i));const w=wastes[i];
+  $('#wasteCard').innerHTML=`<div class="grid g2"><div><span class="pill">問題</span><p style="margin:8px 0 0">${w.d}</p></div><div><span class="pill" style="background:var(--accent-soft);color:var(--accent)">世德的解法</span><p style="margin:8px 0 0">${w.f}</p></div></div>`;}
+$$('#waste button').forEach(b=>b.onclick=()=>setWaste(+b.dataset.i));setWaste(0);
+function setSmed(){const p=+$('#smed').value;const t=Math.round(180-(150*p/100));
+  $('#smedPct').textContent=p+'%';$('#smedTime').textContent=t+' 分鐘';
+  $('#smedGain').textContent=p>0?`每次省下 ${180-t} 分鐘；每天換 3 次模，一天多出約 ${((180-t)*3/60).toFixed(1)} 小時產能`:'傳統做法：全部停機後才開始準備';
+  $('#smedTip').textContent=p<30?'例：停機後才去找工具、搬模具、預熱……全部都在停機時間裡做。':p<80?'例：先把下一套模具預熱、工具備好放在機台旁。':'例：再加上快速定位夾具，模具「一放就準」，不必反覆調整。目標：30 分鐘內完成。';}
+$('#smed').oninput=setSmed;setSmed();
+
+/* ---------- charts ---------- */
+const dup=[{y:'2022',roe:16.5,nm:8.8,at:0.95},{y:'2023',roe:15.2,nm:9.2,at:0.88},{y:'2024',roe:12.8,nm:9.59,at:0.69},{y:'2025E',roe:2.73,nm:2.38,at:0.58}];
+dup.forEach(d=>d.em=+(d.roe/(d.nm*d.at)).toFixed(2));
+const dupMeta={roe:{n:'ROE',u:'%',max:20,txt:'ROE 從 16.5% 一路降到 2025 年估計的 2.7%。下面三個按鈕可以看是哪一塊出了問題。'},
+  nm:{n:'淨利率',u:'%',max:12,txt:'2022–2024 年淨利率穩定在 9% 左右，本業很會賺。2025 年掉到 2.4%，主要是新廠開始認列大量折舊，加上美國廠前期人事費用——屬於短期壓力。'},
+  at:{n:'資產週轉率',u:'次',max:1.2,txt:'這是最關鍵的拖累：公司買了大量土地、廠房、設備，但歐洲車市疲軟、美國廠還在驗證，營收沒同步放大，資產「閒著」的比例變高。'},
+  em:{n:'權益乘數',u:'倍',max:2.5,txt:'一直穩定在 1.9 倍左右，代表公司沒有靠多借錢來美化報酬，財務結構健康。'}};
+function barChart(box,data,key,meta){
+  box.innerHTML='';const W=640,H=240,m={l:44,r:10,t:22,b:28};const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':meta.n+'逐年變化'},box);
+  const iw=W-m.l-m.r,ih=H-m.t-m.b;const ticks=4;const g=el('g',{class:'grid'},svg);const ax=el('g',{class:'axis'},svg);
+  for(let i=0;i<=ticks;i++){const v=meta.max*i/ticks,y=m.t+ih-ih*i/ticks;el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y},g);const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end'},ax);t.textContent=(meta.u==='%'?v.toFixed(0):v.toFixed(1))+(meta.u==='%'?'%':'');}
+  const bw=Math.min(70,iw/data.length*0.5);
+  data.forEach((d,i)=>{const cx=m.l+iw*(i+.5)/data.length,h=ih*d[key]/meta.max,y=m.t+ih-h;
+    const est=d.y.includes('E');
+    const p=el('path',{d:`M${cx-bw/2},${m.t+ih} V${y+4} q0,-4 4,-4 H${cx+bw/2-4} q4,0 4,4 V${m.t+ih}Z`,fill:est?'none':'var(--s1)',stroke:est?'var(--s1)':'none','stroke-width':2,'stroke-dasharray':est?'5 3':''},svg);
+    const lbl=el('text',{x:cx,y:y-6,'text-anchor':'middle','font-size':13,'font-weight':700,fill:'var(--ink)'},svg);lbl.textContent=d[key]+(meta.u==='%'?'%':' '+meta.u);
+    const xl=el('text',{x:cx,y:H-8,'text-anchor':'middle','font-size':12,fill:'var(--ink-2)'},svg);xl.textContent=d.y;
+    const hit=el('rect',{x:cx-iw/data.length/2,y:m.t,width:iw/data.length,height:ih,fill:'transparent'},svg);
+    hit.onmousemove=e=>showTip(e,`<b>${d.y}</b>　ROE ${d.roe}%<br>淨利率 ${d.nm}% × 週轉率 ${d.at} 次 × 權益乘數 ${d.em} 倍`);hit.onmouseleave=hideTip;});
+}
+function setDup(k){$$('#dupontSeg button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));barChart($('#dupontChart'),dup,k,dupMeta[k]);$('#dupontText').textContent=dupMeta[k].txt;}
+$$('#dupontSeg button').forEach(b=>b.onclick=()=>setDup(b.dataset.k));
+
+function roicChart(){
+  const box=$('#roicChart');box.innerHTML='';const D=[{p:'收割期',y:'2022–23',lo:12.5,hi:14,w:7.8},{p:'沉澱期（擴廠）',y:'2024–25E',lo:4.5,hi:6,w:8},{p:'爬坡期（量產）',y:'2026E–27E',lo:10.5,hi:13,w:8}];
+  const W=420,H=230,m={l:36,r:10,t:16,b:40},iw=W-m.l-m.r,ih=H-m.t-m.b,max=16;const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'ROIC 與 WACC 三階段比較'},box);
+  const g=el('g',{class:'grid'},svg),ax=el('g',{class:'axis'},svg);[0,4,8,12,16].forEach(v=>{const y=m.t+ih-ih*v/max;el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y},g);el('text',{x:m.l-6,y:y+4,'text-anchor':'end'},ax).textContent=v+'%';});
+  const yw=m.t+ih-ih*8/max;el('line',{x1:m.l,x2:W-m.r,y1:yw,y2:yw,stroke:'var(--ink-3)','stroke-width':2,'stroke-dasharray':'6 4'},svg);el('text',{x:W-m.r,y:yw-6,'text-anchor':'end','font-size':11,fill:'var(--ink-2)'},svg).textContent='WACC ≈ 8%';
+  D.forEach((d,i)=>{const cx=m.l+iw*(i+.5)/3,bw=46,y1=m.t+ih-ih*d.hi/max,y0=m.t+ih-ih*d.lo/max;const good=d.lo>d.w;
+    el('rect',{x:cx-bw/2,y:y1,width:bw,height:y0-y1,rx:6,fill:'var(--s1)',opacity:i===2?.55:1},svg);
+    el('text',{x:cx,y:y1-6,'text-anchor':'middle','font-size':12,'font-weight':700,fill:'var(--ink)'},svg).textContent=`${d.lo}–${d.hi}%`;
+    el('text',{x:cx,y:H-22,'text-anchor':'middle','font-size':12,fill:'var(--ink)'},svg).textContent=d.p;
+    el('text',{x:cx,y:H-6,'text-anchor':'middle','font-size':11,fill:'var(--ink-3)'},svg).textContent=d.y;
+    const hit=el('rect',{x:cx-iw/6,y:m.t,width:iw/3,height:ih,fill:'transparent'},svg);hit.onmousemove=e=>showTip(e,`<b>${d.p}</b>（${d.y}）<br>ROIC ${d.lo}–${d.hi}%　WACC ~${d.w}%<br>${good?'✓ 有創造價值':'✗ 暫時低於資金成本'}`);hit.onmouseleave=hideTip;});
+  const p=document.createElement('p');p.className='note';p.textContent='2024–25 年因擴廠，ROIC 暫時低於資金成本；預估量產後回到 10.5–13%。屏東新廠回收期約 4.5–5.5 年，密西根廠約 3.5–4.5 年。';box.appendChild(p);
+}
+const cccFix=[{t:'半成品延後加工：台灣只做通用半成品，到當地再客製',d:12},{t:'AI 動態調整海外安全庫存（60 天 → 30–45 天）',d:15},{t:'寄售與最低採購承諾：超過 60 天未領自動計價',d:8},{t:'三地 ERP 打通的全球庫存控制塔',d:5}];
+const cccOn=new Set();
+function cccChart(){
+  const box=$('#cccChart');const base=150,cut=[...cccOn].reduce((s,i)=>s+cccFix[i].d,0),now=base-cut;
+  box.innerHTML=`<div style="display:flex;align-items:baseline;gap:10px"><span class="clock">${now}</span><span class="muted">天　現金轉換週期</span></div>
+  <div style="height:16px;background:var(--surface-2);border-radius:99px;position:relative;margin-top:8px">
+   <i style="position:absolute;left:0;top:0;height:100%;width:${now/160*100}%;background:${now<130?'var(--good)':'var(--s2)'};border-radius:99px;transition:width .5s"></i>
+   <span style="position:absolute;left:${130/160*100}%;top:-4px;bottom:-4px;border-left:2px dashed var(--ink)"></span></div>
+  <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-3);margin-top:4px"><span>0</span><span style="margin-left:${130/160*100-12}%">目標 &lt;130 天</span><span>160</span></div>`;
+}
+$('#cccOpts').innerHTML=cccFix.map((f,i)=>`<label style="display:flex;gap:8px;align-items:flex-start;font-size:14px;cursor:pointer"><input type="checkbox" data-i="${i}" style="margin-top:5px;accent-color:var(--accent)"> <span>${f.t}</span></label>`).join('')+'<p class="note" style="margin-top:4px">各措施縮短天數為示意估算，用來呈現方向與規模。</p>';
+$$('#cccOpts input').forEach(c=>c.onchange=()=>{c.checked?cccOn.add(+c.dataset.i):cccOn.delete(+c.dataset.i);cccChart();});
+
+/* ---------- future ---------- */
+const scn={
+  bull:{p:25,story:'電動車與油電車銷量雙雙成長，北美車廠積極轉單給在地供應商，密西根廠快速開滿，獲利創新高。',k:[['密西根廠利用率','75–85%'],['毛利率','33–36%'],['營收年成長（5年）','14–17.5%'],['每股盈餘 EPS','NT$8.5–11.5'],['非車用占比','> 28%'],['本益比','14–16 倍']]},
+  base:{p:55,story:'全球車市溫和成長 2–4%，油電車補足純電放緩，密西根廠穩定越過損益兩平，獲利回到歷史平均水準。',k:[['密西根廠利用率','60–70%'],['毛利率','30–32.5%'],['營收年成長（5年）','8.5–11.5%'],['每股盈餘 EPS','NT$5.8–7.8'],['非車用占比','20–25%'],['本益比','10–12 倍']]},
+  bear:{p:20,story:'高利率與消費疲軟讓車市衰退超過 5%，密西根廠開不滿，新廠折舊與價格戰壓縮獲利。',k:[['密西根廠利用率','< 45%'],['毛利率','25–28%'],['營收年成長（5年）','1.5–4%'],['每股盈餘 EPS','NT$2.5–4.0'],['非車用占比','< 15%'],['本益比','7–9 倍']]}
+};
+function setScn(s){$$('#scnSeg button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));const d=scn[s];
+  $('#scnStory').textContent=`發生機率 ${d.p}%：${d.story}`;
+  $('#scnGrid').innerHTML=d.k.map(k=>`<div><div class="k">${k[0]}</div><div class="val">${k[1]}</div></div>`).join('');
+  $$('#epsChart [data-s]').forEach(n=>n.setAttribute('opacity',n.dataset.s===s?1:.35));}
+$$('#scnSeg button').forEach(b=>b.onclick=()=>setScn(b.dataset.s));
+function epsChart(){
+  const box=$('#epsChart');box.innerHTML='';const D=[['bear','悲觀',2.5,4.0,20,'var(--s2)'],['base','基準',5.8,7.8,55,'var(--s1)'],['bull','樂觀',8.5,11.5,25,'var(--s3)']];
+  const W=640,H=190,m={l:56,r:16,t:10,b:28},iw=W-m.l-m.r,max=12;const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'三種劇本 EPS 區間'},box);
+  const x=v=>m.l+iw*v/max;const g=el('g',{class:'grid'},svg),ax=el('g',{class:'axis'},svg);
+  [0,2,4,6,8,10,12].forEach(v=>{el('line',{x1:x(v),x2:x(v),y1:m.t,y2:H-m.b},g);el('text',{x:x(v),y:H-10,'text-anchor':'middle'},ax).textContent='$'+v;});
+  D.forEach((d,i)=>{const cy=m.t+25+i*50,h=6+d[4]*0.5;const gg=el('g',{'data-s':d[0]},svg);
+    el('rect',{x:x(d[2]),y:cy-h/2,width:x(d[3])-x(d[2]),height:h,rx:4,fill:d[5]},gg);
+    el('text',{x:m.l-8,y:cy+4,'text-anchor':'end','font-size':13,fill:'var(--ink)'},gg).textContent=d[1];
+    el('text',{x:x(d[3])+6,y:cy+4,'font-size':12,fill:'var(--ink-2)'},gg).textContent=`${d[4]}%`;
+    gg.style.cursor='pointer';gg.onclick=()=>setScn(d[0]);gg.onmousemove=e=>showTip(e,`<b>${d[1]}劇本</b>（機率 ${d[4]}%）<br>EPS NT$${d[2]}–${d[3]}`);gg.onmouseleave=hideTip;});
+  const mid=D.reduce((s,d)=>s+(d[2]+d[3])/2*d[4]/100,0);
+  el('line',{x1:x(mid),x2:x(mid),y1:m.t,y2:H-m.b,stroke:'var(--ink)','stroke-width':2,'stroke-dasharray':'4 3'},svg);
+  el('text',{x:x(mid)+5,y:m.t+10,'font-size':12,'font-weight':700,fill:'var(--ink)'},svg).textContent=`機率加權平均 ≈ NT$${mid.toFixed(1)}`;
+}
+const mix={2024:[73.5,13,13.5],2027:[70,15,15]};
+function mixChart(y){
+  $$('#mixSeg button').forEach(b=>b.classList.toggle('on',b.dataset.y==y));
+  const box=$('#mixChart');const v=mix[y],names=['汽車','北美基建','風電與農機'],cols=['var(--s1)','var(--s2)','var(--s3)'];
+  const lbl=y==2024?['72–75%','12–14%','11–14%']:['70%','15%','15%'];
+  box.innerHTML=`<div style="display:flex;gap:2px;height:44px;border-radius:8px;overflow:hidden">${v.map((p,i)=>`<div data-i="${i}" style="width:${p}%;background:${cols[i]};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;transition:width .5s">${lbl[i]}</div>`).join('')}</div>
+  <p class="note">${y==2024?'目前汽車占比約七成以上，非車用約 25%。':'目標：汽車營收金額仍成長，但占比微降至 70%；非車用拉到 30%，靠美國基建法案與德國 MMG 的風電、農機客戶。'}</p>`;
+  box.querySelectorAll('[data-i]').forEach(d=>{d.onmousemove=e=>showTip(e,`<b>${names[d.dataset.i]}</b>　${lbl[d.dataset.i]}`);d.onmouseleave=hideTip;});
+}
+$$('#mixSeg button').forEach(b=>b.onclick=()=>mixChart(b.dataset.y));
+
+/* ---------- glossary ---------- */
+const gl=[
+  ['扣件（Fastener）','螺絲、螺栓、螺帽等把零件固定在一起的東西。'],
+  ['毛利率','賣東西的收入扣掉直接生產成本後，剩下的比例。越高代表產品越有價值。'],
+  ['OEM / Tier 1 直供','直接賣給汽車品牌廠（如 Tesla、BMW），而不是透過中間商。'],
+  ['IATF 16949','汽車業的品質管理認證，是進入汽車供應鏈的基本門票。'],
+  ['PPAP','生產件批准程序。車廠核准一個零件可以量產前的完整驗證流程，常需 3–5 年。'],
+  ['Co-design 協同設計','在新車設計階段就和車廠一起設計零件。'],
+  ['VMI','供應商管理庫存。供應商在客戶旁邊放庫存並負責補貨。'],
+  ['JIT','及時生產／及時送貨。需要時才送到，客戶不用囤貨。'],
+  ['短鏈','把生產或倉儲放在離客戶近的地方，縮短運送距離與時間。'],
+  ['USMCA','美墨加協定。汽車零件在北美的在地價值含量要達一定比例才能享免關稅。'],
+  ['IIJA','美國《基礎建設投資與就業法案》，帶動橋樑、鐵路等鋼結構螺栓需求。'],
+  ['產能利用率','工廠實際產量占最大產能的比例。'],
+  ['損益兩平點（BEP）','收入剛好打平成本的點，超過才開始賺錢。'],
+  ['折舊','把買設備、蓋廠房的花費分攤到多年認列成本。新廠初期折舊會壓低獲利。'],
+  ['ROE 股東權益報酬率','股東投入的每 100 元，一年賺回多少。'],
+  ['ROIC 投入資本報酬率','公司所有投入的資金（借的＋股東的）能賺多少報酬。'],
+  ['WACC 加權平均資金成本','公司取得資金的平均成本，世德約 7.5–8.2%。'],
+  ['資產週轉率','一年營收是總資產的幾倍，代表資產被利用得多有效率。'],
+  ['現金轉換週期（CCC）','從付錢買原料到收回貨款，中間錢被卡住幾天。'],
+  ['EPS 每股盈餘','公司一年賺的錢除以股數，每一股分到多少獲利。'],
+  ['本益比（P/E）','股價是 EPS 的幾倍，市場願意為每 1 元獲利付多少錢。'],
+  ['氫脆','高強度鋼材內部殘留氫原子，可能導致突然斷裂。'],
+  ['SMED 快速換模','把換模具的停機時間壓到最短的方法。'],
+  ['Poka-Yoke 防錯','讓錯誤不可能發生的設計，例如感測器異常就自動停機。'],
+  ['PPM','百萬分之一。1 PPM 就是一百萬顆裡只有一顆不良。'],
+  ['Patent 專利','公開、可查、受法律保護的技術。'],
+  ['Know-how 技術訣竅','模具、參數、熱處理條件、材料搭配、良率控制等不公開、會做的人才知道的技術。'],
+  ['專利號 I / M / US…B2','台灣 I 字頭為發明專利、M 字頭為新型專利；US…B2 為美國核准專利。'],
+  ['Captive Fastener 防掉落扣件','螺絲鬆開後仍留在套管或零件上，不會掉落。'],
+  ['預置扭力（Prevailing Torque）','螺帽內刻意做出的阻力，讓它不容易因振動自己鬆掉。'],
+  ['公差補償','用扣件本身的可調結構，吸收零件與車體的尺寸誤差。'],
+  ['扭力係數 K／摩擦係數','鎖螺絲時扭力與夾緊力之間的換算係數，受塗層與潤滑影響。'],
+  ['Weld Nut 焊接螺帽','直接焊在鈑金上的螺帽。'],
+  ['RFID-WIP','用無線射頻標籤追蹤在製品與庫存，達成製程追溯。'],
+  ['HEV / PHEV / BEV','油電混合車／插電式油電混合車／純電動車。']
+];
+function renderGl(q=''){q=q.trim().toLowerCase();$('#glist').innerHTML=gl.filter(g=>!q||(g[0]+g[1]).toLowerCase().includes(q)).map(g=>`<dt>${g[0]}</dt><dd>${g[1]}</dd>`).join('')||'<p class="muted">找不到相符的詞。</p>';}
+$('#gq').oninput=e=>renderGl(e.target.value);renderGl();
+
+/* ---------- tech tree (11 stations) ---------- */
+const G={up:'var(--s4)',form:'var(--s1)',perf:'var(--s7)',qc:'var(--s3)'};
+const GN={up:'上游鋼材',form:'成形與螺紋',perf:'性能與組裝',qc:'檢驗與出貨'};
+const ST=[
+ {n:'小鋼胚',g:'up',key:'原材成分／潔淨度',pat:null,plain:'鋼廠煉好的鋼塊，是螺絲的「食材」。食材好不好，決定了後面每一步。',job:'煉鋼／連鑄後形成的小鋼胚',kh:'化學成分、偏析、夾雜、表面裂紋；應由材質證明與批號控制',pd:'目前未查得世德專屬鋼胚專利，此段一般屬上游鋼廠。',ai:'材質證明 OCR、爐號／批號比對、異常材質預警'},
+ {n:'盤元',g:'up',key:'軋延品質／批次追溯',pat:null,plain:'把鋼塊熱軋成長長的鋼線，再捲成一大捲送進螺絲廠。',job:'鋼胚熱軋、盤捲並冷卻成線材',kh:'表面缺陷、尺寸、脫碳、供應商履歷及原料批次',pd:'未查得世德盤元軋延專利；永續報告列有盤元進料。',ai:'盤元表面缺陷分類、供應商批次異常預警'},
+ {n:'球化',g:'form',key:'金相與軟化窗口',pat:null,plain:'加熱讓鋼的內部組織變得圓潤柔軟，等一下冷鍛時才不會裂開。',job:'依材種進行球化退火，改善冷成形性',kh:'球化率、金相、退火溫度／持溫、硬度均勻性、脫碳',pd:'未查得球化專屬世德專利；不等於沒有材料處理經驗。',ai:'爐溫時間序列異常、硬度與裂紋風險預測'},
+ {n:'伸線',g:'form',key:'線徑／模具／潤滑',pat:null,plain:'把鋼線一道道拉過模具，拉細到精準的粗細。',job:'酸洗／皮膜與拉線模逐道降低線徑',kh:'減面率、模具磨耗、潤滑、線徑波動、拉拔斷線',pd:'未查得伸線專屬世德專利；公司列有抽線製程。',ai:'拉拔負載異常、模具壽命與斷線預警'},
+ {n:'冷鍛',g:'form',key:'金屬流動／模具壽命',pat:'焊接螺帽',plain:'常溫下用巨大壓力連續「捏」出螺栓頭或螺帽形狀。',job:'打頭、多模多沖；螺帽可有不同成形路徑',kh:'金屬流動、材料裂紋、模具設計、同心度、節拍與廢料',pd:'US7568869B2 焊接螺帽：與產品材料／結構設計有關；不是冷鍛方法專利。',ai:'成形負載分析、頭部裂紋視覺檢測、模具壽命'},
+ {n:'搓牙',g:'form',key:'牙型／防鬆設計',pat:'自鎖螺絲',plain:'把螺紋「滾」出來。螺紋的形狀決定鎖得緊不緊、會不會鬆。',job:'外螺紋多採搓牙；螺帽內螺紋可用攻牙',kh:'牙距、牙型、有效徑、牙板磨損、錯牙與螺紋檢測',pd:'M588181 自鎖螺絲、M588182 自鎖螺帽屬產品關聯；2004 年取得美國 MAThread 防錯牙技術授權；2022 年另有搓牙機防呆機構。',ai:'牙型影像判讀、NG／良率關聯、牙板劣化預警'},
+ {n:'熱處理',g:'perf',key:'硬度與韌性平衡',pat:'預置扭力',plain:'淬火、回火讓螺栓又硬又有韌性。太硬會脆，太軟扛不住，要找到窄窄的「剛好」。',job:'依材質與強度要求進行淬火／回火等處理',kh:'爐溫、持溫、淬火條件、硬度、韌性、脫碳與變形',pd:'TWI753649B 把「熱處理後硬度」列為預置扭力的關鍵輸入；不是熱處理方法專利。',ai:'爐溫異常、硬度預測、批次性能分群'},
+ {n:'表面處理',g:'perf',key:'塗層厚度／摩擦係數',pat:'浸甩設備',plain:'穿上防鏽外衣。但塗層也會改變摩擦，直接影響鎖螺絲時的夾緊力。',job:'電鍍、MAGNI 塗層、浸甩與塗膠等依產品需求選用',kh:'塗層厚度、均勻度、附著性、摩擦係數、耐腐蝕',pd:'公司沿革記載 2007「螺絲自動浸甩機」專利（專利號未核定）；MAGNI 為認證／技術體系。',ai:'塗層缺陷辨識、膜厚與摩擦係數預測'},
+ {n:'組裝',g:'perf',key:'套管／限位／自動鎖付',pat:'套管專利群',plain:'把螺絲、套管、華司、限位件組成一套「組合式扣件」。這是世德專利最密集的一站。',job:'套管、限位件、華司、螺絲／螺帽自動送料組配',kh:'壓合力、裝配順序、零件有無、尺寸公差、防掉落性',pd:'TWI683065B／TWI710715B 套管螺絲；TWI761005B 快速定位；TWM608701U 鎖付裝置；M585678 自動化套環設備。',ai:'缺件／錯裝 AI 視覺、壓合曲線偵測、設備狀態監控'},
+ {n:'光學檢驗',g:'qc',key:'CCD／篩選／誤判控制',pat:'智慧檢測研發',plain:'用相機逐顆拍照檢查，把裂紋、缺牙、尺寸不對的挑出來。',job:'CCD、光學分選、量測及部分渦電流檢測',kh:'裂紋、缺牙、尺寸異常、漏檢／誤殺、量測系統能力',pd:'公開 2021 車用扣件智慧檢測研發、CCD 尼龍膠檢查設備；屬研發成果，不能直接視為專利。',ai:'AOI 瑕疵分類、影像分割、NG 統計與根因追查'},
+ {n:'包裝',g:'qc',key:'計數／秤重／追溯',pat:'自動包裝研發',plain:'自動計數、秤重、貼標，確保每箱數量正確、不混料，而且每箱都查得到來歷。',job:'計數、分裝、秤重、貼標、批次出貨',kh:'混料防呆、數量與重量一致、批次追溯、箱標與客規',pd:'公開自動化分裝包裝研發及 2009 RFID-WIP 追溯成果；未核實專利號。',ai:'OCR 標籤核對、重量異常、批號溯源、客訴風險'}
+];
+let stI=8;
+$('#stations').innerHTML=ST.map((s,i)=>`<button data-i="${i}" style="--c:${G[s.g]}"><span class="no">${String(i+1).padStart(2,'0')}</span><b>${s.n}</b><small>${s.key}</small><span class="pt">${s.pat?'📜 '+s.pat:'— 未查得專屬專利'}</span></button>`).join('');
+function setSt(i){stI=i;const s=ST[i];$$('#stations button').forEach((b,j)=>b.classList.toggle('on',j===i));
+  $('#stationCard').innerHTML=`<span class="pill" style="background:color-mix(in srgb,${G[s.g]} 18%,transparent)">第 ${i+1} 站 · ${GN[s.g]}</span><h3 style="margin:8px 0 4px">${s.n}</h3><p style="margin:0;font-size:17px">${s.plain}</p>
+  <div class="q4"><div><div class="h">⚙️ 設備／作業</div>${s.job}</div><div><div class="h">🧠 KNOW-HOW 與品質管制</div>${s.kh}</div><div><div class="h">📜 公開專利／研發對照</div>${s.pd}</div><div><div class="h">🤖 AI 切入點</div>${s.ai}</div></div>`;}
+$$('#stations button').forEach(b=>b.onclick=()=>setSt(+b.dataset.i));
+$('#patOnly').onchange=e=>$$('#stations button').forEach((b,j)=>b.classList.toggle('dim',e.target.checked&&!ST[j].pat));
+setSt(8);
+function setK(){const k=$('#kfac').value/100;const F=50/(k*0.01)/1000;$('#kVal').textContent=k.toFixed(2);$('#kForce').textContent=F.toFixed(0)+' kN';
+  const w=Math.min(100,F/70*100);const bar=$('#kBar');bar.style.width=w+'%';let c,m;
+  if(F>48){c='var(--bad)';m='⚠ 太滑：同樣扭力下夾緊力過大，螺栓可能被拉到降伏甚至斷裂。';}
+  else if(F<31){c='var(--warn)';m='⚠ 太澀：扭力大多消耗在摩擦上，夾緊力不足，行駛振動中容易鬆脫。';}
+  else{c='var(--good)';m='✓ 剛好：夾緊力落在設計範圍內。塗層的厚度與均勻度，就是為了讓這個數字穩定。';}
+  bar.style.background=c;$('#kMsg').textContent=m;}
+$('#kfac').oninput=setK;setK();
+const TR=['📦 某一箱螺絲','哪一批鋼材','哪台機器','哪個日期','哪個製程','哪次熱處理','哪次檢驗'];
+$('#trace').innerHTML=TR.map((t,i)=>(i?'<span class="a">→</span>':'')+`<span class="t">${t}</span>`).join('');
+$('#traceBtn').onclick=()=>{const n=$$('#trace span');n.forEach(x=>x.classList.remove('show'));$('#traceCmp').style.opacity=.25;
+  n.forEach((x,i)=>setTimeout(()=>x.classList.add('show'),i*180));setTimeout(()=>$('#traceCmp').style.opacity=1,n.length*180+100);};
+
+/* ---------- patents ---------- */
+const PK=[['TWI753649B 預置扭力螺帽製成方法','P','這是公開的發明專利，任何人都查得到內容。'],['熱處理的爐溫與持溫時間怎麼設','K','這是典型 know-how：參數藏在工廠裡，不會公開。'],['TWI683065B 組合式套管螺絲','P','台灣發明專利（I 字頭），2018–2020 年的套管技術線。'],['模具什麼時候該換才不會出不良','K','模具壽命管理靠經驗與數據累積，屬於 know-how。'],['塗層的摩擦係數怎麼控制穩定','K','配方、膜厚、浸甩參數都是 know-how，專利只保護了浸甩「設備」。'],['US7568869B2 焊接螺帽','P','美國核准專利，世德較早期的代表作。']];
+let pkI=0,pkS=0,pkN=0;
+function showPk(){const p=PK[pkI%PK.length];$('#pkItem').textContent='「'+p[0]+'」';$$('#v-patents .quiz .opts button').forEach(b=>{b.className='';b.disabled=false;});}
+$$('#v-patents .quiz .opts button').forEach(b=>b.onclick=()=>{const p=PK[pkI%PK.length];const ok=b.dataset.g===p[1];pkN++;if(ok)pkS++;
+  b.className=ok?'right':'wrong';$$('#v-patents .quiz .opts button').forEach(x=>x.disabled=true);
+  $('#pkAns').innerHTML=(ok?'✅ 答對！':'❌ 不對喔。')+p[2]+' <button class="btn" id="pkNext" style="padding:2px 10px;margin-left:6px">下一題 →</button>';
+  $('#pkScore').textContent=`目前 ${pkS} / ${pkN} 題答對`;$('#pkNext').onclick=()=>{pkI++;$('#pkAns').textContent='';showPk();};});
+showPk();
+const LY={prod:{n:'產品結構',c:'var(--s1)',d:'自鎖、防鬆、密封、套管防掉落、公差補償',r:'US7568869B2、TWI683065B、TWI761005B'},
+  proc:{n:'製程方法',c:'var(--s2)',d:'成形路徑、熱處理硬度、預置扭力沖壓、組裝製法',r:'TWI753649B、TWI710715B'},
+  eq:{n:'設備與品質',c:'var(--s3)',d:'自動套環、批次鎖付、CNC 進刀、浸甩、搓牙防呆、CCD、RFID 追溯',r:'TWM608701U（美國同族 US11498167）、M585678、M581024'}};
+const PT=[
+ [2006,'prod','平板／焊接螺帽 Weld Nut','US7568869B2','焊接用的底板含碳量低、好焊；螺帽本體硬度高、扛得住拉力。一顆零件兩種材料特性。'],
+ [2007,'prod','防鬆防漏螺帽','','同時防止鬆脫與液體滲漏。'],
+ [2007,'eq','逐批自動迴轉槽','','製程設備，讓批次處理自動化。'],
+ [2007,'eq','螺絲自動浸甩機','','表面塗裝自動化：浸入塗料再離心甩乾，影響塗層均勻與摩擦係數。'],
+ [2007,'prod','水噴射推進轉向環組件','','特殊機械零件。'],
+ [2008,'prod','鉛電極扣件','','特殊用途扣件。'],
+ [2008,'prod','軸承蓋','','機械零件。'],
+ [2012,'prod','防鬆止洩螺帽','','密封＋防鬆。'],
+ [2013,'prod','防脫落螺栓組','','Captive 設計：螺栓鬆開也不會掉下來。'],
+ [2016,'prod','可調節公差汽車扣件','','車體公差補償，源自 2015 年「新型可調節公差汽車扣件開發計畫」。'],
+ [2017,'prod','防震螺絲','','在振動環境中保持不鬆脫。'],
+ [2018,'prod','組合式套管螺絲','TWI683065B','套管＋限位件＋螺絲：限位件讓螺絲留在套管裡，不會掉進設備裡造成異音、短路或干涉。'],
+ [2019,'prod','自鎖螺絲','M588181','防鬆。'],
+ [2019,'prod','雙邊防鬆脫及自鎖螺帽','M588182','高階防鬆。'],
+ [2019,'prod','防震套管螺絲','M588158','防震＋套管。'],
+ [2019,'prod','組合式套管螺絲','M582086','套管技術線的新型專利。'],
+ [2019,'prod','組合式套管螺絲','M579689','套管技術線的另一件新型專利。'],
+ [2019,'prod','套管式螺絲','M579688','套管技術線。'],
+ [2019,'prod','複合螺帽','M585844','複合結構螺帽。'],
+ [2019,'eq','CNC 車床進刀裝置','M581024','二次加工設備。'],
+ [2019,'eq','自動化套環設備','M585678','自動組裝套環。'],
+ [2020,'proc','組合式套管螺絲的製造方法','TWI710715B','保護「怎麼組」：套管內凸緣、限位件、變形凸部如何裝配。與 TWI683065B 形成「產品＋製程」雙重保護。'],
+ [2021,'eq','密合鎖固螺帽自動化裝置','TWM608701U','從「一組一組鎖」變成「多組批次自動鎖」。2022 年美國同族 US11498167 獲准。'],
+ [2022,'proc','預置扭力螺帽製成方法','TWI753649B','用沖壓讓部分螺牙牙距產生可控變化，形成防鬆扭力；把熱處理後硬度、沖壓深度、油壓壓力列為關鍵參數。'],
+ [2022,'prod','快速定位扣件','TWI761005B','內套管可在外套管裡軸向移動定位，吸收車頂行李架等安裝誤差。'],
+ [2022,'eq','搓牙機防呆機構','','製程防錯，避免錯牙。']
+];
+let lyOn=null;
+$('#layers').innerHTML=Object.entries(LY).map(([k,l])=>`<button class="layer" data-l="${k}" style="--c:${l.c}"><h3>${l.n}</h3><p style="margin:6px 0 4px;font-size:14.5px">${l.d}</p><div class="muted" style="font-size:12.5px">代表：${l.r}</div><div class="muted" style="font-size:12.5px;margin-top:4px"><b>${PT.filter(p=>p[1]===k).length}</b> 件列於時間軸</div></button>`).join('');
+$$('.layer').forEach(b=>b.onclick=()=>{lyOn=lyOn===b.dataset.l?null:b.dataset.l;$$('.layer').forEach(x=>x.classList.toggle('on',x.dataset.l===lyOn));patChart();});
+function patInfo(p){$('#patDetail').innerHTML=`<b>${p[0]}｜${p[2]}</b>${p[3]?'　<span class="pill">'+p[3]+'</span>':''}　<span class="pill" style="background:color-mix(in srgb,${LY[p[1]].c} 18%,transparent)">${LY[p[1]].n}</span><br><span style="font-size:14.5px">${p[4]}</span>`;}
+function patChart(){
+  const box=$('#patChart');box.innerHTML='';const W=720,H=300,m={l:20,r:20,t:20,b:34},y0=2005,y1=2023;const iw=W-m.l-m.r;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'世德專利時間軸'},box);
+  const x=y=>m.l+iw*(y-y0)/(y1-y0);const base=H-m.b;
+  el('line',{x1:m.l,x2:W-m.r,y1:base,y2:base,stroke:'var(--line)','stroke-width':2},svg);
+  [2006,2008,2010,2012,2014,2016,2018,2020,2022].forEach(y=>{el('text',{x:x(y),y:H-12,'text-anchor':'middle','font-size':11,fill:'var(--ink-3)'},svg).textContent=y;});
+  [[1994,'1994 組合螺絲研發起步'],[2004,'2004 進入汽車扣件・MAThread 授權']].forEach(([y,t],i)=>{el('text',{x:m.l,y:m.t+i*16,'font-size':11,fill:'var(--ink-3)'},svg).textContent='◂ '+t;});
+  const cnt={};
+  PT.forEach(p=>{const k=p[0];cnt[k]=(cnt[k]||0);const cy=base-14-cnt[k]*22;cnt[k]++;
+    const on=!lyOn||lyOn===p[1];
+    const g=el('g',{style:'cursor:pointer',opacity:on?1:.15},svg);
+    el('circle',{cx:x(k),cy,r:9,fill:LY[p[1]].c,stroke:'var(--surface)','stroke-width':2},g);
+    const hit=el('circle',{cx:x(k),cy,r:13,fill:'transparent'},g);
+    hit.onmousemove=e=>{showTip(e,`<b>${p[0]}</b> ${p[2]}${p[3]?'<br>'+p[3]:''}`);};hit.onmouseleave=hideTip;hit.onclick=()=>patInfo(p);hit.onmouseenter=()=>patInfo(p);});
+  el('text',{x:x(2019),y:base-14-9*22-4,'text-anchor':'middle','font-size':11,'font-weight':700,fill:'var(--ink)'},svg).textContent='2019：9 件';
+}
+const KP=[
+ {k:'weld',no:'US7568869B2',t:'焊接螺帽 Weld Nut',plain:'焊在車體鈑金上的螺帽。底板要「好焊」，螺帽本體要「夠硬」——世德讓兩部分有不同的材料特性。',why:'工程味：焊接性與機械強度往往互相衝突，世德用材料與結構設計同時兼顧。',art:'<rect x="30" y="140" width="140" height="16" rx="3" fill="var(--s4)"/><rect x="60" y="80" width="80" height="60" rx="6" fill="var(--s1)"/><circle cx="100" cy="110" r="14" fill="var(--surface)"/><text x="100" y="178" text-anchor="middle" font-size="11" fill="var(--ink-2)">低碳底板：好焊</text><text x="100" y="70" text-anchor="middle" font-size="11" fill="var(--ink-2)">高硬度本體：抗變形</text>'},
+ {k:'sleeve',no:'TWI683065B',t:'組合式套管螺絲',plain:'螺絲裝在套管裡，靠一個限位件卡住。就算鬆開了，螺絲也不會掉下來（Captive Fastener）。',why:'生活比喻：像原子筆的筆芯卡在筆管裡。裝配線最怕小螺絲掉進設備，造成異音、短路甚至安全問題。',art:'<rect x="70" y="40" width="60" height="120" rx="8" fill="none" stroke="var(--s1)" stroke-width="6"/><rect x="88" y="20" width="24" height="150" rx="4" fill="var(--ink-3)"/><rect x="76" y="100" width="48" height="10" rx="3" fill="var(--s2)"/><text x="140" y="108" font-size="11" fill="var(--ink-2)">限位件</text><text x="140" y="50" font-size="11" fill="var(--ink-2)">套管</text>'},
+ {k:'make',no:'TWI710715B',t:'套管螺絲的製造方法',plain:'不只保護「長什麼樣子」，也保護「怎麼把它組起來」：套管內凸緣、限位件、變形凸部如何裝配固定。',why:'產品專利＋製程專利雙重保護：對手就算繞開外型，也很難用同樣方法量產。',art:'<rect x="40" y="60" width="50" height="80" rx="6" fill="none" stroke="var(--s1)" stroke-width="5"/><text x="65" y="160" text-anchor="middle" font-size="11" fill="var(--ink-2)">產品</text><text x="100" y="105" text-anchor="middle" font-size="22" fill="var(--ink-3)">＋</text><g transform="translate(115,60)"><circle cx="25" cy="40" r="30" fill="none" stroke="var(--s2)" stroke-width="5"/><path d="M25 22 v18 l12 8" stroke="var(--s2)" stroke-width="5" fill="none" stroke-linecap="round"/></g><text x="140" y="160" text-anchor="middle" font-size="11" fill="var(--ink-2)">製法</text>'},
+ {k:'torque',no:'TWI753649B',t:'預置扭力螺帽製成方法',plain:'用沖壓讓螺帽裡一小段螺紋的間距稍微改變，鎖上去時會「卡卡的」，於是不容易自己鬆掉。',why:'關鍵參數：熱處理後硬度 × 沖壓深度 × 油壓壓力。硬度不對，沖壓結果就跑掉——汽車扣件不是「做硬就好」，而是找到窄窄的製程窗口。',art:'<rect x="50" y="50" width="100" height="100" rx="10" fill="var(--s1)" opacity=".25"/>'+Array.from({length:7},(_,i)=>`<path d="M60 ${62+i*12} L140 ${68+i*12}" stroke="${i===3||i===4?'var(--s2)':'var(--s1)'}" stroke-width="${i===3||i===4?6:4}" stroke-linecap="round"/>`).join('')+'<text x="100" y="175" text-anchor="middle" font-size="11" fill="var(--ink-2)">橘色＝被沖壓改變的牙距</text>'},
+ {k:'pos',no:'TWI761005B',t:'快速定位扣件',plain:'外套管裡有一根可以前後滑動的內套管，安裝時自動吸收零件之間的誤差，例如車頂行李架。',why:'公差補償：每台車的鈑金都會有一點點差異。扣件能自己補償，裝配線就不會卡關。',art:'<rect x="40" y="80" width="120" height="40" rx="8" fill="none" stroke="var(--s1)" stroke-width="5"/><rect x="60" y="88" width="60" height="24" rx="5" fill="var(--s2)"><animate attributeName="x" values="55;90;55" dur="2.4s" repeatCount="indefinite"/></rect><text x="100" y="145" text-anchor="middle" font-size="11" fill="var(--ink-2)">內套管軸向移動定位</text>'},
+ {k:'auto',no:'TWM608701U',t:'密合鎖固螺帽自動化裝置',plain:'一次同時把多組螺絲和螺帽鎖好，取代過去一組一組手鎖。2022 年在美國也取得專利（US11498167）。',why:'代表世德不只做扣件，也開始具備「扣件製造自動化」的能力。',art:Array.from({length:6},(_,i)=>`<g transform="translate(${40+(i%3)*50},${55+Math.floor(i/3)*60})"><circle r="16" fill="none" stroke="var(--s3)" stroke-width="5"/><path d="M0 -10 L0 0" stroke="var(--s3)" stroke-width="4" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1.2s" repeatCount="indefinite"/></path></g>`).join('')+'<text x="100" y="175" text-anchor="middle" font-size="11" fill="var(--ink-2)">多組同時批次鎖付</text>'}
+];
+$('#kpSeg').innerHTML=KP.map((p,i)=>`<button data-i="${i}">${p.t.replace(/製成方法|自動化裝置/,'')}</button>`).join('');
+function setKp(i){const p=KP[i];$$('#kpSeg button').forEach((b,j)=>b.classList.toggle('on',j===i));$('#kpArt').innerHTML=`<svg viewBox="0 0 200 190" aria-hidden="true">${p.art}</svg>`;$('#kpNo').textContent=p.no;$('#kpTitle').textContent=p.t;$('#kpPlain').textContent=p.plain;$('#kpWhy').innerHTML='<b>為什麼重要？</b> '+p.why;}
+$$('#kpSeg button').forEach(b=>b.onclick=()=>setKp(+b.dataset.i));setKp(0);
+const TT={root:['世德技術樹','兩大主幹：「扣件設計」決定產品長什麼樣子、有什麼功能；「製造」決定能不能穩定、便宜地做出來。兩條線最後匯流到同一條品質鏈。',[]],
+ design:['扣件設計','世德的專利大多在這一支：防鬆、防震、公差補償。重點是「解決車廠裝配與安全上的痛點」。',['loose','vib','tol']],
+ loose:['防鬆','行駛振動會讓螺絲慢慢鬆掉。代表：自鎖螺絲 M588181、雙邊防鬆脫及自鎖螺帽 M588182、防鬆止洩螺帽、預置扭力螺帽 TWI753649B。',['torque']],
+ vib:['防震','在振動環境中仍保持鎖緊。代表：2017 防震螺絲、2019 防震套管螺絲 M588158。',['torque']],
+ tol:['公差補償（Sleeve / Captive）','用套管結構吸收誤差、防止掉落。代表：TWI683065B 組合式套管螺絲、TWI761005B 快速定位扣件、2016 可調節公差汽車扣件。',['torque']],
+ mfg:['製造','把設計變成產品的能力：冷鍛靠模具、搓牙靠螺紋工程、CNC 做二次精密加工。',['forge','roll','cnc']],
+ forge:['冷鍛 → 模具','模具設計決定金屬怎麼流動、會不會裂、能打幾萬次。這多半是 know-how。',['torque']],
+ roll:['搓牙 → 螺紋','牙型、牙距、摩擦係數、咬合、防錯牙。2004 年取得 MAThread 授權，之後自己發展自鎖、防震、預置扭力與搓牙機防呆。',['torque']],
+ cnc:['CNC','電池包、底盤等特殊扣件需要的二次切削、鑽孔。相關設備專利：CNC 車床進刀裝置 M581024。',['torque']],
+ torque:['扭力／熱處理（匯流點）','設計與製造在這裡交會：防鬆結構要靠正確的硬度才能產生穩定的扭力。TWI753649B 直接把熱處理後硬度列為關鍵參數。',['surf']],
+ surf:['表面處理','塗層會改變摩擦係數，進而改變鎖付時的夾緊力。表面處理不只是防鏽，而是「扭矩—軸力關係」的一環。具 MAGNI 塗層認證。',['auto']],
+ auto:['自動化','自動化套環設備、密合鎖固螺帽自動化裝置、自動浸甩、自動分裝包裝、多軸自動鑽孔、車銑複合加工。',['ccd']],
+ ccd:['CCD 智慧檢測','精密清洗、CCD 螺絲尼龍膠品質自動檢查、2021 車用扣件智慧檢測研發，目標百萬分之一不良率。',['trace']],
+ trace:['製程追溯','RFID-WIP 系統：每箱螺絲可追到鋼材批號、機台、日期、製程、熱處理與檢驗。出問題時只需處理特定批次。',[]]};
+function setT(k){const t=TT[k];$$('.tnode').forEach(n=>{n.classList.toggle('on',n.dataset.t===k);n.classList.toggle('hl',t[2].includes(n.dataset.t));});
+  $('#tInfo').innerHTML=`<b>${t[0]}</b><br><span style="font-size:14.5px">${t[1]}</span>`+(t[2].length?'<div class="muted" style="font-size:12.5px;margin-top:4px">橘框＝下一層相關節點</div>':'');}
+$$('.tnode').forEach(n=>n.onclick=()=>setT(n.dataset.t));setT('root');
+
+const renderers={patents(){patChart();},finance(){setDup('roe');roicChart();cccChart();},future(){epsChart();setScn('base');mixChart(2024);}};
+route();
+})();
+</script>
+</body>
+</html>
