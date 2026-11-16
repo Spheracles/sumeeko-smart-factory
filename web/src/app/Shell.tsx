@@ -9,6 +9,7 @@ import { CODEX, PATENTS, NPCS } from '../data';
 import { slotInfo } from '../state';
 import { CAREERS } from '../data';
 import CareerApp from '../App';
+import { Sources } from '../views';
 
 type Tab = 'home' | 'scene' | 'codex' | 'tasks' | 'me';
 type Route = { t: 'machine' | 'part' | 'tool' | 'unit' | 'task' | 'role' | 'career' | 'material' | 'about' | 'settings' | 'patent'; id?: string };
@@ -249,20 +250,14 @@ function Home() {
   const nextTask = TASKS.find((t) => !s.tasks[t.id]?.pass) || TASKS[0];
   const career = slotInfo(0);
   const recentM = s.recent.map((r) => MACHINES.find((m) => m.id === r.id)).filter(Boolean).slice(0, 4) as Machine[];
-  const cont = () => { const l = s.last; if (!l) { setTab('scene'); return; } if (l.r === 'career') push({ t: 'career' }); else push({ t: l.r as any, id: l.id }); };
+  const cont = () => { const l = s.last; if (!l) { push({ t: 'unit', id: nextUnit.id }); return; } if (l.r === 'career') push({ t: 'career' }); else push({ t: l.r as any, id: l.id }); };
+  const [info, setInfo] = useState<'help' | 'src' | null>(null);
   return (
     <div className="sx-page">
-      <div className="sx-hero">
-        <div className="sx-hero-t"><small>SUMEEKO 智慧工廠</small><h1>歡迎回到工廠</h1><p>從一顆螺絲開始，走進冷鍛、搓牙、熱處理、光學檢驗與智慧物流的工作現場。</p>
-          <div className="sx-row wrap"><Btn kind="pri" onClick={cont}>▶ 繼續探索</Btn><Btn onClick={() => setTab('scene')}>進入工作場景</Btn></div></div>
-        <div className="sx-hero-art" onClick={() => push({ t: 'role', id: role.id })}><MiniScene /><div className="sx-hero-p"><Person role={role} size={150} act="point" /></div></div>
-      </div>
-      <div className="sx-grid4">
-        <div className="sx-stat"><small>教學單元</small><b>{unitsDone}/{UNITS.length}</b><i style={{ width: `${(unitsDone / UNITS.length) * 100}%` }} /></div>
-        <div className="sx-stat"><small>任務挑戰</small><b>{tasksPass}/{TASKS.length}</b><i style={{ width: `${(tasksPass / TASKS.length) * 100}%` }} /></div>
-        <div className="sx-stat"><small>職涯模式</small><b>{career ? CAREERS[career.pos].title : '尚未開始'}</b><i style={{ width: `${career ? ((career.pos + 1) / CAREERS.length) * 100 : 0}%` }} /></div>
-        <div className="sx-stat"><small>收藏</small><b>{s.fav.length}</b></div>
-      </div>
+      <Cover onStart={() => setTab('scene')} onContinue={cont} hasLast={!!s.last} onCareer={() => push({ t: 'career' })} onHelp={() => setInfo('help')} onSrc={() => setInfo('src')}
+        progress={[{ n: '教學單元', v: `${unitsDone} / ${UNITS.length}` }, { n: '任務挑戰', v: `${tasksPass} / ${TASKS.length}` }, { n: '職涯', v: career ? CAREERS[career.pos].title : '尚未開始' }]} />
+      {info && <Sheet title={info === 'help' ? '操作說明' : '資料來源聲明'} onClose={() => setInfo(null)}>{info === 'help' ? <CoverHelp /> : <Sources />}</Sheet>}
+      <div className="sx-row between wrap sx-me-row"><div className="sx-row" onClick={() => push({ t: 'role', id: role.id })} style={{ cursor: 'pointer' }}><Person role={role} size={84} act="point" /><div><small className="muted">代表人物</small><b style={{ display: 'block' }}>{role.n}</b><small className="muted">收藏 {s.fav.length}・最近 {s.recent.length}</small></div></div><MiniScene /></div>
       <Sec title="推薦課程" right={<Btn sm onClick={() => push({ t: 'unit', id: nextUnit.id })}>開始</Btn>}><div className="sx-rec" onClick={() => push({ t: 'unit', id: nextUnit.id })}><b>{nextUnit.n}</b><small>{nextUnit.goal}</small></div></Sec>
       <Sec title="下一個任務" right={<Btn sm kind="pri" onClick={() => push({ t: 'task', id: nextTask.id })}>挑戰</Btn>}><div className="sx-rec" onClick={() => push({ t: 'task', id: nextTask.id })}><b>{nextTask.id}｜{nextTask.n}</b><small>{nextTask.desc}</small></div></Sec>
       <Sec title="快速進入">
@@ -272,6 +267,73 @@ function Home() {
       </Sec>
       {recentM.length > 0 && <Sec title="最近使用機台"><div className="sx-hlist">{recentM.map((m) => <button key={m.id} className="sx-mcard" onClick={() => push({ t: 'machine', id: m.id })}><b>{m.id}</b><span>{m.n}</span></button>)}</div></Sec>}
     </div>
+  );
+}
+// ---------------- 首頁封面（套用《從一顆螺絲到一座智慧工廠》標題畫面） ----------------
+function CoverArt() {
+  return (
+    <svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" className="sx-cover-svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="cvsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#0b1a3a" /><stop offset="1" stopColor="#13284f" /></linearGradient>
+        <radialGradient id="cvsun" cx="0.72" cy="0.32" r="0.5"><stop offset="0" stopColor="#F59E38" stopOpacity=".5" /><stop offset="1" stopColor="#F59E38" stopOpacity="0" /></radialGradient>
+        <linearGradient id="cvsteel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#4c5a70" /><stop offset=".45" stopColor="#f2f6fb" /><stop offset=".6" stopColor="#aab7c9" /><stop offset="1" stopColor="#3a4658" /></linearGradient>
+        <filter id="cvgl"><feGaussianBlur stdDeviation="2.5" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      <rect width="600" height="420" fill="url(#cvsky)" /><rect width="600" height="420" fill="url(#cvsun)" />
+      {Array.from({ length: 9 }, (_, i) => <line key={i} x1={i * 80} y1="420" x2="300" y2="250" stroke="#1f3f73" />)}
+      <path d="M0 300 L60 300 L60 240 L110 270 L110 240 L160 270 L160 220 L200 220 L200 300 L260 300 L260 260 L330 260 L330 300 L600 300 L600 420 L0 420Z" fill="#0e1f3f" stroke="#2b5aa0" />
+      <rect x="170" y="150" width="14" height="70" fill="#22406f" /><path d="M177 150 q12 -22 0 -44 q-12 -22 6 -40" stroke="#5e7ba8" strokeOpacity=".4" fill="none" strokeWidth="6" className="sx-smoke" />
+      {[0, 1, 2, 3].map((i) => <rect key={i} x={20 + i * 30} y="318" width="18" height="6" fill="#36C5E8" opacity={0.4 + (i % 2) * 0.35} />)}
+      <g transform="translate(420 96) rotate(18)" filter="url(#cvgl)">
+        <polygon points="-50,-20 50,-20 61,0 50,20 -50,20 -61,0" fill="url(#cvsteel)" stroke="#2c3a50" strokeWidth="2" />
+        <rect x="-20" y="20" width="40" height="190" fill="url(#cvsteel)" stroke="#2c3a50" strokeWidth="2" />
+        {Array.from({ length: 19 }, (_, i) => <path key={i} d={`M-22 ${48 + i * 8} L22 ${53 + i * 8}`} stroke="#334055" strokeWidth="2" />)}
+      </g>
+      <g stroke="#36C5E8" strokeWidth="1.5" fill="none"><circle cx="420" cy="190" r="120" strokeDasharray="4 8" opacity=".8" className="sx-ring" /><circle cx="420" cy="190" r="148" strokeDasharray="30 12 4 12" opacity=".45" /></g>
+      <g className="sx-dflow">
+        <path d="M0 352 C 200 340, 300 362, 600 344" stroke="#36C5E8" strokeWidth="2" fill="none" strokeDasharray="6 10" />
+        <path d="M0 366 C 200 352, 300 370, 600 360" stroke="#F59E38" strokeWidth="2" fill="none" strokeDasharray="6 10" />
+        <path d="M0 380 C 200 366, 300 380, 600 374" stroke="#36C5E8" strokeWidth="2" fill="none" strokeDasharray="6 10" opacity=".7" />
+      </g>
+    </svg>
+  );
+}
+function Cover(p: { onStart: () => void; onContinue: () => void; hasLast: boolean; onCareer: () => void; onHelp: () => void; onSrc: () => void; progress: { n: string; v: string }[] }) {
+  const { sfx } = useA();
+  const tap = (f: () => void) => () => { sfx('click'); f(); };
+  return (
+    <section className="sx-cover" aria-label="首頁封面">
+      <div className="sx-cover-art"><CoverArt />
+        <div className="sx-cover-logo"><svg width="28" height="28" viewBox="0 0 108 108" aria-hidden="true"><path d="M54,14 L88,34 L88,74 L54,94 L20,74 L20,34 Z" fill="none" stroke="#F59E38" strokeWidth="8" /><circle cx="54" cy="54" r="16" fill="none" stroke="#36C5E8" strokeWidth="6" strokeDasharray="6 4" /><circle cx="54" cy="54" r="6" fill="#F0F4F8" /></svg><span>SUMEEKO 智慧工廠</span></div>
+      </div>
+      <div className="sx-cover-t">
+        <div className="sx-kicker">SUMEEKO: RISE OF THE SMART FACTORY</div>
+        <h1>從一顆螺絲<br />到一座智慧工廠</h1>
+        <p className="sx-tagline">職涯養成 × 工廠經營 × 工業工程 × 智慧製造</p>
+        <div className="sx-cover-b">
+          <button className="sx-cbtn pri" onClick={tap(p.onStart)}><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4 L19 12 L7 20 Z" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" /></svg>開始探索工廠</button>
+          <div className="sx-cover-b2">
+            <button className="sx-cbtn" onClick={tap(p.onContinue)}><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 a8 8 0 1 0 3 -6.2 M4 4 v5 h5" fill="none" stroke="#36C5E8" strokeWidth="2.2" strokeLinecap="round" /></svg>{p.hasLast ? '繼續上次進度' : '從教學開始'}</button>
+            <button className="sx-cbtn" onClick={tap(p.onCareer)}><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9 L12 4 L21 9 L12 14 Z M7 11.5 V16 c0 1.5 2.5 3 5 3 s5 -1.5 5 -3 V11.5" fill="none" stroke="#F59E38" strokeWidth="2" strokeLinejoin="round" /></svg>職涯模式</button>
+          </div>
+          <div className="sx-cover-links"><button onClick={tap(p.onHelp)}>操作說明</button><button onClick={tap(p.onSrc)}>資料來源聲明</button></div>
+        </div>
+        <div className="sx-cover-prog">{p.progress.map((x) => <div key={x.n}><small>{x.n}</small><b>{x.v}</b></div>)}</div>
+        <p className="sx-cover-disc">以世德工業公開的產業背景與專利為教學題材；人物、數據、事件皆為教育用途之虛構模擬。</p>
+      </div>
+    </section>
+  );
+}
+function CoverHelp() {
+  return (
+    <ul className="sx-ul">
+      <li><b>開始探索工廠</b>：進入九宮格工作場景，點擊機台、人物或區塊查看資訊。</li>
+      <li><b>職涯模式</b>：原作《從一顆螺絲到一座智慧工廠》完整遊戲，從產線新人一路成長到資深製程規劃暨 CIM 整合工程師。</li>
+      <li><b>教學模式</b>與<b>任務挑戰</b>：在「任務」分頁，依工序學習並完成虛擬工站任務。</li>
+      <li><b>操作</b>：單擊選取、拖曳移動或旋轉、雙指縮放；返回鍵回到上一層。</li>
+      <li><b>存檔</b>：學習進度與職涯存檔都自動保存在本機。</li>
+      <li>所有操作皆為虛擬模擬，參數與數據為教學用虛構資料，不可套用到實際設備。</li>
+    </ul>
   );
 }
 function MiniScene() {
