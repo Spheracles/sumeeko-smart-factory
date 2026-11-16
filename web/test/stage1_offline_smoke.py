@@ -76,7 +76,7 @@ def main() -> None:
         ctx.set_offline(True)
         check("Bundled App starts with all requests served locally", pg.locator(".sx-onb").count() == 1)
         pg.get_by_text("略過", exact=True).click()
-        pg.get_by_text("歡迎回到工廠").wait_for(timeout=10000)
+        pg.locator(".sx-cover").wait_for(timeout=10000)
         check("Home loads offline via simulated AssetLoader URL path", pg.locator(".sx-nav").count() == 1)
 
         pg.locator('.sx-nav button:has-text("工作場景")').click()
@@ -97,7 +97,7 @@ def main() -> None:
         ctx2 = make_context()
         pg2 = ctx2.pages[0] if ctx2.pages else ctx2.new_page()
         pg2.goto(host + "/index.html", wait_until="domcontentloaded")
-        pg2.get_by_text("歡迎回到工廠").wait_for(timeout=10000)
+        pg2.locator(".sx-cover").wait_for(timeout=10000)
         ctx2.set_offline(True)
         restored = json.loads(pg2.evaluate("localStorage.getItem('sumeeko-app-v1')"))
         check("Saved data survives browser process restart", restored["settings"]["lowGfx"] is True and restored["onboarded"] is True)

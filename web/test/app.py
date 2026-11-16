@@ -11,7 +11,7 @@ with sync_playwright() as p:
     pg.goto((pathlib.Path(__file__).resolve().parent.parent/'dist-app'/'index.html').as_uri()); pg.evaluate('localStorage.clear()'); pg.reload()
     time.sleep(0.3); pg.screenshot(path='/tmp/a_splash.png')
     time.sleep(1.2); ok('onboarding shown', pg.locator('.sx-onb').count()==1); pg.screenshot(path='/tmp/a_onb.png')
-    pg.click('text=略過'); time.sleep(0.3); ok('home shown', pg.locator('text=歡迎回到工廠').count()==1); pg.screenshot(path='/tmp/a_home.png', full_page=True)
+    pg.click('text=略過'); time.sleep(0.3); ok('home shown', pg.locator('.sx-cover').count()==1); pg.screenshot(path='/tmp/a_home.png', full_page=True)
     # scene
     pg.click('.sx-nav button:has-text("工作場景")'); time.sleep(0.4); pg.screenshot(path='/tmp/a_scene.png')
     pg.locator('.sx-mach:has-text("M02")').click(); time.sleep(0.3); ok('sheet opens on machine tap', pg.locator('.sx-sheet').count()==1); pg.screenshot(path='/tmp/a_sheet.png')
@@ -84,8 +84,8 @@ with sync_playwright() as p:
     pg.click('button:has-text("下一個工序")'); ok('next process T2', pg.locator('text=T2｜搓牙與螺紋判定').count()==1)
     # career
     for _ in range(4): pg.evaluate('window.__handleBack()')
-    if pg.locator('text=歡迎回到工廠').count()==0: pg.screenshot(path='/tmp/a_backfail.png'); print('DEBUG top:', pg.locator('.sx-top-t b').all_inner_texts(), pg.locator('h2').all_inner_texts())
-    ok('back reaches home', pg.locator('text=歡迎回到工廠').count()==1)
+    if pg.locator('.sx-cover').count()==0: pg.screenshot(path='/tmp/a_backfail.png'); print('DEBUG top:', pg.locator('.sx-top-t b').all_inner_texts(), pg.locator('h2').all_inner_texts())
+    ok('back reaches home', pg.locator('.sx-cover').count()==1)
     pg.click('.sx-q:has-text("職涯模式")'); time.sleep(0.4); ok('career title', pg.locator('text=從一顆螺絲').count()>0); pg.screenshot(path='/tmp/a_career.png')
     pg.click('text=開始新遊戲'); time.sleep(0.2); ok('back in career create->title', pg.evaluate('window.__handleBack()') and pg.locator('text=開始新遊戲').count()==1)
     pg.evaluate('window.__handleBack()'); time.sleep(0.2); ok('back exits career to app', pg.locator('.sx-nav').count()==1)
