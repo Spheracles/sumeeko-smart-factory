@@ -204,6 +204,36 @@ details summary{cursor:pointer;font-weight:500}
 .tmerge{font-size:12px;color:var(--ink-3)}
 .tchain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
 .tchain span{color:var(--ink-3)}
+
+/* merged additions */
+.callout{background:var(--surface-2);border-left:4px solid var(--ink-3);border-radius:10px;padding:12px 16px;font-size:14.5px;color:var(--ink-2)}
+.callout.warn{border-left-color:var(--warn);background:color-mix(in srgb,var(--warn) 10%,var(--surface))}
+a.theme{text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .15s,border-color .15s}
+a.theme:hover{transform:translateY(-2px);border-color:var(--accent)}
+a.theme .go{margin-top:12px;font-size:13px;color:var(--accent);font-weight:700}
+.tiers{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch}
+@media(max-width:720px){.tiers{grid-template-columns:1fr}.tiers .arr{transform:rotate(90deg);justify-self:center}}
+.tiers button{border:1px solid var(--line);border-top:4px solid var(--c);background:var(--surface);border-radius:12px;padding:14px;text-align:left}
+.tiers button.on{background:color-mix(in srgb,var(--c) 10%,var(--surface));border-color:var(--c)}
+.tiers button .no{font-family:"Noto Serif TC",serif;font-weight:900;color:var(--c);font-size:13px}
+.tiers button b{display:block;font-size:16px;margin:2px 0}
+.tiers button small{color:var(--ink-3);font-size:13px}
+.tiers .arr{align-self:center;color:var(--ink-3);font-size:20px}
+.lib{display:grid;gap:8px}
+.libitem{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.libitem .ty{font-size:11px;font-weight:700;letter-spacing:.06em;text-align:center;padding:6px 0;border-radius:8px;background:var(--surface-2);color:var(--ink-2)}
+.libitem b{display:block}
+.libitem .d{font-size:14px;color:var(--ink-2);margin:2px 0 6px}
+.libitem .uses a{display:inline-block;font-size:12px;margin:2px 4px 0 0;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);text-decoration:none}
+@media print{
+  header.top,.tip,#printBtn,.navbtns,#libSeg,#libQ,#riskSeg{display:none!important}
+  section.view{display:block!important;break-before:page;padding:16px 0;animation:none}
+  section.view:first-of-type{break-before:auto}
+  .flip .inner{transform:none!important;min-height:0}.flip .face{position:static;margin-bottom:6px}.flip .back{transform:none;background:var(--surface);color:var(--ink)}.flip .back p{color:var(--ink-2)}
+  details{display:block}details>*{display:block}
+  body{background:#fff}
+  .card{break-inside:avoid}
+}
 footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color:var(--ink-3)}
 .glossary dt{font-weight:700;margin-top:10px}
 .glossary dd{margin:2px 0 0;color:var(--ink-2);font-size:14.5px}
@@ -218,6 +248,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
         <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 3h10l2 4H5z" fill="var(--bg)"/><rect x="10" y="7" width="4" height="14" rx="1" fill="var(--bg)"/></svg>
       </div>
       <div><b>認識世德工業</b> <small>2066.TW · 給一般讀者的互動導覽</small></div>
+      <button class="btn" id="printBtn" style="margin-left:auto;padding:4px 12px;font-size:13px">🖨 列印全文</button>
     </div>
     <nav class="tabs" id="tabs">
       <a href="#home">① 一顆螺絲的大生意</a>
@@ -231,6 +262,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
       <a href="#finance">⑨ 財務健康檢查</a>
       <a href="#future">⑩ 未來三種劇本</a>
       <a href="#glossary">名詞小辭典</a>
+      <a href="#library">研究資料庫</a>
     </nav>
   </div>
 </header>
@@ -268,6 +300,23 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
   <h3 style="margin:34px 0 12px">三次轉型，從五金螺絲到國際車廠夥伴</h3>
   <div class="grid g3" id="timeline"></div>
+
+  <h3 style="margin:38px 0 4px">研究總覽：四個核心數字</h3>
+  <p class="muted" style="margin:0 0 12px;font-size:14px">以下是研究模型的假設（2025–2029E），不是公司公告的財務數字。</p>
+  <div class="grid g4">
+    <div class="card stat"><div class="num">8.5–11.5%</div><div class="lbl">基準情境營收年成長率<br><span class="muted">2024–2029E 五年 CAGR</span></div></div>
+    <div class="card stat"><div class="num">7.5–8.2%</div><div class="lbl">WACC 資金成本<br><span class="muted">投資報酬要超過它才算賺</span></div></div>
+    <div class="card stat"><div class="num">30%</div><div class="lbl">2027 非車用營收目標<br><span class="muted">降低對汽車景氣的依賴</span></div></div>
+    <div class="card stat"><div class="num">55–60%</div><div class="lbl">密西根廠損益兩平利用率<br><span class="muted">模型估計，非公司指引</span></div></div>
+  </div>
+
+  <h3 style="margin:30px 0 12px">三大投資主題</h3>
+  <div class="grid g3">
+    <a class="card theme" href="#ev"><span class="pill">01 產品升級</span><h3 style="margin:8px 0 6px">從標準件走向安全關鍵件</h3><p class="muted" style="margin:0;font-size:14.5px">高強度、密封、異材質接合，讓技術與客製化成為價值來源。</p><span class="go">看電動車與技術 →</span></a>
+    <a class="card theme" href="#global"><span class="pill">02 全球短鏈</span><h3 style="margin:8px 0 6px">交付能力就是競爭力</h3><p class="muted" style="margin:0;font-size:14.5px">台灣製造連結海外加工與 VMI 倉儲，檢驗「就近服務」能不能換到溢價。</p><span class="go">看三地布局 →</span></a>
+    <a class="card theme" href="#finance"><span class="pill">03 產能爬坡</span><h3 style="margin:8px 0 6px">等待資本效率的轉折點</h3><p class="muted" style="margin:0;font-size:14.5px">追蹤 ROIC 與 WACC 的利差，判斷擴產能否真正轉化為價值。</p><span class="go">看財務健檢 →</span></a>
+  </div>
+  <div class="callout" style="margin-top:14px"><b>📌 資料判讀說明</b>　本站整理使用者提供的研究附件，沿用其 2025–2029E 模型期間。財務數據、客戶關係、產能與政策效益尚未逐項查核；估計值不代表已實現績效。完整清單見 <a href="#library">研究資料庫</a>。</div>
 </section>
 
 <!-- ② JOURNEY -->
@@ -507,6 +556,11 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
     <div class="card" id="siteCard"></div>
   </div>
 
+  <h3 style="margin:30px 0 6px">三層營運模式：從台灣工廠到車廠產線</h3>
+  <p class="muted" style="margin:0 0 12px">世德不是把整條產線搬到美國，而是「台灣做大量、海外做最後一哩」。點每一層看它負責什麼、要注意什麼。</p>
+  <div class="tiers" id="tiers"></div>
+  <div class="card" id="tierCard" style="margin-top:10px"></div>
+
   <div class="card" style="margin-top:14px">
     <h3>密西根廠要開多滿才會賺錢？拉拉看</h3>
     <p class="muted" style="margin:4px 0 12px">新工廠有固定開銷（設備折舊、租金、薪水）。工廠利用率越高，固定成本被攤得越薄。</p>
@@ -523,11 +577,12 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
   <div class="card" style="overflow-x:auto">
     <table class="tbl">
       <tr><th></th><th>一般出口型螺絲廠（台灣/東南亞/中國）</th><th>世德（密西根在地廠＋台灣母廠）</th></tr>
-      <tr><td><b>關稅</b></td><td>躲不掉，成本自己吸收或轉給客戶</td><td>美國在地加工，符合 USMCA 在地規定，可避開高額關稅</td></tr>
-      <tr><td><b>能不能漲價</b></td><td>產品容易被取代，難以漲價</td><td>「免關稅＋快速送貨」雙重價值，有議價空間</td></tr>
+      <tr><td><b>關稅</b></td><td>躲不掉，成本自己吸收或轉給客戶</td><td>美國在地加工，有機會降低關稅衝擊；但原產地與免稅資格須依產品分類與規則確認</td></tr>
+      <tr><td><b>能不能漲價</b></td><td>產品容易被取代，難以漲價</td><td>「關稅避險＋快速送貨」雙重價值，有議價空間</td></tr>
       <tr><td><b>車廠態度</b></td><td>逐漸被北美車廠降級或剔除</td><td>成為車廠推動在地採購時的優先轉單對象</td></tr>
     </table>
   </div>
+  <div class="callout warn" style="margin-top:12px"><b>⚖ 政策提醒：政策與資格須獨立確認</b><br>部分附件寫到「完全免疫關稅」「100% USMCA 免關稅」，說法過於肯定。在地加工<strong>不會自動</strong>取得原產地或免稅資格，仍須確認產品的稅則分類、原產地規則（例如 USMCA 汽車零件的區域價值含量 RVC 門檻）與適用時點。本站把它視為「待驗證的策略」，而不是已確定的優勢。</div>
 </section>
 
 <!-- ⑥ LEAN -->
@@ -560,8 +615,9 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
     <div class="card"><b>🚫 防錯設計（Poka-Yoke）</b><p class="muted" style="margin:6px 0 0;font-size:14px">感測器發現鋼線長度不對或衝頭異常，機器立刻停下，「想犯錯也犯不了」，保護昂貴模具。</p></div>
     <div class="card"><b>📋 看板管理（Kanban）</b><p class="muted" style="margin:6px 0 0;font-size:14px">以德國、美國倉庫實際被領走的數量，回頭通知台灣工廠生產，不多做也不少做。</p></div>
     <div class="card"><b>📐 標準作業</b><p class="muted" style="margin:6px 0 0;font-size:14px">台、德、美三廠用同一套作業標準與工時，訂單可以靈活在三地之間調度。</p></div>
-    <div class="card"><b>🧹 5S 職場管理</b><p class="muted" style="margin:6px 0 0;font-size:14px">讓光學篩選鏡頭保持零污染，把不良率壓在百萬分之一（1 PPM）以下。</p></div>
+    <div class="card"><b>🧹 5S 職場管理</b><p class="muted" style="margin:6px 0 0;font-size:14px">讓光學篩選鏡頭保持零污染，目標把不良率壓在百萬分之一（1 PPM）以下。</p></div>
   </div>
+  <div class="callout" style="margin-top:14px"><b>⚠ 待驗證</b>　「30 分鐘換模」與「PPM &lt; 1」是附件中的能力描述或目標，尚待公司公告或實際數據核實，不應視為已達成的績效。</div>
 </section>
 
 <!-- ⑦ FINANCE -->
@@ -578,6 +634,8 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
     </div>
     <div class="chart" id="dupontChart"></div>
     <p id="dupontText" style="margin:10px 0 0"></p>
+    <button class="btn" id="dupTblBtn" style="margin-top:10px;font-size:13px;padding:4px 12px">以表格檢視</button>
+    <div id="dupTbl" hidden style="overflow-x:auto;margin-top:10px"></div>
     <p class="note">2025 為估計值（E）。權益乘數由 ROE ÷（淨利率 × 週轉率）推算。</p>
   </div>
 
@@ -590,10 +648,35 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
     </div>
     <div class="card">
       <h3>錢卡在路上多久？（現金轉換週期）</h3>
-      <p class="muted" style="margin:4px 0 10px;font-size:14px">貨從台灣運到國外倉庫，等車廠領用才算賣出，所以資金被壓住很久。點選改善措施看效果。</p>
+      <p class="muted" style="margin:4px 0 6px;font-size:14px">貨從台灣運到國外倉庫，等車廠領用才算賣出，所以資金被壓住很久。點選改善措施看效果。</p>
+      <div class="formula" style="font-size:13.5px;margin:6px 0 10px">CCC ＝ 存貨天數 <b>DIO</b> ＋ 應收天數 <b>DSO</b> － 應付天數 <b>DPO</b>　｜　海外 VMI 使 DIO 常年在 120–150 天</div>
       <div class="chart" id="cccChart"></div>
       <div id="cccOpts" style="display:flex;flex-direction:column;gap:6px;margin-top:10px"></div>
     </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h3>試算沙盒：調整 ROIC 與 WACC，看價值有沒有被創造</h3>
+    <p class="muted" style="margin:4px 0 12px;font-size:14px">利差 ＝ ROIC − WACC。正的代表每投入 1 元資本，賺回的比資金成本多；負的代表投資暫時在「吃掉」價值。</p>
+    <div class="seg" id="sbPreset" style="margin-bottom:12px"><button data-r="13.25" data-w="7.8">收割期 2022–23</button><button data-r="5.25" data-w="8.0">沉澱期 2024–25E</button><button data-r="11.75" data-w="8.0">爬坡期 2026E–27E</button><button data-r="11.8" data-w="8.0" class="on">預設</button></div>
+    <div class="smed">
+      <div>
+        <label class="muted" style="font-size:14px" for="sbR">ROIC 投入資本報酬率：<b id="sbRv">11.8%</b></label>
+        <input type="range" id="sbR" min="0" max="20" step="0.1" value="11.8">
+        <label class="muted" style="font-size:14px;display:block;margin-top:10px" for="sbW">WACC 資金成本：<b id="sbWv">8.0%</b></label>
+        <input type="range" id="sbW" min="5" max="12" step="0.1" value="8.0">
+      </div>
+      <div style="text-align:center">
+        <div class="muted" style="font-size:13px">ROIC − WACC</div>
+        <div class="clock" id="sbSpread">+3.8 pp</div>
+        <span class="gauge-status" id="sbVerdict"></span>
+        <p class="muted" id="sbEva" style="font-size:13.5px;margin:8px 0 0"></p>
+      </div>
+    </div>
+    <details style="margin-top:12px"><summary>WACC 是怎麼估出來的？</summary>
+      <div class="q4"><div><div class="h">無風險利率</div>約 1.8%（台灣十年期公債）</div><div><div class="h">股東要求報酬 Ke</div>約 9.0–9.5%</div><div><div class="h">稅後借款成本 Kd</div>約 2.2–2.5%</div><div><div class="h">資本結構</div>負債比約 45–50%</div></div>
+    </details>
+    <p class="note">預設值與三個時期按鈕取自研究附件的模型區間中值；投資回收期（模型估計）：屏東新廠 4.5–5.5 年、密西根廠 3.5–4.5 年。</p>
   </div>
 
   <div class="grid g3" style="margin-top:14px">
@@ -617,6 +700,14 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
   </div>
 
   <div class="card" style="margin-top:14px">
+    <h3>營收路徑示意：2024–2029E</h3>
+    <p class="muted" style="margin:4px 0 10px;font-size:14px">把 2024 年營收設為 100，依各劇本的 5 年 CAGR 區間推算。色帶是區間，線是中值；目前選取的劇本會被強調。</p>
+    <div class="legend"><span><i style="background:var(--s3)"></i>樂觀 14–17.5%</span><span><i style="background:var(--s1)"></i>基準 8.5–11.5%</span><span><i style="background:var(--s2)"></i>悲觀 1.5–4%</span></div>
+    <div class="chart" id="revChart"></div>
+    <p class="note">本站自行推算的示意路徑，假設每年等速成長；實際各年會因新廠爬坡時程而有高低。</p>
+  </div>
+
+  <div class="card" style="margin-top:14px">
     <h3>機率加權：三種劇本合起來看</h3>
     <p class="muted" style="margin:4px 0 10px;font-size:14px">每股盈餘（EPS）預估區間，條的粗細代表發生機率。</p>
     <div class="chart" id="epsChart"></div>
@@ -628,14 +719,19 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
     <div class="seg" id="mixSeg" style="margin-bottom:10px"><button data-y="2024" class="on">2024 現況</button><button data-y="2027">2027 目標</button></div>
     <div class="legend"><span><i style="background:var(--s1)"></i>汽車</span><span><i style="background:var(--s2)"></i>北美基建</span><span><i style="background:var(--s3)"></i>風電與農機</span></div>
     <div class="chart" id="mixChart"></div>
+    <p class="note">⚠ 附件之間有落差：營收結構表的 2024 非車用約 25%（基建 12–14%＋風電農機 11–14%），但 CEO KPI 檔案以 14% 為起點、目標 22%。本站兩者並列、不強行合併，有待以公司財報核對。</p>
   </div>
 
-  <h3 style="margin:30px 0 12px">三大風險與應對</h3>
-  <div class="grid g3">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:30px 0 12px">
+    <h3>三大風險與應對</h3>
+    <div class="seg" id="riskSeg"><button data-f="all" class="on">全部（3）</button><button data-f="h">高衝擊</button><button data-f="mh">中高衝擊</button><button data-f="m">中衝擊</button></div>
+  </div>
+  <div class="grid g3" id="riskGrid">
     <div class="card risk h"><span class="pill">衝擊：高</span><h3 style="margin:8px 0 6px">海外費用失控</h3><p class="muted" style="font-size:14px;margin:0">德國、美國人力貴、法規嚴，若產量不夠大，費用會吃掉利潤。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">基礎鍛造集中回台灣屏東廠，海外只做最後加工、檢查與倉儲；海外主管薪酬與「費用占營收比下降」掛鉤。</p></details></div>
     <div class="card risk mh"><span class="pill">衝擊：中高</span><h3 style="margin:8px 0 6px">車市衰退、電動車放緩</h3><p class="muted" style="font-size:14px;margin:0">汽車占營收七成以上，車廠減產或延後新車，新廠會閒置。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">轉攻油電混合車（每台螺絲價值最高 $200–280 美元）；把海外業務資源移向美國基建與歐洲風電。</p></details></div>
-    <div class="card risk m"><span class="pill">衝擊：中</span><h3 style="margin:8px 0 6px">鋼價暴漲、貿易關稅</h3><p class="muted" style="font-size:14px;margin:0">特殊鋼材漲價或美國關稅升級，可能壓縮毛利或讓客戶觀望。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">嚴格執行鋼價連動條款，每季自動調價；提高密西根廠加工附加價值，爭取 100% USMCA 免關稅資格。</p></details></div>
+    <div class="card risk m"><span class="pill">衝擊：中</span><h3 style="margin:8px 0 6px">鋼價暴漲、貿易關稅</h3><p class="muted" style="font-size:14px;margin:0">特殊鋼材漲價或美國關稅升級，可能壓縮毛利或讓客戶觀望。</p><details><summary>怎麼應對？</summary><p style="font-size:14px;margin:6px 0 0">嚴格執行鋼價連動條款，每季自動調價；提高密西根廠加工附加價值，爭取 USMCA 在地資格（附件原寫「100% 免關稅」，須以稅則與原產地規則逐項確認）。</p></details></div>
   </div>
+  <div class="callout warn" style="margin-top:12px"><b>⚖ 政策與資格須獨立確認</b>　「完全免疫關稅」等說法過於肯定，應視為待驗證的策略。詳見 <a href="#global">台・德・美三地布局</a>。</div>
 
   <div class="card" style="margin-top:14px">
     <h3>未來 12 個月要盯的成績單</h3>
@@ -660,11 +756,34 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
   <dl class="glossary card" id="glist" style="margin-top:14px"></dl>
 </section>
 
+<!-- LIBRARY -->
+<section class="view" id="v-library">
+  <div class="eyebrow">研究資料庫</div>
+  <h2>本站用了哪些資料？</h2>
+  <p class="lead">本站內容來自使用者提供的研究附件（PDF、文字檔、圖片）與一份先前的策略研究網站。可以搜尋或依類型篩選，每筆資料都標示了它被用在哪些章節。</p>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <input id="libQ" type="search" placeholder="搜尋：杜邦、密西根、專利…" style="flex:1 1 240px;max-width:420px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit">
+    <div class="seg" id="libSeg"></div>
+  </div>
+  <div class="lib" id="libList" style="margin-top:14px"></div>
+
+  <h3 id="limits" style="margin:34px 0 12px">資料來源與研究限制</h3>
+  <div class="card">
+    <ul style="margin:0;padding-left:20px">
+      <li style="margin:6px 0">部分附件的數字與期間不一致，例如非車用營收起點（14% vs 約 25%）、北美營收占比（約 38% vs 38–40%）。本站並列呈現，不強行合併。</li>
+      <li style="margin:6px 0">所有情境、EPS、估值倍數、投資回收期、損益兩平點與 KPI，皆保留為<b>研究假設</b>，不是公司財測。</li>
+      <li style="margin:6px 0">專利、特定客戶直供關係、製程等級、認證週期與實際績效，應以公司公告、年報或專利原始文件核實。</li>
+      <li style="margin:6px 0">關稅與 USMCA 相關效益須依稅則分類、原產地規則與適用時點獨立確認。</li>
+      <li style="margin:6px 0">本站為一般讀者的教育導覽，不構成任何投資建議。</li>
+    </ul>
+  </div>
+</section>
+
 </main>
 
 <footer>
   <div class="wrap">
-    本頁內容整理自世德工業（2066）策略、財務與製程分析報告，部分數字為分析估計值（標示 E 或區間），專利資料整理自公開專利文獻與官方公開資料，屬工程教學整理、非企業內部 SOP。僅供認識產業與公司之用，不構成任何投資建議。
+    本頁內容整理自世德工業（2066）策略、財務與製程分析報告，部分數字為分析估計值（標示 E 或區間），專利資料整理自公開專利文獻與官方公開資料，屬工程教學整理、非企業內部 SOP。僅供認識產業與公司之用，不構成任何投資建議。 <a href="#library">資料來源與研究限制 →</a>
   </div>
 </footer>
 
@@ -681,7 +800,7 @@ const NS='http://www.w3.org/2000/svg';
 function el(tag,attrs,parent){const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
 
 /* ---------- routing ---------- */
-const views=['home','journey','tree','patents','moat','ev','global','lean','finance','future','glossary'];
+const views=['home','journey','tree','patents','moat','ev','global','lean','finance','future','glossary','library'];
 const rendered={};
 function route(){
   let h=location.hash.slice(1); if(!views.includes(h)) h='home';
@@ -711,7 +830,7 @@ const steps=[
   {t:'搓牙與切削',tag:'客製化',plain:'把螺紋「滾」出來；電池包或底盤用的特殊螺栓，還要再用電腦控制機器鑽孔、切槽。',pro:'搓牙機滾壓螺紋；車用電池包或底盤特種扣件以 CNC 複合機進行二次精密切削、鑽孔、倒角或沖槽。',art:'thread'},
   {t:'熱處理',tag:'變強壯',plain:'送進長長的爐子淬火再回火，讓螺栓又硬又有韌性，並把裡面的氫趕出來，避免日後突然斷裂。',pro:'連續式滲碳淬火爐與回火爐將強度拉升至 10.9 或 12.9 級，同時進行退氫處理以防氫脆。',art:'heat'},
   {t:'表面塗層',tag:'防鏽',plain:'穿上一層防鏽外衣，讓螺栓在海邊、雪地的鹽分中也不會生鏽，碰到鋁車架也不會腐蝕。',pro:'防腐蝕鋅片塗層（Zinc-Flake）、電著塗裝（E-Coating）或有機絕緣層，防止電位差腐蝕。',art:'coat'},
-  {t:'100% 光學檢查',tag:'零缺陷',plain:'每一顆都用高解析度相機 360 度拍照檢查尺寸和裂痕。目標：一百萬顆裡壞不到一顆。',pro:'全自動光學篩選機（AOI）對外徑、牙距、頭部幾何及裂痕全檢，不良率低於 1 PPM。',art:'eye'},
+  {t:'100% 光學檢查',tag:'零缺陷',plain:'每一顆都用高解析度相機 360 度拍照檢查尺寸和裂痕。目標：一百萬顆裡壞不到一顆。',pro:'全自動光學篩選機（AOI）對外徑、牙距、頭部幾何及裂痕全檢，目標不良率低於 1 PPM。',art:'eye'},
   {t:'包裝與全球配送',tag:'送到客戶',plain:'自動裝箱、貼上車廠專屬條碼，送到德國或美國倉庫，車廠要用時 1–2 天內送達。',pro:'自動裝箱並貼車廠專屬 Barcode/RFID，發往德國 MMG、美國密西根倉儲，實施 JIT 即時發貨。',art:'box'}
 ];
 const arts={
@@ -768,7 +887,7 @@ setCar('hev');
 const sites={
   tw:{name:'台灣屏東（母廠）',role:'研發中心＋大量製造',pts:['負責 70–80% 的基礎工序，發揮台灣規模化、低成本優勢','新廠投資約 3–6 億元，台灣總產能提升 20–30%','導入光學檢驗與快速換模，主攻高階電動車零件']},
   de:{name:'德國 Max Mothes（MMG）',role:'歐洲大門＋豪華車廠通路',pts:['2018 年收購、2023 年 100% 持股，繼承賓士、BMW、福斯、Audi 的直供資格','在 Neuss 設自動化物流倉儲與測試中心，負責最後加工、檢查與快速送貨','挑戰：德國人力與能源成本高，正把基礎加工移回台灣、提高自動化']},
-  us:{name:'美國密西根廠',role:'北美關稅防線＋短鏈樞紐',pts:['2025 年 3 月設備進駐、4 月量產，首波訂單約 1,000 萬美元','緊鄰底特律汽車產業帶，24–48 小時送達 GM、Ford、Stellantis、Tesla','在地加工賦予「北美製造」價值，符合 USMCA 規定以規避高額關稅']}
+  us:{name:'美國密西根廠',role:'北美關稅防線＋短鏈樞紐',pts:['2025 年 3 月設備進駐、4 月量產，首波訂單約 1,000 萬美元','緊鄰底特律汽車產業帶，24–48 小時送達 GM、Ford、Stellantis、Tesla','在地加工提高「北美在地價值」，有機會降低關稅衝擊（實際原產地與免稅資格仍須逐項確認）']}
 };
 function setSite(k){const s=sites[k];$$('.site').forEach(g=>g.classList.toggle('on',g.dataset.s===k));
   $('#siteCard').innerHTML=`<span class="pill">${s.role}</span><h3 style="margin:8px 0">${s.name}</h3><ul style="margin:0;padding-left:20px">${s.pts.map(p=>`<li style="margin:6px 0">${p}</li>`).join('')}</ul>`;}
@@ -855,7 +974,7 @@ const scn={
   base:{p:55,story:'全球車市溫和成長 2–4%，油電車補足純電放緩，密西根廠穩定越過損益兩平，獲利回到歷史平均水準。',k:[['密西根廠利用率','60–70%'],['毛利率','30–32.5%'],['營收年成長（5年）','8.5–11.5%'],['每股盈餘 EPS','NT$5.8–7.8'],['非車用占比','20–25%'],['本益比','10–12 倍']]},
   bear:{p:20,story:'高利率與消費疲軟讓車市衰退超過 5%，密西根廠開不滿，新廠折舊與價格戰壓縮獲利。',k:[['密西根廠利用率','< 45%'],['毛利率','25–28%'],['營收年成長（5年）','1.5–4%'],['每股盈餘 EPS','NT$2.5–4.0'],['非車用占比','< 15%'],['本益比','7–9 倍']]}
 };
-function setScn(s){$$('#scnSeg button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));const d=scn[s];
+function setScn(s){$$('#scnSeg button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));curScn=s;if(typeof revChart==='function')revChart();const d=scn[s];
   $('#scnStory').textContent=`發生機率 ${d.p}%：${d.story}`;
   $('#scnGrid').innerHTML=d.k.map(k=>`<div><div class="k">${k[0]}</div><div class="val">${k[1]}</div></div>`).join('');
   $$('#epsChart [data-s]').forEach(n=>n.setAttribute('opacity',n.dataset.s===s?1:.35));}
@@ -1051,7 +1170,105 @@ function setT(k){const t=TT[k];$$('.tnode').forEach(n=>{n.classList.toggle('on',
   $('#tInfo').innerHTML=`<b>${t[0]}</b><br><span style="font-size:14.5px">${t[1]}</span>`+(t[2].length?'<div class="muted" style="font-size:12.5px;margin-top:4px">橘框＝下一層相關節點</div>':'');}
 $$('.tnode').forEach(n=>n.onclick=()=>setT(n.dataset.t));setT('root');
 
-const renderers={patents(){patChart();},finance(){setDup('roe');roicChart();cccChart();},future(){epsChart();setScn('base');mixChart(2024);}};
+
+/* ---------- merged: tiers ---------- */
+const TIERS=[
+ {c:'var(--accent)',no:'TIER 01',t:'臺灣屏東母廠',s:'研發・冷鍛・基礎加工',pts:['負擔約 70–80% 的基礎工序，發揮台灣規模化製造的成本優勢','高效率、大規模冷鍛，是製程品質與毛利的核心','把德國 MMG 非必要的基礎加工逐步移回屏東'],w:'屏東新廠也要維持夠高的利用率，成本優勢才會出現。'},
+ {c:'var(--s1)',no:'TIER 02',t:'美國密西根／德國 MMG',s:'在地加工・質檢・倉儲',pts:['完成精密二次切削、塗佈、光學篩選與倉儲','密西根緊鄰底特律汽車產業帶，可 24–48 小時回應車廠','新廠前期因折舊與人事，集團營業利益率約有 2.0–3.5% 的階段性壓制；附件估計量產後 3–4 季，毛利率可回到 32–35%'],w:'在地價值須以實際製程與成本確認；在地加工不會自動取得原產地或免稅資格。'},
+ {c:'var(--s3)',no:'TIER 03',t:'OEM 與工業客戶',s:'VMI 庫存・JIT 交付',pts:['過去：6–8 週海運＋大量安全庫存','現在：車廠旁設 VMI 倉，用多少拉多少','GM、Ford、Stellantis、Tesla 對「北美在地製造」零件需求上升'],w:'服務速度與營運資金是取捨：VMI 讓現金轉換週期拉長到 130–160 天。'}
+];
+$('#tiers').innerHTML=TIERS.map((t,i)=>(i?'<span class="arr" aria-hidden="true">→</span>':'')+`<button data-i="${i}" style="--c:${t.c}"><span class="no">${t.no}</span><b>${t.t}</b><small>${t.s}</small></button>`).join('');
+function setTier(i){const t=TIERS[i];$$('#tiers button').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+  $('#tierCard').innerHTML=`<span class="pill">${t.no} · ${t.s}</span><h3 style="margin:8px 0 6px">${t.t}</h3><ul style="margin:0 0 10px;padding-left:20px">${t.pts.map(p=>`<li style="margin:4px 0">${p}</li>`).join('')}</ul><div class="callout warn"><b>要注意：</b>${t.w}</div>`;}
+$$('#tiers button').forEach(b=>b.onclick=()=>setTier(+b.dataset.i));setTier(1);
+
+/* ---------- merged: dupont table ---------- */
+$('#dupTbl').innerHTML='<table class="tbl"><tr><th>年度</th><th>ROE</th><th>淨利率</th><th>資產週轉率</th><th>權益乘數（推算）</th></tr>'+dup.map(d=>`<tr><td>${d.y}</td><td>${d.roe}%</td><td>${d.nm}%</td><td>${d.at} 次</td><td>${d.em} 倍</td></tr>`).join('')+'</table>';
+$('#dupTblBtn').onclick=()=>{const t=$('#dupTbl');t.hidden=!t.hidden;$('#dupTblBtn').textContent=t.hidden?'以表格檢視':'隱藏表格';};
+
+/* ---------- merged: ROIC sandbox ---------- */
+function setSb(){const r=+$('#sbR').value,w=+$('#sbW').value,d=r-w;
+  $('#sbRv').textContent=r.toFixed(1)+'%';$('#sbWv').textContent=w.toFixed(1)+'%';
+  $('#sbSpread').textContent=(d>=0?'+':'')+d.toFixed(1)+' pp';
+  const v=$('#sbVerdict');let c,t;
+  if(d>0.5){c='var(--good)';t='✓ 正利差：有價值創造空間';}else if(d>=-0.5){c='var(--warn)';t='≈ 接近打平';}else{c='var(--bad)';t='✗ 負利差：投資暫時在消耗價值';}
+  v.textContent=t;v.style.color=c;v.style.background=`color-mix(in srgb, ${c} 16%, transparent)`;
+  $('#sbEva').textContent=`每投入 100 元資本，一年${d>=0?'多創造':'少賺'}約 ${Math.abs(d).toFixed(1)} 元經濟價值（EVA）`;}
+$('#sbR').oninput=$('#sbW').oninput=()=>{$$('#sbPreset button').forEach(b=>b.classList.remove('on'));setSb();};
+$$('#sbPreset button').forEach(b=>b.onclick=()=>{$$('#sbPreset button').forEach(x=>x.classList.toggle('on',x===b));$('#sbR').value=b.dataset.r;$('#sbW').value=b.dataset.w;setSb();});
+setSb();
+
+/* ---------- merged: revenue path ---------- */
+const REV={bear:[1.5,4.0,'var(--s2)','悲觀'],base:[8.5,11.5,'var(--s1)','基準'],bull:[14.0,17.5,'var(--s3)','樂觀']};
+let curScn='base';
+function revChart(){
+  const box=$('#revChart');if(!box)return;box.innerHTML='';const W=640,H=260,m={l:40,r:70,t:14,b:28},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const yrs=[2024,2025,2026,2027,2028,2029],lo=90,hi=230;
+  const x=i=>m.l+iw*i/5,y=v=>m.t+ih-ih*(v-lo)/(hi-lo);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'三種劇本營收路徑示意'},box);
+  const g=el('g',{class:'grid'},svg),ax=el('g',{class:'axis'},svg);
+  [100,130,160,190,220].forEach(v=>{el('line',{x1:m.l,x2:W-m.r,y1:y(v),y2:y(v)},g);el('text',{x:m.l-6,y:y(v)+4,'text-anchor':'end'},ax).textContent=v;});
+  yrs.forEach((yr,i)=>{el('text',{x:x(i),y:H-8,'text-anchor':'middle'},ax).textContent=i?yr+'E':yr;});
+  const path=r=>yrs.map((_,i)=>100*Math.pow(1+r/100,i));
+  Object.entries(REV).forEach(([k,[a,b,c,n]])=>{const on=k===curScn;const L=path(a),Hh=path(b),M=path((a+b)/2);
+    const gg=el('g',{opacity:on?1:.35},svg);
+    el('path',{d:'M'+Hh.map((v,i)=>`${x(i)},${y(v)}`).join('L')+'L'+L.map((v,i)=>`${x(i)},${y(v)}`).reverse().join('L')+'Z',fill:c,opacity:.16},gg);
+    el('path',{d:'M'+M.map((v,i)=>`${x(i)},${y(v)}`).join('L'),fill:'none',stroke:c,'stroke-width':on?2.5:2},gg);
+    el('text',{x:x(5)+8,y:y(M[5])+4,'font-size':12,fill:'var(--ink)','font-weight':on?700:400},gg).textContent=`${n} ${M[5].toFixed(0)}`;});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--ink-3)','stroke-width':1,opacity:0},svg);
+  const hit=el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent'},svg);
+  hit.onmousemove=e=>{const r=svg.getBoundingClientRect();const px=(e.clientX-r.left)*W/r.width;const i=Math.max(0,Math.min(5,Math.round((px-m.l)/iw*5)));cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));cross.setAttribute('opacity',1);
+    showTip(e,`<b>${yrs[i]}${i?'E':''}</b>（2024＝100）<br>`+['bull','base','bear'].map(k=>{const[a,b,,n]=REV[k];return `${n}：${path(a)[i].toFixed(0)}–${path(b)[i].toFixed(0)}`;}).join('<br>'));};
+  hit.onmouseleave=()=>{hideTip();cross.setAttribute('opacity',0);};
+}
+
+/* ---------- merged: risk filter ---------- */
+$$('#riskSeg button').forEach(b=>b.onclick=()=>{$$('#riskSeg button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;
+  $$('#riskGrid .risk').forEach(c=>c.style.display=(f==='all'||c.classList.contains(f))?'':'none');});
+
+/* ---------- merged: library ---------- */
+const LIB=[
+ ['PDF','世德工業｜企業策略、產業競爭力與長期成長潛力深度分析報告','16 頁。執行摘要、三大成長情境、ROIC／WACC、杜邦分析、超額毛利驅動因子、風險矩陣。',['home','moat','finance','future']],
+ ['PDF','世德工業（2066）在電動車與車輛輕量化趨勢下的前景分析','5 頁。EV 扣件技術、ICE／HEV／BEV 價值量比較、轉單紅利。',['ev','global']],
+ ['PDF','世德工業的經營策略：四大關鍵維度','1 頁。高階客製化避開價格戰、台德美三地在地短鏈布局。',['home','moat','global']],
+ ['PDF','世德工業（2066）策略簡報','13 頁圖片式簡報，彙整全站主要論點。',['home','future']],
+ ['PDF','世德工業核心技術／專利技術樹','4 頁。11 道流程主幹、三層技術護城河、各站專利與 AI 切入點。',['tree','patents']],
+ ['TXT','製造業工序流程分析與精實 IE 實務','七道工序：前處理、冷鍛、搓牙切削、熱處理、表面處理、光學檢驗、包裝配送。',['journey','lean']],
+ ['TXT','北美在地化短鏈策略評估（密西根廠）','損益兩平利用率、折舊壓制曲線、USMCA／IRA、雙軌防禦、未來 4 季 KPI。',['global','future']],
+ ['TXT','策略與營運筆記：EV 技術、MMG、CCC、CEO 三大策略','電池包扣件、PPAP 壁壘、八大浪費、成本轉嫁、ROE 診斷、MMG 綜效、VMI 與 CCC、12 個月 KPI。',['moat','ev','lean','finance','future']],
+ ['TXT','世德專利版圖與 Know-how 整理','2006–2022 專利時間軸、六件代表專利、表面處理與追溯能力。',['patents','tree']],
+ ['PNG','關鍵風險矩陣與對應方案','三大結構性風險、衝擊度與應對方案。',['future']],
+ ['PNG','三大成長情境矩陣推演（2025–2029E）','樂觀／基準／悲觀的機率、利用率、毛利率、CAGR、EPS、本益比。',['future']],
+ ['PNG','非車用營收占比拉升至 30% 之路徑','2024 現況與 2027 目標的業務結構。',['future']],
+ ['PNG','杜邦分析拆解與 ROE 變動歸因','2022–2025E ROE、淨利率、資產週轉率。',['finance']],
+ ['PNG','屏東新廠與密西根廠 CAPEX 回收期與 ROIC 軌跡','收割期、沉澱期、爬坡期與回收期估算。',['finance']],
+ ['PNG','資本效率與價值創造（ROIC vs. WACC）','WACC 7.5–8.2% 的組成假設。',['finance']],
+ ['PNG','三大超額毛利驅動因子','安全關鍵件、高轉換成本、短鏈服務溢價。',['moat']],
+ ['PNG','IE 工具在世德產線之落地做法','5S、看板、SMED、防錯、標準作業。',['lean']],
+ ['PNG','製造業工序流程分析方法論','系統轉換模型與價值流圖（VSM）。',['journey','lean']],
+ ['PNG','ICE／HEV／BEV 單車扣件價值比較','用量、價值、產業與世德毛利率。',['ev']],
+ ['PNG','轉單紅利：與傳統出口型扣件同業對比','關稅、定價權、車廠採購傾向。',['global']],
+ ['PNG','核心技術／專利技術樹（11 道流程主幹）','各站管控重點與專利／研發對照。',['tree']],
+ ['PNG','世德技術樹（設計 × 製造）','扣件設計與製造兩支主幹的匯流。',['patents']],
+ ['WEB','世德工業｜策略研究室（先前的 ChatGPT 版網站）','研究總覽、三大投資主題、三層營運模式、ROIC／WACC 沙盒、政策提醒、資料限制。本站已整併其內容。',['home','global','finance','future','library'],'https://sumed-strategy-lab.robustpivot.chatgpt.site']
+];
+const TAB={home:'①',journey:'②',tree:'③',patents:'④',moat:'⑤',ev:'⑥',global:'⑦',lean:'⑧',finance:'⑨',future:'⑩',library:'資料庫'};
+const TABN={home:'公司是誰',journey:'製程',tree:'技術樹',patents:'專利',moat:'護城河',ev:'電動車',global:'三地布局',lean:'精實生產',finance:'財務',future:'未來劇本',library:'資料庫'};
+let libT='全部';
+const types=['全部','PDF','TXT','PNG','WEB'];
+$('#libSeg').innerHTML=types.map(t=>`<button data-t="${t}" class="${t==='全部'?'on':''}">${t}${t==='全部'?'（'+LIB.length+'）':'（'+LIB.filter(l=>l[0]===t).length+'）'}</button>`).join('');
+function renderLib(){const q=$('#libQ').value.trim().toLowerCase();
+  const items=LIB.filter(l=>(libT==='全部'||l[0]===libT)&&(!q||(l[1]+l[2]).toLowerCase().includes(q)));
+  $('#libList').innerHTML=items.map(l=>`<div class="libitem"><div class="ty">${l[0]}</div><div><b>${l[4]?`<a href="${l[4]}" target="_blank" rel="noopener">${l[1]} ↗</a>`:l[1]}</b><div class="d">${l[2]}</div><div class="uses">${l[3].filter(u=>u!=='library').map(u=>`<a href="#${u}">${TAB[u]} ${TABN[u]}</a>`).join('')}</div></div></div>`).join('')||'<p class="muted">找不到相符的資料。</p>';}
+$$('#libSeg button').forEach(b=>b.onclick=()=>{libT=b.dataset.t;$$('#libSeg button').forEach(x=>x.classList.toggle('on',x===b));renderLib();});
+$('#libQ').oninput=renderLib;renderLib();
+
+/* ---------- merged: print ---------- */
+function renderAll(){Object.keys(renderers).forEach(k=>{if(!rendered[k]){renderers[k]();rendered[k]=true;}});}
+addEventListener('beforeprint',renderAll);
+$('#printBtn').onclick=()=>{renderAll();try{window.print();}catch(e){}};
+
+const renderers={patents(){patChart();},finance(){setDup('roe');roicChart();cccChart();},future(){epsChart();setScn('base');mixChart(2024);revChart();}};
 route();
 })();
 </script>
