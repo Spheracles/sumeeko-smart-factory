@@ -234,6 +234,53 @@ a.theme .go{margin-top:12px;font-size:13px;color:var(--accent);font-weight:700}
   body{background:#fff}
   .card{break-inside:avoid}
 }
+
+/* factory flow */
+.fctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.flayers{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}.flayers label{display:flex;gap:6px;align-items:center;cursor:pointer}.flayers input{accent-color:var(--accent)}
+.fstrip{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.fstrip button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--ink-2)}
+.fstrip button b{margin-right:5px;color:var(--ink-3)}
+.fstrip button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}.fstrip button.on b{color:var(--bg)}
+.fmap{overflow-x:auto;border-radius:12px}
+.fmap svg{display:block;width:100%;min-width:880px;height:auto}
+#fSvg .fst{cursor:pointer;outline:none}
+#fSvg .fst .box{fill:var(--surface);stroke:var(--line);stroke-width:1.5;transition:fill .3s,stroke .3s}
+#fSvg .fst:hover .box,#fSvg .fst:focus-visible .box{stroke:var(--ink-3);stroke-width:2}
+#fSvg .fst .num{fill:var(--surface-2)}#fSvg .fst .numt{fill:var(--ink-2)}
+#fSvg .fst.on .box{fill:var(--accent-soft);stroke:var(--accent);stroke-width:3}
+#fSvg .fst.on .num{fill:var(--accent)}#fSvg .fst.on .numt{fill:#fff}
+#fSvg .fst.hl .box{stroke:var(--s1);stroke-width:3;stroke-dasharray:7 4}
+#fSvg .foff{cursor:pointer;outline:none}#fSvg .foff rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
+#fSvg .foff:hover rect,#fSvg .foff:focus-visible rect{stroke:var(--ink-3)}#fSvg .foff.on rect{stroke:var(--s1);stroke-width:3;fill:color-mix(in srgb,var(--s1) 10%,var(--surface))}
+#fSvg .lay{display:none}#fSvg.L-qc .lay-qc,#fSvg.L-sup .lay-sup,#fSvg.L-rf .lay-rf{display:inline}
+#fSvg .qcl{fill:none;stroke:var(--s7);stroke-width:2;stroke-dasharray:6 6;opacity:.75}
+#fSvg .qcl.rel{stroke:var(--good)}
+#fSvg .supl{fill:none;stroke:var(--s1);stroke-width:1.6;stroke-dasharray:3 5;opacity:.8}
+#fSvg.playing #fBelt{animation:belt .8s linear infinite}
+#fSvg.playing .qcl,#fSvg.playing .ship{animation:belt 1.2s linear infinite}
+@keyframes belt{to{stroke-dashoffset:-20}}
+#fSvg .fst.on .ram{animation:ram .5s ease-in-out infinite alternate}
+#fSvg .fst.on .flame{animation:flick .6s ease-in-out infinite alternate}
+#fSvg .fst.on .spin{transform-box:fill-box;transform-origin:center;animation:spin 1.4s linear infinite}
+@keyframes ram{to{transform:translateY(8px)}}@keyframes flick{to{opacity:.35}}@keyframes spin{to{transform:rotate(360deg)}}
+#fSvg .ftok{filter:drop-shadow(0 2px 4px rgba(0,0,0,.25));pointer-events:none}
+@media (prefers-reduced-motion:reduce){#fSvg *{animation:none!important}}
+.cred{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px}
+.cred.pub{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+.cred.att{background:color-mix(in srgb,var(--s1) 16%,transparent);color:var(--s1)}
+.cred.ind{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+.fio{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:var(--surface-2);border-radius:10px;padding:8px 12px;font-size:14px;margin-bottom:12px}
+.fio b{color:var(--accent)}
+.fcols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.fcols .h{font-size:12.5px;font-weight:700;color:var(--ink-3);letter-spacing:.04em;margin-bottom:6px}
+.flist{list-style:none;margin:0;padding:0}
+.flist li{padding:7px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.5}
+.flist li b{display:block;font-size:14.5px}.flist li span{color:var(--ink-2)}
+.depts{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.depts button{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;text-align:left}
+.depts button b{display:block;font-size:14.5px}.depts button small{color:var(--ink-3);font-size:12px}
+.depts button.on{border-color:var(--s1);background:color-mix(in srgb,var(--s1) 10%,var(--surface))}
 footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color:var(--ink-3)}
 .glossary dt{font-weight:700;margin-top:10px}
 .glossary dd{margin:2px 0 0;color:var(--ink-2);font-size:14.5px}
@@ -248,19 +295,20 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
         <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 3h10l2 4H5z" fill="var(--bg)"/><rect x="10" y="7" width="4" height="14" rx="1" fill="var(--bg)"/></svg>
       </div>
       <div><b>認識世德工業</b> <small>2066.TW · 給一般讀者的互動導覽</small></div>
-      <button class="btn" id="printBtn" style="margin-left:auto;padding:4px 12px;font-size:13px">🖨 列印全文</button>
+      <button class="btn" id="printBtn" style="margin-left:auto;padding:4px 12px;font-size:13px;white-space:nowrap;flex:none">🖨 列印全文</button>
     </div>
     <nav class="tabs" id="tabs">
       <a href="#home">① 一顆螺絲的大生意</a>
       <a href="#journey">② 螺絲怎麼做出來</a>
-      <a href="#tree">③ 11 道製程技術樹</a>
-      <a href="#patents">④ 專利版圖</a>
-      <a href="#moat">⑤ 為什麼賺得比同業多</a>
-      <a href="#ev">⑥ 電動車改變了什麼</a>
-      <a href="#global">⑦ 台・德・美三地布局</a>
-      <a href="#lean">⑧ 工廠如何變聰明</a>
-      <a href="#finance">⑨ 財務健康檢查</a>
-      <a href="#future">⑩ 未來三種劇本</a>
+      <a href="#factory">③ 走進世德工廠</a>
+      <a href="#tree">④ 11 道製程技術樹</a>
+      <a href="#patents">⑤ 專利版圖</a>
+      <a href="#moat">⑥ 為什麼賺得比同業多</a>
+      <a href="#ev">⑦ 電動車改變了什麼</a>
+      <a href="#global">⑧ 台・德・美三地布局</a>
+      <a href="#lean">⑨ 工廠如何變聰明</a>
+      <a href="#finance">⑩ 財務健康檢查</a>
+      <a href="#future">⑪ 未來三種劇本</a>
       <a href="#glossary">名詞小辭典</a>
       <a href="#library">研究資料庫</a>
     </nav>
@@ -340,9 +388,46 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
   </div>
 </section>
 
-<!-- ③ TECH TREE -->
+<!-- ③ FACTORY -->
+<section class="view" id="v-factory">
+  <div class="eyebrow">STORY 03 · 走進世德工廠</div>
+  <h2>從一捲盤元到一箱成品：世德工廠的一日導覽</h2>
+  <p class="lead">按下「播放」，跟著一顆螺栓走過 10 道工序。點任何一站，看看那裡有哪些機台、哪些人、他們正在做什麼；也可以打開「品保抽樣」「支援部門」「批號追溯」圖層，看看工廠裡看不見的流動。</p>
+
+  <div class="grid g2" style="margin-bottom:14px">
+    <div class="card" style="border-top:4px solid var(--accent)"><span class="pill">高雄總廠・大發工業區</span><h3 style="margin:8px 0 4px">總部・全功能廠</h3><p class="muted" style="margin:0;font-size:14.5px">約 8,000 m²、150 人。冷鍛、Magni 塗裝與 Loctite 預塗膠、工程技術服務；具 IATF 16949、ISO 14001、ISO/IEC 17025（實驗室）認證。</p></div>
+    <div class="card" style="border-top:4px solid var(--s1)"><span class="pill">屏東廠・屏東科技產業園區</span><h3 style="margin:8px 0 4px">成型・加工・熱處理</h3><p class="muted" style="margin:0;font-size:14.5px">約 16,500 m²、80 人。冷鍛、沖壓、CNC 加工與熱處理；懸吊銷、襯套、油底殼扣件等組合件。</p></div>
+  </div>
+  <p class="note" style="margin:-4px 0 14px">廠區規模與分工依世德 2022 年法說會簡報；人數與設備會隨擴產變動。</p>
+
+  <div class="card" style="padding:14px">
+    <div class="fctl">
+      <div class="seg"><button id="fPlay" class="on">▶ 播放</button><button id="fPrev">◀ 上一站</button><button id="fNext">下一站 ▶</button></div>
+      <div class="seg" id="fSpeed"><button data-v="1" class="on">1×</button><button data-v="2">2×</button></div>
+      <div class="flayers">
+        <label><input type="checkbox" id="lyQc" checked> 品保抽樣</label>
+        <label><input type="checkbox" id="lySup"> 支援部門</label>
+        <label><input type="checkbox" id="lyRf"> 批號追溯</label>
+      </div>
+    </div>
+    <div class="fstrip" id="fStrip"></div>
+    <div class="fmap"><svg id="fSvg" viewBox="0 0 1200 720" role="img" aria-label="世德工廠 10 道工序動態流程圖"></svg></div>
+    <p class="note" style="margin:6px 0 0" id="fCaption"></p>
+  </div>
+
+  <div class="card" id="fPanel" style="margin-top:14px"></div>
+
+  <h3 style="margin:30px 0 6px">部門地圖：工廠不只有產線</h3>
+  <p class="muted" style="margin:0 0 12px">點選部門，流程圖上會標出它支援的工序。</p>
+  <div class="depts" id="fDepts"></div>
+  <div class="card" id="fDeptCard" style="margin-top:10px"></div>
+
+  <div class="callout warn" style="margin-top:16px"><b>📌 資料依據與限制</b>　本圖依世德公開資料（2022 法說會、媒體報導、政府公開環保資料、公開說明書）與研究附件整理。每站都標示可信度：<span class="cred pub">公開資料</span> 有公開來源；<span class="cred att">研究附件</span> 來自使用者提供的分析；<span class="cred ind">業界常規</span> 是扣件業一般做法，未經世德證實。人員作業細節多屬業界常規描述；實際動線、機台數量與自製／委外比例請以公司資料為準。早期公開說明書記載熱處理、表面處理、電鍍採委外，2018 年起陸續建立自有熱處理線，因此部分工序可能是自製與委外並行。</div>
+</section>
+
+<!-- ④ TECH TREE -->
 <section class="view" id="v-tree">
-  <div class="eyebrow">STORY 03 · 製程技術樹</div>
+  <div class="eyebrow">STORY 04 · 製程技術樹</div>
   <h2>深入一點：11 道製程，哪裡有專利、哪裡靠訣竅？</h2>
   <p class="lead">從鋼廠的小鋼胚到包裝出貨，扣件典型要走 11 站。每一站都有「會做的人才知道」的訣竅（Know-how），其中幾站還有世德可查到的公開專利。點選任一站看看。</p>
   <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px">
@@ -401,7 +486,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ④ PATENTS -->
 <section class="view" id="v-patents">
-  <div class="eyebrow">STORY 04 · 專利版圖</div>
+  <div class="eyebrow">STORY 05 · 專利版圖</div>
   <h2>世德的技術，有哪些是「寫成專利」的？</h2>
   <p class="lead">世德從買機器做標準螺絲起家，1994 年投入組合螺絲研發，2004 年進入汽車扣件，逐漸累積出自己的專利。先分清楚兩個詞：</p>
   <div class="grid g2">
@@ -468,7 +553,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ⑤ MOAT -->
 <section class="view" id="v-moat">
-  <div class="eyebrow">STORY 05 · 護城河</div>
+  <div class="eyebrow">STORY 06 · 護城河</div>
   <h2>同樣做螺絲，為什麼它賺得比較多？</h2>
   <p class="lead">一般螺絲工廠常陷入「誰便宜誰接單」的價格戰。世德的毛利率約是同業的兩倍，背後有三個原因。點卡片翻面看看。</p>
   <div class="grid g3">
@@ -499,7 +584,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ④ EV -->
 <section class="view" id="v-ev">
-  <div class="eyebrow">STORY 06 · 電動車</div>
+  <div class="eyebrow">STORY 07 · 電動車</div>
   <h2>電動車用的螺絲比較少，為什麼反而更好賺？</h2>
   <p class="lead">電動車沒有引擎，螺絲數量變少；但電池包要防水、防爆、抗撞擊，每顆螺絲更精密、更貴。選一種車看看差別。</p>
   <div class="carpick" id="carpick">
@@ -532,7 +617,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ⑤ GLOBAL -->
 <section class="view" id="v-global">
-  <div class="eyebrow">STORY 07 · 全球布局</div>
+  <div class="eyebrow">STORY 08 · 全球布局</div>
   <h2>台灣做大量，德國美國做最後一哩</h2>
   <p class="lead">世德不是把所有東西都搬到國外，而是「台灣負責便宜又大量地製造，德國、美國負責最後加工、檢查和送貨」。點地圖上的據點。</p>
   <div class="grid g2" style="align-items:start">
@@ -587,7 +672,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ⑥ LEAN -->
 <section class="view" id="v-lean">
-  <div class="eyebrow">STORY 08 · 精實生產</div>
+  <div class="eyebrow">STORY 09 · 精實生產</div>
   <h2>工廠如何減少浪費？</h2>
   <p class="lead">世德的訂單越來越「少量多樣」，又橫跨三個國家，工廠必須更聰明。工業工程（IE）的做法是：找出不創造價值的時間，然後消滅它。點選一種浪費看看世德怎麼處理。</p>
   <div class="waste" id="waste"></div>
@@ -622,7 +707,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ⑦ FINANCE -->
 <section class="view" id="v-finance">
-  <div class="eyebrow">STORY 09 · 財務</div>
+  <div class="eyebrow">STORY 10 · 財務</div>
   <h2>財務健康檢查：為什麼最近獲利變差？</h2>
   <p class="lead">簡單說：世德正在蓋新廠、開新據點，錢先花出去了，但新工廠的營收還沒完全跟上。這是「擴產過渡期」。用下面的圖拆開來看。</p>
 
@@ -688,7 +773,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 
 <!-- ⑧ FUTURE -->
 <section class="view" id="v-future">
-  <div class="eyebrow">STORY 10 · 未來</div>
+  <div class="eyebrow">STORY 11 · 未來</div>
   <h2>未來 3–5 年的三種劇本</h2>
   <p class="lead">世德接下來表現如何，主要看三件事：密西根廠多快開滿、電動/油電車螺絲能賣多高價、海外費用控制得好不好。切換劇本看看。</p>
   <div class="seg" id="scnSeg">
@@ -760,7 +845,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:13px;color
 <section class="view" id="v-library">
   <div class="eyebrow">研究資料庫</div>
   <h2>本站用了哪些資料？</h2>
-  <p class="lead">本站內容來自使用者提供的研究附件（PDF、文字檔、圖片）與一份先前的策略研究網站。可以搜尋或依類型篩選，每筆資料都標示了它被用在哪些章節。</p>
+  <p class="lead">本站內容來自使用者提供的研究附件（PDF、文字檔、圖片）、一份先前的策略研究網站，以及世德與媒體的公開資料。可以搜尋或依類型篩選，每筆資料都標示了它被用在哪些章節。</p>
   <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
     <input id="libQ" type="search" placeholder="搜尋：杜邦、密西根、專利…" style="flex:1 1 240px;max-width:420px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit">
     <div class="seg" id="libSeg"></div>
@@ -800,7 +885,7 @@ const NS='http://www.w3.org/2000/svg';
 function el(tag,attrs,parent){const n=document.createElementNS(NS,tag);for(const k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
 
 /* ---------- routing ---------- */
-const views=['home','journey','tree','patents','moat','ev','global','lean','finance','future','glossary','library'];
+const views=['home','journey','factory','tree','patents','moat','ev','global','lean','finance','future','glossary','library'];
 const rendered={};
 function route(){
   let h=location.hash.slice(1); if(!views.includes(h)) h='home';
@@ -849,10 +934,10 @@ function setStep(i){si=Math.max(0,Math.min(steps.length-1,i));const s=steps[si];
   $('#stepart').innerHTML=`<svg viewBox="0 0 200 200" aria-hidden="true">${arts[s.art]}</svg>`;
   $('#steptag').textContent=`第 ${si+1} 站 · ${s.tag}`;$('#steptitle').textContent=s.t;$('#stepplain').textContent=s.plain;$('#steppro').textContent=s.pro;
   $('#stepbar').style.width=((si+1)/steps.length*100)+'%';
-  $('#prevStep').disabled=si===0;$('#nextStep').textContent=si===steps.length-1?'深入：11 道製程與專利 →':'下一站 →';}
+  $('#prevStep').disabled=si===0;$('#nextStep').textContent=si===steps.length-1?'走進世德工廠 →':'下一站 →';}
 $$('#steps button').forEach(b=>b.onclick=()=>setStep(+b.dataset.i));
 $('#prevStep').onclick=()=>setStep(si-1);
-$('#nextStep').onclick=()=>{if(si===steps.length-1)location.hash='tree';else setStep(si+1)};
+$('#nextStep').onclick=()=>{if(si===steps.length-1)location.hash='factory';else setStep(si+1)};
 setStep(0);
 
 /* ---------- moat ---------- */
@@ -1171,6 +1256,201 @@ function setT(k){const t=TT[k];$$('.tnode').forEach(n=>{n.classList.toggle('on',
 $$('.tnode').forEach(n=>n.onclick=()=>setT(n.dataset.t));setT('root');
 
 
+/* ---------- factory flow (STORY 03) ---------- */
+const FS=[
+ {n:'原料進廠',sub:'盤元倉・進料檢驗',site:'高雄／屏東',cred:'att',io:['一捲捲合金鋼盤元（線材）','核對過材質、貼好批號的合格盤元'],
+  plain:'鋼廠把煉好、軋好的鋼線捲成「盤元」送進工廠。每一捲都要先確認成分對不對、有沒有缺陷，並貼上批號，之後這顆螺栓走到哪裡都查得到它來自哪一爐鋼。',
+  machines:[['天車與堆高機','吊運動輒上噸重的盤元捲'],['光譜分析儀','打一下就知道鋼材的化學成分'],['分厘卡・硬度計','抽量線徑與原料硬度'],['盤元料架與批號標籤','依爐號／批號分區存放，先進先出']],
+  people:[['採購','向鋼廠下單、追交期，比較鋼價並處理原料連動條款'],['倉管員','點收入帳、依爐號分區上架、控管庫存'],['進料檢驗員（IQC）','核對鋼廠材質證明（Mill Cert），抽驗成分、線徑與表面'],['天車／堆高機操作員','安全吊運與上料']],
+  qc:['材質證明與實測結果一致','爐號、批號登錄系統','不合格品隔離、退貨'],
+  src:'盤元進料見研究附件；IQC 與材質證明核對為 IATF 16949 汽車業常規。'},
+ {n:'抽線',sub:'酸洗皮膜・伸線・球化',site:'依產品安排',cred:'ind',io:['盤元','粗細精準、軟硬適中、表面有潤滑皮膜的線材'],
+  plain:'先洗掉鏽皮、披上一層潤滑「皮膜」，再把鋼線一道道拉過模具拉細到指定粗細；需要時進爐「球化退火」，讓鋼變軟，下一步冷鍛才不會裂。',
+  machines:[['酸洗與皮膜槽','去除氧化鏽皮，形成磷酸鹽潤滑皮膜'],['伸線機','用拉線模逐道把線徑拉細'],['球化退火爐','長時間加熱讓鋼的組織變圓潤、好塑形'],['線徑量測器','連續監看線徑是否超差']],
+  people:[['抽線技術員','換拉線模、調整減面率與潤滑'],['退火爐操作員','依鋼種設定溫度曲線、記錄爐溫'],['製程品管','抽驗線徑、硬度與表面瑕疵']],
+  qc:['線徑公差','球化率與硬度','表面無刮傷、脫碳'],
+  src:'研究附件列有抽線製程；業界常見與線材加工廠分工，世德自製比例未公開。'},
+ {n:'冷鍛成型',sub:'多工位成型機群',site:'高雄・屏東',cred:'pub',io:['線材','有頭、還沒有螺紋的螺栓胚／螺帽胚'],
+  plain:'常溫下用巨大的力量，一秒鐘「捏」好幾次，把鋼線切斷、壓出螺栓的頭和身體。這一站決定了金屬內部的纖維流向，也就是螺栓夠不夠強。',
+  machines:[['多工位冷鍛成型機','切料後經 4–6 個工位連續壓塑；屏東廠公開環保資料列有 18 台成型機'],['螺帽成型機','專門成型螺帽'],['沖壓機','屏東廠也有沖壓製程，做墊片、支架類零件'],['模具（衝頭・母模）','由模具中心設計製造，是成型品質的關鍵'],['負載感測器','即時監看成型力，異常就停機，資料上傳雲端']],
+  people:[['成型技師（師傅）','架模、調機、試打首件，最吃經驗的崗位'],['機台操作員','巡機、上料、換料桶、清理廢料'],['模具工程師','依新料號設計模具，修模、研磨'],['巡檢員（IPQC）','首件、中間件、末件量尺寸、看頭部裂紋']],
+  qc:['首件檢查合格才量產','模具壽命管理','成型負載異常即停機（防錯）'],
+  src:'冷鍛見 2022 法說會（高雄、屏東）；18 台成型機見屏東縣 2024 年公開環保稽查資料；感測上雲見 2017 年智慧製造報導。'},
+ {n:'搓牙',sub:'外螺紋滾壓・內螺紋攻牙',site:'高雄・屏東',cred:'pub',io:['螺栓胚','有螺紋的螺栓（還沒硬化）'],
+  plain:'把螺栓胚夾在兩塊刻有紋路的牙板中間一滾，螺紋就「滾」出來；螺帽則用攻牙機攻出內螺紋。滾壓不切斷金屬纖維，螺紋更耐用。',
+  machines:[['搓牙機','兩片平板牙板滾出外螺紋'],['攻牙機','加工螺帽內螺紋'],['MAThread 防錯牙牙型','授權技術：鎖的時候不容易歪斜錯牙'],['搓牙機防呆機構','世德 2022 年專利，避免錯牙'],['通止規・牙規','確認螺紋尺寸']],
+  people:[['搓牙技術員','換牙板、調整進給量與牙深'],['操作員','投料、清理料道'],['巡檢員（IPQC）','用通止規、牙規抽驗，量有效徑']],
+  qc:['螺紋通止規檢驗','牙板磨耗管理','錯牙防呆'],
+  src:'搓牙與 MAThread 授權見 2022 法說會；屏東廠搓牙機見公開環保資料；防呆專利見研究附件。'},
+ {n:'熱處理',sub:'淬火・回火連續爐',site:'屏東',cred:'pub',io:['軟的螺栓','達到 8.8／10.9／12.9 級強度的螺栓'],
+  plain:'把螺栓送進長長的爐子，加熱後急速冷卻（淬火）再回溫（回火），讓它又硬又有韌性。太硬會脆、太軟扛不住，要找到剛剛好的那個窄窗口。',
+  machines:[['連續式熱處理爐','網帶輸送，依序經過加熱、淬火、回火'],['淬火油槽','控制冷卻速度'],['爐氛與碳勢控制','避免表面脫碳或滲碳過頭'],['爐溫記錄系統','每批留下溫度曲線，可追溯'],['線邊硬度計','出爐立即抽驗']],
+  people:[['熱處理技術員','依鋼種與強度等級設定溫度、時間、碳勢'],['爐前操作員','監看爐況、上下料；爐子多為連續運轉、輪班看守'],['品管','每批抽驗硬度、脫碳與金相，送實驗室確認']],
+  qc:['CQI-9 熱處理系統評鑑','每批爐溫曲線存檔','硬度、脫碳、氫脆風險管控'],
+  src:'2018 年啟用第一條自有熱處理線（Heat Treat Today）；2022 法說會列屏東廠熱處理與 CQI-9 認證。輪班細節屬業界常規。'},
+ {n:'表面處理',sub:'Magni 塗裝・電鍍・烘烤',site:'高雄（塗裝）',cred:'pub',io:['裸鋼螺栓','有防鏽外衣、摩擦係數受控的螺栓'],
+  plain:'替螺栓穿上防鏽外衣。但這層外衣也會改變鎖螺絲時的摩擦，所以除了防鏽，還要讓「同樣扭力鎖出同樣夾緊力」。',
+  machines:[['Magni 塗裝線','浸塗後離心甩乾、再進爐烘烤；授權技術體系'],['自動浸甩機','2007 年專利，讓塗層均勻'],['電鍍線','依產品需求；可能自製與委外並行'],['除氫烘烤爐','電鍍後烘烤，降低氫脆風險'],['膜厚計','量測塗層厚度']],
+  people:[['塗裝技術員','調配塗料黏度、設定甩乾轉速與烘烤溫度'],['化驗員','管控槽液濃度與 pH'],['品管','量膜厚、附著性，抽樣送實驗室做鹽霧與摩擦係數']],
+  qc:['CQI-11／12 電鍍與塗裝評鑑','膜厚與均勻度','摩擦係數（扭力係數 K）'],
+  src:'Magni 塗裝（高雄）與 CQI-11/12 見 2022 法說會；浸甩機專利見研究附件；早期電鍍委外見 2013 公開說明書。'},
+ {n:'二次加工',sub:'CNC・預塗膠・組合件',site:'屏東（CNC）・高雄',cred:'pub',io:['完成表面處理的螺栓','功能件與組合件：預塗膠螺栓、套管螺絲、帶墊片螺栓…'],
+  plain:'有些零件還要再加工：用 CNC 車床鑽孔、切槽；在螺紋上塗一圈防鬆膠（Loctite 預塗膠）；或把螺絲、套管、墊片自動組成一套，讓車廠拿了就能直接鎖。',
+  machines:[['CNC 車床・車銑複合機','電池包、底盤特殊件的精密切削、鑽孔'],['Loctite 預塗膠設備','在螺紋上塗防鬆膠'],['自動化套環設備','2019 年專利，自動組裝套環'],['繫留螺絲組裝設備','把螺絲留在套管裡、不會掉落'],['轉輪式高速緊湊型組裝線','多工位高速組裝組合件']],
+  people:[['CNC 技術員','寫／改加工程式、換刀、量測關鍵尺寸'],['組裝線操作員','補料、排除卡料、目視確認'],['自動化工程師','維護與改良自製組裝設備']],
+  qc:['組合件缺件、錯裝檢查','預塗膠位置與長度','CNC 尺寸首件確認'],
+  src:'CNC（屏東）、Loctite 預塗膠、各組裝設備見 2022 法說會；套環設備專利見研究附件。註：CNC 切削依產品也可能排在熱處理之前。'},
+ {n:'光學篩選',sub:'100% 全檢',site:'高雄・屏東',cred:'pub',io:['加工完成的零件','一顆一顆檢查過的合格品'],
+  plain:'車廠要求不良率是「百萬分之幾」，所以出貨前每一顆都要過篩：多台相機從各個角度拍照，量尺寸、找裂紋、看牙有沒有缺，有問題的一顆顆被吹出去。',
+  machines:[['客製化篩檢機','依料號自行規劃的檢測設備'],['CCD 光學篩選機','多鏡頭 360° 檢查外徑、牙距、頭型、裂紋'],['渦電流檢測','找肉眼看不到的裂紋或混料'],['Pinion nut 品質確認設備','特定車用螺帽的客製化檢測'],['CCD 尼龍膠檢查','確認防鬆膠／尼龍塗層']],
+  people:[['篩選機操作員','載入料號檢測程式，用標準樣品校機'],['品管工程師','調整判定門檻，兼顧不漏檢與不誤殺'],['複判人員','人工複檢被剔除的 NG 品，找出原因']],
+  qc:['每班以標準樣品驗證機台','NG 品統計回饋前段製程','目標 PPM 等級不良率'],
+  src:'客製化篩檢機、光學篩選見 2022 法說會；CCD 尼龍膠檢查見研究附件。PPM 為目標，非已公告績效。'},
+ {n:'品保實驗室',sub:'ISO/IEC 17025',site:'高雄',cred:'pub',io:['各站送來的抽樣品','檢驗報告與出貨放行'],
+  plain:'實驗室不在產線上，卻連著每一站：原料、成型、熱處理、塗裝、成品都會送樣品來。在這裡把螺栓拉到斷、泡鹽水霧、切開看金相，用數據證明它真的合格。',
+  machines:[['萬能拉力試驗機','測抗拉強度、保證荷重'],['硬度計（洛氏／維氏）','確認熱處理後硬度'],['金相顯微鏡與研磨機','切開看組織、脫碳層'],['扭力-軸力-摩擦係數試驗機','測鎖付時的扭力與夾緊力'],['鹽霧試驗箱','模擬海邊、雪地鹽分的腐蝕'],['光學投影機・三次元量床','精密量尺寸與牙型'],['光譜儀','原料成分複驗']],
+  people:[['實驗室技術員','依標準做拉力、硬度、鹽霧等測試，出報告'],['品保工程師','準備 PPAP 文件、做 SPC 統計、處理客訴 8D'],['計量校正人員','定期校正全廠量具']],
+  qc:['ISO/IEC 17025 實驗室能力','PPAP、SPC、CAQ 品質系統','出貨前允收判定'],
+  src:'高雄 ISO/IEC 17025、精密量測與可靠度設備、CAQ 系統見 2022 法說會；個別儀器清單屬扣件實驗室常規配置。'},
+ {n:'包裝出貨',sub:'計數・貼標・物流中心',site:'高雄物流中心',cred:'pub',io:['合格成品','貼上車廠條碼、批號可追溯的成品箱'],
+  plain:'自動計數、秤重、裝箱，貼上車廠專屬標籤。每一箱都查得到它用的是哪一爐鋼、哪台機器、哪一批熱處理。接著送往德國、美國倉庫或直送車廠。',
+  machines:[['自動計數秤重包裝機','確保每箱數量正確'],['標籤列印・條碼','車廠專屬標籤與批號'],['RFID-WIP 系統','2009 年建立，追蹤在製品與庫存'],['棧板裹膜機','保護長途海運'],['物流中心倉儲','安全庫存、寄售庫存']],
+  people:[['包裝員','核對料號、數量與標籤，防止混料'],['船務・出貨','訂艙、報關、安排 JIT 到貨'],['倉管','管理安全庫存與 VMI 補貨'],['業務・客服','回覆交期、處理客戶需求']],
+  qc:['混料防呆','數量與重量一致','批號可追溯到每一站'],
+  src:'物流中心、JIT／安全庫存／寄售見 2022 法說會；RFID-WIP 見研究附件。'}
+];
+const CRED={pub:['公開資料','有公開來源可查'],att:['研究附件','來自使用者提供的分析資料'],ind:['業界常規','扣件業一般做法，未經世德證實']};
+const FD=[
+ {k:'sales',n:'業務・應用工程',d:'接單、報價，在新車開發初期與車廠共同設計（Co-design），也提供即時視訊共同設計。',st:[2,6,9],x:100},
+ {k:'buy',n:'採購・原料倉',d:'向鋼廠採購盤元、管理原料庫存與交期，執行鋼價連動條款。',st:[0],x:300},
+ {k:'rd',n:'研發中心',d:'聘請博士級工程師研發自動化技術，自製組裝設備與客製化篩檢機。',st:[6,7],x:500},
+ {k:'tool',n:'模具中心',d:'快速模具設計與製造：CAD/CAM 設計、加工、研磨、修模，供應冷鍛與搓牙。',st:[2,3],x:700},
+ {k:'pmc',n:'生產管理・MES',d:'排程、派工、物料需求；以 RFID-WIP 追蹤每批在製品的位置與狀態。',st:[0,1,2,3,4,5,6,7,8,9],x:900},
+ {k:'mnt',n:'設備保養',d:'預防保養與維修；機台感測資料上雲，用品質預測與虛擬量測提早發現異常。',st:[2,3,4,5,6,7],x:1100},
+ {k:'qa',n:'品保部',d:'IQC（進料）→ IPQC（製程巡檢）→ FQC（最終）→ OQC（出貨）；管理實驗室、客訴與 PPAP。',st:[0,2,3,4,5,6,7,8,9],x:null},
+ {k:'logi',n:'物流中心',d:'包裝後倉儲與出貨，連結德國 MMG、美國密西根倉與車廠 JIT 交貨。',st:[9],x:null},
+ {k:'ehs',n:'環安衛',d:'熱處理與表面處理的空污、廢液、廢油管理，以及職業安全與 ISO 14001 環境管理。',st:[4,5],x:null},
+ {k:'mis',n:'資訊（MIS）',d:'ERP、CAQ 品質系統與 RFID 資料串接，讓批號從原料一路追到出貨。',st:[0,9],x:null}
+];
+/* layout */
+const FX=[120,360,600,840,1080], FYA=200, FYB=540, BW=210, BH=118, CYA=300, CYB=440;
+const FPOS=FS.map((_,i)=>i<5?{x:FX[i],y:FYA,cy:CYA}:{x:FX[9-i],y:FYB,cy:CYB});
+const ROUTE=[[120,CYA],[360,CYA],[600,CYA],[840,CYA],[1080,CYA],[1165,CYA],[1165,CYB],[1080,CYB],[840,CYB],[600,CYB],[360,CYB],[120,CYB]];
+const SV=[0,1,2,3,4,7,8,9,10,11];
+function ficon(i){const c='var(--ink-2)';return [
+ `<circle r="15" fill="none" stroke="${c}" stroke-width="4"/><circle r="8" fill="none" stroke="var(--accent)" stroke-width="4"/>`,
+ `<circle cx="-9" cy="-8" r="7" fill="none" stroke="${c}" stroke-width="3"/><circle cx="-9" cy="8" r="7" fill="none" stroke="${c}" stroke-width="3"/><path d="M-22 0H20" stroke="var(--accent)" stroke-width="3"/>`,
+ `<rect x="-12" y="-18" width="24" height="12" rx="2" fill="${c}" class="ram"/><rect x="-16" y="10" width="32" height="7" rx="2" fill="${c}"/><rect x="-4" y="-4" width="8" height="13" fill="var(--accent)"/>`,
+ `<rect x="-18" y="-16" width="36" height="6" rx="2" fill="${c}"/><rect x="-18" y="10" width="36" height="6" rx="2" fill="${c}"/><path d="M-10 -6 L10 6 M-10 0 L10 -4" stroke="var(--accent)" stroke-width="3"/>`,
+ `<rect x="-18" y="-10" width="36" height="24" rx="5" fill="none" stroke="${c}" stroke-width="3"/><path d="M-8 8q-4-6 0-12M0 8q-4-6 0-12M8 8q-4-6 0-12" stroke="var(--s2)" stroke-width="3" fill="none" stroke-linecap="round" class="flame"/>`,
+ `<ellipse rx="16" ry="9" fill="none" stroke="${c}" stroke-width="3"/><path d="M0 -16V16" stroke="${c}" stroke-width="3"/><circle r="5" fill="var(--s1)"/>`,
+ `<circle r="13" fill="none" stroke="${c}" stroke-width="4" stroke-dasharray="5 4" class="spin"/><circle r="4" fill="var(--accent)"/>`,
+ `<path d="M-18 0Q0 -16 18 0Q0 16 -18 0Z" fill="none" stroke="${c}" stroke-width="3"/><circle r="6" fill="var(--accent)"/>`,
+ `<path d="M-6 -16H6M-4 -16V-4L-14 14H14L4 -4V-16" fill="none" stroke="${c}" stroke-width="3" stroke-linejoin="round"/><path d="M-9 8H9" stroke="var(--s3)" stroke-width="4"/>`,
+ `<path d="M-16 -6L0 -14L16 -6V12L0 18L-16 12Z" fill="none" stroke="${c}" stroke-width="3" stroke-linejoin="round"/><path d="M-16 -6L0 2L16 -6M0 2V18" stroke="${c}" stroke-width="3" fill="none"/>`
+][i];}
+function fprod(k){/* product token centred at 0,0 */
+  const steel='#9aa3ad', dark='#4b5563', coat='#7fa7c9';
+  if(k===0)return `<circle r="15" fill="none" stroke="#8a6d4b" stroke-width="5"/><circle r="8" fill="none" stroke="#8a6d4b" stroke-width="4"/>`;
+  if(k===1)return `<rect x="-22" y="-3" width="44" height="6" rx="3" fill="${steel}"/>`;
+  const col=k<4?steel:k===4?dark:coat;
+  let s=`<rect x="-20" y="-9" width="9" height="18" rx="2" fill="${col}"/><rect x="-11" y="-4.5" width="31" height="9" rx="2" fill="${col}"/>`;
+  if(k>=3)for(let i=0;i<6;i++)s+=`<path d="M${-6+i*4.4} -4.5 l2 9" stroke="rgba(0,0,0,.35)" stroke-width="1.4"/>`;
+  if(k>=6)s+=`<rect x="4" y="-5" width="9" height="10" rx="1.5" fill="#2563eb" opacity=".8"/>`;
+  if(k===7)s+=`<circle cx="16" cy="-14" r="8" fill="var(--good)"/><path d="M12 -14l3 3 5-6" stroke="#fff" stroke-width="2" fill="none"/>`;
+  if(k===8)s+=`<circle cx="16" cy="-14" r="8" fill="var(--s7)"/><path d="M14 -18v4l-3 5h10l-3-5v-4" stroke="#fff" stroke-width="1.6" fill="none"/>`;
+  if(k===9)return `<rect x="-20" y="-15" width="40" height="30" rx="3" fill="#c8a46e" stroke="#8a6d4b" stroke-width="2"/><path d="M-20 -6H20" stroke="#8a6d4b" stroke-width="2"/><rect x="-12" y="2" width="16" height="8" fill="#fff"/><path d="M-10 4h12M-10 7h8" stroke="#333" stroke-width="1"/>`;
+  return s;
+}
+let fI=0,fPlaying=false,fSpeed=1,fAnim=null,fHL=[];
+function fBuild(){
+  const svg=$('#fSvg');let h='';
+  h+=`<defs><marker id="fArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink-3)"/></marker></defs>`;
+  h+=`<rect x="0" y="0" width="1200" height="720" rx="14" fill="var(--surface-2)"/>`;
+  h+=`<text x="20" y="26" font-size="12" fill="var(--ink-3)" font-weight="700" letter-spacing="1">支援部門</text>`;
+  h+=`<rect x="12" y="116" width="1176" height="510" rx="12" fill="none" stroke="var(--line)" stroke-dasharray="4 4"/><text x="24" y="136" font-size="12" fill="var(--ink-3)" font-weight="700" letter-spacing="1">生產線（高雄總廠＋屏東廠）</text>`;
+  /* support offices */
+  FD.filter(d=>d.x!==null).forEach(d=>{h+=`<g class="foff" data-k="${d.k}" tabindex="0" role="button" aria-label="${d.n}"><rect x="${d.x-88}" y="38" width="176" height="52" rx="10"/><text x="${d.x}" y="69" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">${d.n}</text></g>`;});
+  /* support lines */
+  h+=`<g class="lay lay-sup">`;
+  FD.filter(d=>d.x!==null&&d.st.length<=3).forEach(d=>d.st.forEach(s=>{const p=FPOS[s];h+=`<path d="M${d.x} 90 C${d.x} 130 ${p.x} 110 ${p.x} ${p.y-BH/2}" class="supl"/>`;}));
+  h+=`<text x="900" y="108" text-anchor="middle" font-size="11" fill="var(--s1)">→ 全廠排程派工</text><text x="1100" y="108" text-anchor="middle" font-size="11" fill="var(--s1)">→ 全廠機台保養</text></g>`;
+  /* conveyor */
+  const d='M'+ROUTE.map(p=>p.join(',')).join(' L');
+  h+=`<path d="${d}" fill="none" stroke="var(--line)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" id="fBelt" fill="none" stroke="var(--surface)" stroke-width="3" stroke-dasharray="10 10" stroke-linejoin="round"/>`;
+  /* QC sampling lines to lab (index 8) */
+  const lab=FPOS[8];
+  h+=`<g class="lay lay-qc">`;
+  [[0,'IQC'],[2,'IPQC'],[3,'IPQC'],[4,'IPQC'],[5,'IPQC'],[6,'IPQC'],[7,'FQC']].forEach(([s,t])=>{const p=FPOS[s];const sy=s<5?p.y+BH/2:p.y-BH/2;const ty=lab.y-BH/2;
+    const mx=(p.x+lab.x)/2, my=s<5?(sy+ty)/2+10:ty-60;
+    h+=`<path d="M${p.x+(s<5?40:0)} ${sy} Q${mx} ${my} ${lab.x+(s===7?60:30)} ${ty}" class="qcl" marker-end="url(#fArr)"/><text x="${p.x+(s<5?52:0)}" y="${s<5?sy+16:sy-8}" font-size="11" font-weight="700" fill="var(--s7)" text-anchor="${s<5?'start':'middle'}">${t}</text>`;});
+  h+=`<path d="M${lab.x-BW/2} ${lab.y} L${FPOS[9].x+BW/2} ${FPOS[9].y}" class="qcl rel" marker-end="url(#fArr)"/><text x="${(lab.x+FPOS[9].x)/2}" y="${lab.y-8}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--good)">放行</text></g>`;
+  /* stations */
+  FS.forEach((s,i)=>{const p=FPOS[i];const x0=p.x-BW/2,y0=p.y-BH/2;
+    h+=`<line x1="${p.x}" y1="${i<5?y0+BH:y0}" x2="${p.x}" y2="${p.cy}" stroke="var(--line)" stroke-width="4"/>`;
+    h+=`<g class="fst" data-i="${i}" tabindex="0" role="button" aria-label="第 ${i+1} 站 ${s.n}">
+      <rect class="box" x="${x0}" y="${y0}" width="${BW}" height="${BH}" rx="12"/>
+      <circle cx="${x0+22}" cy="${y0+24}" r="13" class="num"/><text x="${x0+22}" y="${y0+29}" text-anchor="middle" font-size="13" font-weight="900" class="numt">${String(i+1).padStart(2,'0')}</text>
+      <text x="${x0+42}" y="${y0+30}" font-size="17" font-weight="700" fill="var(--ink)">${s.n}</text>
+      <text x="${x0+14}" y="${y0+56}" font-size="11.5" fill="var(--ink-2)">${s.sub}</text>
+      <rect x="${x0+12}" y="${y0+BH-34}" width="${s.site.length*12+16}" height="22" rx="11" fill="var(--surface-2)"/><text x="${x0+20}" y="${y0+BH-19}" font-size="11" fill="var(--ink-2)">${s.site}</text>
+      <g transform="translate(${x0+BW-34},${y0+BH-34})" class="ico">${ficon(i)}</g>
+      <g class="lay lay-rf" transform="translate(${x0+BW-30},${y0+16})"><rect x="-12" y="-8" width="24" height="16" rx="3" fill="var(--s1)"/><text y="4" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff">RFID</text></g>
+    </g>`;});
+  /* bottom: logistics & destinations, EHS */
+  const p10=FPOS[9];
+  h+=`<path d="M${p10.x} ${p10.y+BH/2} V650" stroke="var(--ink-3)" stroke-width="3" marker-end="url(#fArr)" fill="none"/>`;
+  h+=`<g class="foff" data-k="logi" tabindex="0" role="button" aria-label="物流中心"><rect x="40" y="652" width="200" height="52" rx="10"/><text x="140" y="683" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">物流中心</text></g>`;
+  h+=`<path d="M240 678 H930" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-dasharray="6 5" class="ship"/><text x="262" y="668" font-size="11" fill="var(--ink-3)">出貨</text>`;
+  [['德國 MMG（Neuss）',430],['美國密西根倉',640],['車廠產線 JIT／VMI',850]].forEach(([t,x])=>{h+=`<rect x="${x-92}" y="658" width="184" height="40" rx="20" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/><text x="${x}" y="683" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent)">${t}</text>`;});
+  h+=`<g class="foff" data-k="ehs" tabindex="0" role="button" aria-label="環安衛"><rect x="1000" y="652" width="176" height="52" rx="10"/><text x="1088" y="683" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">環安衛</text></g>`;
+  h+=`<g class="foff" data-k="qa" tabindex="0" role="button" aria-label="品保部"><rect x="${lab.x-60}" y="372" width="120" height="34" rx="17"/><text x="${lab.x}" y="394" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--s7)">品保部</text></g>`;
+  /* token */
+  h+=`<g id="fTok" class="ftok"><circle r="27" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.5"/><g id="fTokArt"></g></g>`;
+  svg.innerHTML=h;
+  $('#fStrip').innerHTML=FS.map((s,i)=>`<button data-i="${i}"><b>${String(i+1).padStart(2,'0')}</b>${s.n}</button>`).join('');
+  $$('#fSvg .fst').forEach(g=>{const go=()=>{fJump(+g.dataset.i)};g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});
+  $$('#fStrip button').forEach(b=>b.onclick=()=>fJump(+b.dataset.i));
+  $$('#fSvg .foff').forEach(g=>{const go=()=>fDept(g.dataset.k);g.addEventListener('click',go);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});});
+  $('#fDepts').innerHTML=FD.map(d=>`<button data-k="${d.k}"><b>${d.n}</b><small>支援 ${d.st.length===10?'全部':d.st.length} 站</small></button>`).join('');
+  $$('#fDepts button').forEach(b=>b.onclick=()=>fDept(b.dataset.k));
+  fLayers();fPlace(fI,0);fPanel();fDept(null);
+}
+function fPt(i){const v=ROUTE[SV[i]];return {x:v[0],y:v[1]};}
+function fSegPts(i){return ROUTE.slice(SV[i],SV[i+1]+1);}
+function fAlong(pts,t){let L=[],tot=0;for(let k=1;k<pts.length;k++){const l=Math.hypot(pts[k][0]-pts[k-1][0],pts[k][1]-pts[k-1][1]);L.push(l);tot+=l;}
+  let d=t*tot;for(let k=0;k<L.length;k++){if(d<=L[k]||k===L.length-1){const r=L[k]?Math.min(1,d/L[k]):0;return {x:pts[k][0]+(pts[k+1][0]-pts[k][0])*r,y:pts[k][1]+(pts[k+1][1]-pts[k][1])*r};}d-=L[k];}}
+function fPlace(i,t){const p=t>0&&i<9?fAlong(fSegPts(i),t):fPt(i);$('#fTok').setAttribute('transform',`translate(${p.x},${p.y})`);$('#fTokArt').innerHTML=fprod(t>0.5&&i<9?i+1:i);}
+function fMark(){$$('#fSvg .fst').forEach(g=>{const i=+g.dataset.i;g.classList.toggle('on',i===fI);g.classList.toggle('hl',fHL.includes(i));});
+  $$('#fStrip button').forEach((b,j)=>b.classList.toggle('on',j===fI));}
+function fPanel(){const s=FS[fI];fMark();const c=CRED[s.cred];
+  $('#fCaption').textContent=`第 ${fI+1} 站：${s.n}　｜　${s.io[0]} → ${s.io[1]}`;
+  $('#fPanel').innerHTML=`<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="pill">第 ${fI+1} 站 · ${s.site}</span><span class="cred ${s.cred}" title="${c[1]}">${c[0]}</span></div>
+  <h3 style="margin:8px 0 6px">${s.n}<span class="muted" style="font-size:15px;font-weight:400">　${s.sub}</span></h3>
+  <p style="margin:0 0 10px;font-size:17px">${s.plain}</p>
+  <div class="fio"><span>投入：${s.io[0]}</span><b>→</b><span>產出：${s.io[1]}</span></div>
+  <div class="fcols">
+    <div><div class="h">⚙️ 機台與設備</div><ul class="flist">${s.machines.map(m=>`<li><b>${m[0]}</b><span>${m[1]}</span></li>`).join('')}</ul></div>
+    <div><div class="h">👷 這裡的人在做什麼</div><ul class="flist ppl">${s.people.map(m=>`<li><b>${m[0]}</b><span>${m[1]}</span></li>`).join('')}</ul><div class="note" style="margin-top:6px">人員分工依扣件業常規描述。</div></div>
+    <div><div class="h">✅ 品質管制點</div><ul class="flist">${s.qc.map(q=>`<li><span>${q}</span></li>`).join('')}</ul></div>
+  </div>
+  <p class="note">資料依據：${s.src}</p>`;}
+function fDept(k){const d=FD.find(x=>x.k===k);fHL=d?d.st:[];fMark();
+  $$('#fDepts button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));$$('#fSvg .foff').forEach(g=>g.classList.toggle('on',g.dataset.k===k));
+  $('#fDeptCard').innerHTML=d?`<b>${d.n}</b>　<span style="font-size:14.5px">${d.d}</span><div class="muted" style="font-size:13px;margin-top:4px">支援工序：${d.st.map(i=>String(i+1).padStart(2,'0')+' '+FS[i].n).join('、')}</div>`:'<span class="muted">點上方任一部門，或流程圖上方的辦公室方塊。</span>';}
+function fLayers(){const svg=$('#fSvg');svg.classList.toggle('L-qc',$('#lyQc').checked);svg.classList.toggle('L-sup',$('#lySup').checked);svg.classList.toggle('L-rf',$('#lyRf').checked);}
+['#lyQc','#lySup','#lyRf'].forEach(id=>$(id).onchange=fLayers);
+function fJump(i){fI=Math.max(0,Math.min(9,i));fStopAnim();fPlace(fI,0);fPanel();if(fPlaying)fRun();}
+function fStopAnim(){if(fAnim){cancelAnimationFrame(fAnim.raf);clearTimeout(fAnim.to);fAnim=null;}}
+function fRun(){fStopAnim();fAnim={};const dwell=2600/fSpeed, move=1400/fSpeed;
+  fAnim.to=setTimeout(()=>{if(fI>=9){fAnim.to=setTimeout(()=>{fI=0;fPlace(0,0);fPanel();fRun();},1200/fSpeed);return;}
+    const t0=performance.now();const step=now=>{const t=Math.min(1,(now-t0)/move);fPlace(fI,t);if(t<1){fAnim.raf=requestAnimationFrame(step);}else{fI++;fPlace(fI,0);fPanel();fRun();}};fAnim.raf=requestAnimationFrame(step);},dwell);}
+function fSetPlay(on){fPlaying=on;$('#fPlay').textContent=on?'⏸ 暫停':'▶ 播放';$('#fPlay').classList.toggle('on',on);$('#fSvg').classList.toggle('playing',on);if(on)fRun();else fStopAnim();}
+$('#fPlay').onclick=()=>fSetPlay(!fPlaying);
+$('#fPrev').onclick=()=>fJump(fI-1);$('#fNext').onclick=()=>fJump(fI+1);
+$$('#fSpeed button').forEach(b=>b.onclick=()=>{fSpeed=+b.dataset.v;$$('#fSpeed button').forEach(x=>x.classList.toggle('on',x===b));if(fPlaying)fRun();});
+addEventListener('hashchange',()=>{if(location.hash!=='#factory'&&fPlaying)fSetPlay(false);});
+
 /* ---------- merged: tiers ---------- */
 const TIERS=[
  {c:'var(--accent)',no:'TIER 01',t:'臺灣屏東母廠',s:'研發・冷鍛・基礎加工',pts:['負擔約 70–80% 的基礎工序，發揮台灣規模化製造的成本優勢','高效率、大規模冷鍛，是製程品質與毛利的核心','把德國 MMG 非必要的基礎加工逐步移回屏東'],w:'屏東新廠也要維持夠高的利用率，成本優勢才會出現。'},
@@ -1250,10 +1530,16 @@ const LIB=[
  ['PNG','轉單紅利：與傳統出口型扣件同業對比','關稅、定價權、車廠採購傾向。',['global']],
  ['PNG','核心技術／專利技術樹（11 道流程主幹）','各站管控重點與專利／研發對照。',['tree']],
  ['PNG','世德技術樹（設計 × 製造）','扣件設計與製造兩支主幹的匯流。',['patents']],
+ ['WEB','世德工業 2022 年法說會簡報（官網）','高雄總廠與屏東廠的面積、人數、製程與認證；熱處理 CQI-9、電鍍 CQI-11/12、Magni、篩檢機與組裝設備。',['factory'],'https://www.sumeeko.com/wp-content/uploads/2025/11/11105%E6%B3%95%E8%AA%AA.pdf'],
+ ['WEB','天下雜誌：世德把螺絲做到精品等級','加工、熱處理、表面電鍍多以自動化完成；設立研發中心。',['factory'],'https://www.cw.com.tw/article/5101463'],
+ ['WEB','材料世界網：世德導入智慧製造生產線','扣件 9 道工序；模具製造與品質監測導入感測上雲、虛擬量測。',['factory'],'https://www.materialsnet.com.tw/DocView.aspx?id=25111'],
+ ['WEB','Heat Treat Today：Sumeeko 啟用首條自有熱處理線','2018 年報導世德啟用第一條自有熱處理線。',['factory'],'https://www.heattreattoday.com/tag/phil-matten/'],
+ ['WEB','台灣環境資訊（透明足跡）：世德工廠基本資料','高雄總廠與屏東廠地址、產業類別；屏東廠成型機、搓牙機等設備紀錄。',['factory'],'https://thaubing.gcaa.org.tw/corp/22546808'],
+ ['WEB','世德公開說明書（2013）','早期熱處理、表面處理、電鍍採委外加工的說明。',['factory'],'https://www.cathaysec.com.tw/RiskManage/%E4%B8%96%E5%BE%B7%E5%85%AC%E9%96%8B%E8%AA%AA%E6%98%8E%E6%9B%B8.pdf'],
  ['WEB','世德工業｜策略研究室（先前的 ChatGPT 版網站）','研究總覽、三大投資主題、三層營運模式、ROIC／WACC 沙盒、政策提醒、資料限制。本站已整併其內容。',['home','global','finance','future','library'],'https://sumed-strategy-lab.robustpivot.chatgpt.site']
 ];
-const TAB={home:'①',journey:'②',tree:'③',patents:'④',moat:'⑤',ev:'⑥',global:'⑦',lean:'⑧',finance:'⑨',future:'⑩',library:'資料庫'};
-const TABN={home:'公司是誰',journey:'製程',tree:'技術樹',patents:'專利',moat:'護城河',ev:'電動車',global:'三地布局',lean:'精實生產',finance:'財務',future:'未來劇本',library:'資料庫'};
+const TAB={home:'①',journey:'②',factory:'③',tree:'④',patents:'⑤',moat:'⑥',ev:'⑦',global:'⑧',lean:'⑨',finance:'⑩',future:'⑪',library:'資料庫'};
+const TABN={home:'公司是誰',journey:'製程',factory:'走進工廠',tree:'技術樹',patents:'專利',moat:'護城河',ev:'電動車',global:'三地布局',lean:'精實生產',finance:'財務',future:'未來劇本',library:'資料庫'};
 let libT='全部';
 const types=['全部','PDF','TXT','PNG','WEB'];
 $('#libSeg').innerHTML=types.map(t=>`<button data-t="${t}" class="${t==='全部'?'on':''}">${t}${t==='全部'?'（'+LIB.length+'）':'（'+LIB.filter(l=>l[0]===t).length+'）'}</button>`).join('');
@@ -1268,7 +1554,7 @@ function renderAll(){Object.keys(renderers).forEach(k=>{if(!rendered[k]){rendere
 addEventListener('beforeprint',renderAll);
 $('#printBtn').onclick=()=>{renderAll();try{window.print();}catch(e){}};
 
-const renderers={patents(){patChart();},finance(){setDup('roe');roicChart();cccChart();},future(){epsChart();setScn('base');mixChart(2024);revChart();}};
+const renderers={factory(){fBuild();let rm=false;try{rm=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}if(!rm)fSetPlay(true);},patents(){patChart();},finance(){setDup('roe');roicChart();cccChart();},future(){epsChart();setScn('base');mixChart(2024);revChart();}};
 route();
 })();
 </script>
